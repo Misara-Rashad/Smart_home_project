@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectVersion>7.0</ProjectVersion>
+    <ToolchainName>com.microchip.xc8</ToolchainName>
+    <ProjectGuid>2285C48D-296E-43FD-A7B6-69885F64CFFD</ProjectGuid>
+    <avrdevice>ATmega32</avrdevice>
+    <avrdeviceseries>none</avrdeviceseries>
+    <OutputType>Executable</OutputType>
+    <Language>C</Language>
+    <OutputFileName>$(MSBuildProjectName)</OutputFileName>
+    <OutputFileExtension>.elf</OutputFileExtension>
+    <OutputDirectory>$(MSBuildProjectDirectory)\$(Configuration)</OutputDirectory>
+    <AssemblyName>SMART_HOME_PROJECT</AssemblyName>
+    <Name>SMART_HOME_PROJECT</Name>
+    <RootNamespace>SMART_HOME_PROJECT</RootNamespace>
+    <ToolchainFlavour>XC8_2.36</ToolchainFlavour>
+    <KeepTimersRunning>true</KeepTimersRunning>
+    <OverrideVtor>false</OverrideVtor>
+    <CacheFlash>true</CacheFlash>
+    <ProgFlashFromRam>true</ProgFlashFromRam>
+    <RamSnippetAddress />
+    <UncachedRange />
+    <preserveEEPROM>true</preserveEEPROM>
+    <OverrideVtorValue />
+    <BootSegment>2</BootSegment>
+    <ResetRule>0</ResetRule>
+    <eraseonlaunchrule>0</eraseonlaunchrule>
+    <EraseKey />
+    <AsfFrameworkConfig>
+      <framework-data xmlns="">
+  <options />
+  <configurations />
+  <files />
+  <documentation help="" />
+  <offline-documentation help="" />
+  <dependencies>
+    <content-extension eid="atmel.asf" uuidref="Atmel.ASF" version="3.52.0" />
+  </dependencies>
+</framework-data>
+    </AsfFrameworkConfig>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <ToolchainSettings>
+      <com.microchip.xc8>
+  <com.microchip.xc8.common.optimization.RelaxBranches>True</com.microchip.xc8.common.optimization.RelaxBranches>
+  <com.microchip.xc8.compiler.general.ChangeDefaultCharTypeUnsigned>True</com.microchip.xc8.compiler.general.ChangeDefaultCharTypeUnsigned>
+  <com.microchip.xc8.compiler.general.ChangeDefaultBitFieldUnsigned>True</com.microchip.xc8.compiler.general.ChangeDefaultBitFieldUnsigned>
+  <com.microchip.xc8.compiler.symbols.DefSymbols>
+    <ListValues>
+      <Value>(%24DeviceMacro)</Value>
+      <Value>NDEBUG</Value>
+    </ListValues>
+  </com.microchip.xc8.compiler.symbols.DefSymbols>
+  <com.microchip.xc8.compiler.optimization.level>Optimize for size (-Os)</com.microchip.xc8.compiler.optimization.level>
+  <com.microchip.xc8.compiler.optimization.PackStructureMembers>True</com.microchip.xc8.compiler.optimization.PackStructureMembers>
+  <com.microchip.xc8.compiler.optimization.AllocateBytesNeededForEnum>True</com.microchip.xc8.compiler.optimization.AllocateBytesNeededForEnum>
+  <com.microchip.xc8.compiler.warnings.AllWarnings>True</com.microchip.xc8.compiler.warnings.AllWarnings>
+  <com.microchip.xc8.linker.libraries.Libraries>
+    <ListValues>
+      <Value>libm</Value>
+    </ListValues>
+  </com.microchip.xc8.linker.libraries.Libraries>
+</com.microchip.xc8>
+    </ToolchainSettings>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <ToolchainSettings>
+      <com.microchip.xc8>
+  <com.microchip.xc8.compiler.general.ChangeDefaultCharTypeUnsigned>True</com.microchip.xc8.compiler.general.ChangeDefaultCharTypeUnsigned>
+  <com.microchip.xc8.compiler.general.ChangeDefaultBitFieldUnsigned>True</com.microchip.xc8.compiler.general.ChangeDefaultBitFieldUnsigned>
+  <com.microchip.xc8.compiler.symbols.DefSymbols>
+    <ListValues>
+      <Value>(%24DeviceMacro)</Value>
+      <Value>DEBUG</Value>
+    </ListValues>
+  </com.microchip.xc8.compiler.symbols.DefSymbols>
+  <com.microchip.xc8.compiler.optimization.level>Optimize debugging experience (-Og)</com.microchip.xc8.compiler.optimization.level>
+  <com.microchip.xc8.compiler.optimization.PackStructureMembers>True</com.microchip.xc8.compiler.optimization.PackStructureMembers>
+  <com.microchip.xc8.compiler.optimization.AllocateBytesNeededForEnum>True</com.microchip.xc8.compiler.optimization.AllocateBytesNeededForEnum>
+  <com.microchip.xc8.compiler.optimization.DebugLevel>Default (-g2)</com.microchip.xc8.compiler.optimization.DebugLevel>
+  <com.microchip.xc8.compiler.warnings.AllWarnings>True</com.microchip.xc8.compiler.warnings.AllWarnings>
+  <com.microchip.xc8.linker.libraries.Libraries>
+    <ListValues>
+      <Value>libm</Value>
+    </ListValues>
+  </com.microchip.xc8.linker.libraries.Libraries>
+  <com.microchip.xc8.assembler.debugging.DebugLevel>Default (-Wa,-g)</com.microchip.xc8.assembler.debugging.DebugLevel>
+</com.microchip.xc8>
+    </ToolchainSettings>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="HAL\H7SEG\H7SEG_CONFIG.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\H7SEG\H7SEG_CONFIG.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\H7SEG\H7SEG_INTERFACE.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\H7SEG\H7SEG_PROGRAM.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\HKEYPAD\HKEYPAD_CONFIG.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\HKEYPAD\HKEYPAD_CONFIG.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\HKEYPAD\HKEYPAD_INTERFACE.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\HKEYPAD\HKEYPAD_PROGRAM.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\HLCD\HLCD_CONFIG.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\HLCD\HLCD_CONFIG.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\HLCD\HLCD_INTERFACE.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\HLCD\HLCD_PROGRAM.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\HLED\HLED_CONFIG.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\HLED\HLED_CONFIG.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\HLED\HLED_INTERFACE.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\HLED\HLED_PROGRAM.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\HSWITCH\HSWITCH_CONFIG.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\HSWITCH\HSWITCH_CONFIG.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\HSWITCH\HSWITCH_INTERFACE.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\HSWITCH\HSWITCH_PROGRAM.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Libraries_\ATMega32_Registers.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Libraries_\LIB_BMNP.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="Libraries_\LIB_STDTypes.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="main.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MADC\MADC_INTERFACE.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MADC\MADC_PROGRAM.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MADC\MADC_REGISTERS.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MDIO\MDIO_CONFIG.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MDIO\MDIO_INTERFACE.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MDIO\MDIO_PROGRAM.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MDIO\MDIO_REGISTERS.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MEEPROM\MEEPROM_INTERFACE.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MEEPROM\MEEPROM_PROGRAM.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MEEPROM\MEEPROM_REGISTERS.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MINT\MINT_CONFIG.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MINT\MINT_INTERFACE.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MINT\MINT_PROGRAM.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MINT\MINT_REGISTERS.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MSPI\MSPI_CONFIG.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MSPI\MSPI_INTERFACE.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MSPI\MSPI_PROGRAM.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MSPI\MSPI_REGISTERS.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MTIMER\MPWM\MPWM_CONFIG.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MTIMER\MPWM\MPWM_CONFIG.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MTIMER\MPWM\MPWM_INTERFACE.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MTIMER\MPWM\MPWM_PROGRAM.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MTIMER\MTIMER_CONFIG.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MTIMER\MTIMER_INTERFACE.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MTIMER\MTIMER_PROGRAM.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MTIMER\MTIMER_REGISTERS.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MTWI\MTWI_CONFIG.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MTWI\MTWI_INTERFACE.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MTWI\MTWI_PROGRAM.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MTWI\MTWI_REGISTERS.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MUSART\MUSART_CONFIG.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MUSART\MUSART_INTERFACE.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MUSART\MUSART_PROGRAM.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="MCAL\MUSART\MUSART_REGISTERS.h">
+      <SubType>compile</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="HAL\" />
+    <Folder Include="HAL\H7SEG\" />
+    <Folder Include="HAL\HKEYPAD\" />
+    <Folder Include="HAL\HLCD\" />
+    <Folder Include="HAL\HLED\" />
+    <Folder Include="HAL\HSWITCH\" />
+    <Folder Include="Libraries_\" />
+    <Folder Include="MCAL\" />
+    <Folder Include="MCAL\MADC\" />
+    <Folder Include="MCAL\MDIO\" />
+    <Folder Include="MCAL\MEEPROM\" />
+    <Folder Include="MCAL\MINT\" />
+    <Folder Include="MCAL\MSPI\" />
+    <Folder Include="MCAL\MTIMER\" />
+    <Folder Include="MCAL\MTIMER\MPWM\" />
+    <Folder Include="MCAL\MTWI\" />
+    <Folder Include="MCAL\MUSART\" />
+  </ItemGroup>
+  <Import Project="$(AVRSTUDIO_EXE_PATH)\\Vs\\Compiler.targets" />
+</Project>

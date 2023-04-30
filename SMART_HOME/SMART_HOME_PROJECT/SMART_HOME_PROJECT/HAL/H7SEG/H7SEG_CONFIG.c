@@ -1,0 +1,48 @@
+/*
+ * H7SEG_CONFIG.c
+ *
+ * Created: 21/02/2023 1:27:11 AM
+ *  Author: Misra
+ */ 
+
+
+/*...........includes section.........*/
+//libraries
+#include "../../Libraries_/LIB_STDTypes.h"
+#include "../../Libraries_/LIB_BMNP.h"
+#include "../../Libraries_/ATMega32_Registers.h"
+
+
+//MCAL
+#include "../../MCAL/MDIO/MDIO_CONFIG.h"
+#include "../../MCAL/MDIO/MDIO_INTERFACE.h"
+#include "../../MCAL/MDIO/MDIO_REGISTERS.h"
+
+
+
+//HAL
+#include "H7SEG_CONFIG.h"
+#include "H7SEG_INTERFACE.h"
+
+
+SSD_T H7SEGarrayof7seg_H7SEG[NUM_OF_7SEG]=
+{
+	[H7SEG_NUM0]={	.A={MDIO_PIN4,MDIO_PORTA,MDIO_OUTPUT,MDIO_HIGH},
+					.B={MDIO_PIN5,MDIO_PORTA,MDIO_OUTPUT,MDIO_HIGH},
+					.C={MDIO_PIN6,MDIO_PORTA,MDIO_OUTPUT,MDIO_HIGH},
+					.D={MDIO_PIN7,MDIO_PORTA,MDIO_OUTPUT,MDIO_HIGH},
+					.DOT={MDIO_PIN3,MDIO_PORTB,MDIO_OUTPUT,MDIO_HIGH},			
+					.ENABLE={MDIO_PIN1,MDIO_PORTB,MDIO_OUTPUT,MDIO_HIGH},		
+					.enummode =COMMON_CATHODE 	
+			     },
+		
+	[H7SEG_NUM1]={	.A={MDIO_PIN4,MDIO_PORTA,MDIO_OUTPUT,MDIO_HIGH},
+					.B={MDIO_PIN5,MDIO_PORTA,MDIO_OUTPUT,MDIO_HIGH},
+					.C={MDIO_PIN6,MDIO_PORTA,MDIO_OUTPUT,MDIO_HIGH},
+					.D={MDIO_PIN7,MDIO_PORTA,MDIO_OUTPUT,MDIO_HIGH},
+					.DOT={MDIO_PIN3,MDIO_PORTB,MDIO_OUTPUT,MDIO_HIGH}, //dot here only works
+					.ENABLE={MDIO_PIN2,MDIO_PORTB,MDIO_OUTPUT,MDIO_HIGH}, 
+					.enummode =COMMON_CATHODE
+},
+	
+};
