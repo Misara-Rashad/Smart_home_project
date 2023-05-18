@@ -1,6 +1,7 @@
 HAL/HLED/HLED_PROGRAM.d HAL/HLED/HLED_PROGRAM.o: \
  ../HAL/HLED/HLED_PROGRAM.c ../HAL/HLED/../../Libraries_/LIB_STDTypes.h \
  ../HAL/HLED/../../Libraries_/LIB_BMNP.h \
+ ../HAL/HLED/../../Libraries_/ATMega32_Registers.h \
  ../HAL/HLED/../../Libraries_/LIB_BMNP.h \
  ../HAL/HLED/../../Libraries_/ATMega32_Registers.h \
  ../HAL/HLED/../../MCAL/MDIO/MDIO_CONFIG.h \
@@ -19,6 +20,8 @@ HAL/HLED/HLED_PROGRAM.d HAL/HLED/HLED_PROGRAM.o: \
 ../HAL/HLED/../../Libraries_/LIB_STDTypes.h:
 
 ../HAL/HLED/../../Libraries_/LIB_BMNP.h:
+
+../HAL/HLED/../../Libraries_/ATMega32_Registers.h:
 
 ../HAL/HLED/../../Libraries_/LIB_BMNP.h:
 

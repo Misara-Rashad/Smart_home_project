@@ -15,8 +15,10 @@ MCAL/MINT/MINT_PROGRAM.d MCAL/MINT/MINT_PROGRAM.o: \
  c:\program\ files\microchip\xc8\v2.36\avr\avr\include\avr\fuse.h \
  c:\program\ files\microchip\xc8\v2.36\avr\avr\include\avr\lock.h \
  ../MCAL/MINT/../../Libraries_/LIB_STDTypes.h \
- ../MCAL/MINT/../../Libraries_/LIB_BMNP.h ../MCAL/MINT/MINT_INTERFACE.h \
- ../MCAL/MINT/MINT_REGISTERS.h ../MCAL/MINT/MINT_CONFIG.h
+ ../MCAL/MINT/../../Libraries_/LIB_BMNP.h \
+ ../MCAL/MINT/../../Libraries_/ATMega32_Registers.h \
+ ../MCAL/MINT/MINT_INTERFACE.h ../MCAL/MINT/MINT_REGISTERS.h \
+ ../MCAL/MINT/MINT_CONFIG.h
 
 c:\program\ files\microchip\xc8\v2.36\avr\avr\include\avr\interrupt.h:
 
@@ -49,6 +51,8 @@ c:\program\ files\microchip\xc8\v2.36\avr\avr\include\avr\lock.h:
 ../MCAL/MINT/../../Libraries_/LIB_STDTypes.h:
 
 ../MCAL/MINT/../../Libraries_/LIB_BMNP.h:
+
+../MCAL/MINT/../../Libraries_/ATMega32_Registers.h:
 
 ../MCAL/MINT/MINT_INTERFACE.h:
 

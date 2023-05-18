@@ -16,6 +16,7 @@ MCAL/MTIMER/MTIMER_PROGRAM.d MCAL/MTIMER/MTIMER_PROGRAM.o: \
  c:\program\ files\microchip\xc8\v2.36\avr\avr\include\avr\lock.h \
  ../MCAL/MTIMER/../../Libraries_/LIB_STDTypes.h \
  ../MCAL/MTIMER/../../Libraries_/LIB_BMNP.h \
+ ../MCAL/MTIMER/../../Libraries_/ATMega32_Registers.h \
  ../MCAL/MTIMER/../MDIO/MDIO_CONFIG.h \
  ../MCAL/MTIMER/../MDIO/MDIO_INTERFACE.h \
  ../MCAL/MTIMER/../MDIO/../../Libraries_/LIB_STDTypes.h \
@@ -56,6 +57,8 @@ c:\program\ files\microchip\xc8\v2.36\avr\avr\include\avr\lock.h:
 ../MCAL/MTIMER/../../Libraries_/LIB_STDTypes.h:
 
 ../MCAL/MTIMER/../../Libraries_/LIB_BMNP.h:
+
+../MCAL/MTIMER/../../Libraries_/ATMega32_Registers.h:
 
 ../MCAL/MTIMER/../MDIO/MDIO_CONFIG.h:
 

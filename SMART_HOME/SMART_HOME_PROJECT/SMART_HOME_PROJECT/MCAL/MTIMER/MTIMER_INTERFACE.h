@@ -89,6 +89,7 @@ void voidcounter_end_counter_MTIMER(TIMER_T* ptostruct);
 void voidcounter_continue_counter_MTIMER(TIMER_T* ptostruct);
 u32  u32counter_get_counter_value(TIMER_T* ptostruct);
 
+void voidtimer1_ctc_interrupt_call_back(void (*ptr) (f32));
 
 
 

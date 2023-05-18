@@ -2,6 +2,7 @@ HAL/HKEYPAD/HKEYPAD_CONFIG.d HAL/HKEYPAD/HKEYPAD_CONFIG.o: \
  ../HAL/HKEYPAD/HKEYPAD_CONFIG.c \
  ../HAL/HKEYPAD/../../Libraries_/LIB_STDTypes.h \
  ../HAL/HKEYPAD/../../Libraries_/LIB_BMNP.h \
+ ../HAL/HKEYPAD/../../Libraries_/ATMega32_Registers.h \
  ../HAL/HKEYPAD/../../Libraries_/LIB_BMNP.h \
  ../HAL/HKEYPAD/../../Libraries_/ATMega32_Registers.h \
  ../HAL/HKEYPAD/../../MCAL/MDIO/MDIO_CONFIG.h \
@@ -15,6 +16,8 @@ HAL/HKEYPAD/HKEYPAD_CONFIG.d HAL/HKEYPAD/HKEYPAD_CONFIG.o: \
 ../HAL/HKEYPAD/../../Libraries_/LIB_STDTypes.h:
 
 ../HAL/HKEYPAD/../../Libraries_/LIB_BMNP.h:
+
+../HAL/HKEYPAD/../../Libraries_/ATMega32_Registers.h:
 
 ../HAL/HKEYPAD/../../Libraries_/LIB_BMNP.h:
 

@@ -8,7 +8,7 @@
 #define F_CPU	16000000UL
 #include <util/delay.h>
 #define no_of_trials		3
-
+#include <avr/interrupt.h>
 
 //MCAL
 #include "MCAL/MDIO/MDIO_INTERFACE.h"
@@ -21,9 +21,10 @@
 #include "HAL/HLED/HLED_INTERFACE.h"
 #include "HAL/HKEYPAD/HKEYPAD_INTERFACE.h"
 #include "HAL/HLCD/HLCD_INTERFACE.h"
+#include "HAL/HSERVO/HSERVO_INTERFACE.h"
 
 //MASTER CODE
-/*u8 state_of_led0=100;
+u8 state_of_led0=100;
 u8 state_of_led1=100;
 u8 state_of_led2=100;
 u8 value_in_keypad = 1;
@@ -39,8 +40,11 @@ u8 enter_password_message[]="password:";
 u8 error_massage[]= "wrong password";
 u8 right_pass[]="welcome";
 u8 choose[]="Room 1 to 9:";
+
+f32 x=0;
 int main(void)
 {
+	voidtimer1_ctc_interrupt_call_back(voidservo_start_HSERVO);
 	voidinitkeypad_HKEYPAD();
 	voidinitlcd_HLCD();
 	voidinitspi_master_MSPI();	
@@ -58,7 +62,6 @@ int main(void)
 	{
 		if (1 == sequence)
 		{
-				//enter_pass_again:
 				enumkeypadgetnumber_HKEYPAD(&HKEYPAD_arrayofkeypads[0],&value_in_keypad);
 				if (value_in_keypad != 1 && counter_in_eeprom<4)
 					{
@@ -84,7 +87,7 @@ int main(void)
 											voidLCDstring_HLCD(error_massage,14,HLCD_NUM0);
 											wrong_pass_flag=1;
 											counter_for_wrong_pass_entered++;
-											if (counter_for_wrong_pass_entered ==3)
+											if (counter_for_wrong_pass_entered ==no_of_trials)
 											{
 													break;
 											}
@@ -99,6 +102,9 @@ int main(void)
 				voidLCDstring_HLCD(right_pass,7,HLCD_NUM0);
 				wrong_pass_flag=1;
 				sequence=2;
+				x=f32initservo_HSERVO(180);
+				_delay_ms(1000);
+				x=f32initservo_HSERVO(0);
 			}
 			
 			}
@@ -157,7 +163,7 @@ int main(void)
 	
 	return 0;
 	
-}*/
+}
 
 
 
@@ -244,7 +250,6 @@ int main(void)
 			enumpinvalue_selection_MDIO(&PD7_pin,MDIO_HIGH);
 			_delay_ms(0.01); //delay 10us
 			enumpinvalue_selection_MDIO(&PD7_pin,MDIO_LOW);
-			x=f32timer_get_timer_value_in_us(&TIMER0_STRUCT);
 			distance_in_cm=(x)/58;
 			voidlcdfloat_number_HLCD(distance_in_cm,HLCD_NUM0);
 			distance_in_m=distance_in_cm/100;
@@ -272,13 +277,14 @@ void fun (void)
 	voidtimer_end_timer_MTIMER(&TIMER0_STRUCT);
 	y=0;
 	voidINTENABLEHandler_MINT(MINT_EXINT0, MINT_ISC_RISING_EDGE);
+	x=f32timer_get_timer_value_in_us(&TIMER0_STRUCT);
 	}
 	
 	else{}
 }*/
 
 
-
+//SERVO MOTOR
 /*f32 x=0;
 u32 y=0;
 DIO_PIN PD7_pin={
@@ -339,7 +345,7 @@ int main(void)
 
 
 //MASTER CODE
-u8 state_of_led0=100;
+/*u8 state_of_led0=100;
 u8 state_of_led1=100;
 u8 state_of_led2=100;
 u8 value_in_keypad = 0;
@@ -526,4 +532,26 @@ int main(void)
 	}
 	
 	return 0;	
-}
+}*/
+
+/*f32 x=0;
+int main(void)
+{
+	voidtimer1_ctc_interrupt_call_back(voidservo_start_HSERVO);
+
+
+	while (1)
+	{
+	for (u8 i=0;i<180;i++)
+	{
+		x=f32initservo_HSERVO(i);
+		_delay_ms(10);
+	}
+	for (u8 i=180;i>0;i--)
+	{
+		x=f32initservo_HSERVO(i);
+		_delay_ms(10);
+	}
+	}	
+	return 0;
+}*/

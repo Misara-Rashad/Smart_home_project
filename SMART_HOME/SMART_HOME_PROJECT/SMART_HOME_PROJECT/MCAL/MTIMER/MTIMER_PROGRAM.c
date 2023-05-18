@@ -6,28 +6,22 @@
  */ 
 
 /*...........includes section...........*/
-
 #include <avr/interrupt.h>
 
 //libraries
 #include "../../Libraries_/LIB_STDTypes.h"
-
-
-
 
 //MCAL
 #include "../MDIO/MDIO_CONFIG.h"
 #include "../MDIO/MDIO_INTERFACE.h"
 #include "../MDIO/MDIO_REGISTERS.h"
 
-
-
-
 #include "MTIMER_INTERFACE.h"
 
 
-
-
+//global variables
+extern f32 x;
+void (*timer1_ctc_int) (f32);
 TIMER_T TIMER0_STRUCT={
 	.enumstate_for_timer_or_counter=FREE,
 	.enum_timer_or_counter=TIMER_MODE,
@@ -37,7 +31,6 @@ TIMER_T TIMER0_STRUCT={
 	.enumnumber_of_timer= timer0
 };
 
-
 TIMER_T TIMER1_STRUCT={
 	.enumstate_for_timer_or_counter=FREE,
 	.enum_timer_or_counter=TIMER_MODE,
@@ -46,7 +39,6 @@ TIMER_T TIMER1_STRUCT={
 	.enummode_OC=Normal_port_operation,
 	.enumnumber_of_timer= timer1
 };
-
 
 TIMER_T TIMER2_STRUCT={
 	.enumstate_for_timer_or_counter=FREE,
@@ -64,7 +56,6 @@ DIO_PIN T0_PIN={
 	.enumoutputlevel=MDIO_LOW
 };
 
-
 DIO_PIN T1_PIN={
 	.enumpin=MDIO_PIN1,
 	.enumport=MDIO_PORTB,
@@ -72,8 +63,9 @@ DIO_PIN T1_PIN={
 	.enumoutputlevel=MDIO_LOW
 };
 
-
 static u16 u16counter_of_ovf_timer0=0;
+
+
 
 //functions implementation
 static void voidtimer_on(TIMER_T* ptostruct);
@@ -431,9 +423,25 @@ u32  u32counter_get_counter_value(TIMER_T* ptostruct)
 	return TCNT0;
 }
 
+void voidtimer1_ctc_interrupt_call_back(void (*ptr) (f32))
+{
+	timer1_ctc_int=ptr;	
+}
+
 
 
 ISR(TIMER0_OVF_vect)
 {
 	u16counter_of_ovf_timer0++;	
 }
+
+
+ISR(TIMER1_COMPA_vect)
+{
+	timer1_ctc_int(x);
+}
+
+/*ISR(TIMER2_COMP_vect)
+{
+	voidservo_start_HSERVO(x);
+}*/

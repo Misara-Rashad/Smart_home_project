@@ -96,7 +96,7 @@
 #define   SPL          (*((volatile u8*)0x5D))
 #define   SPH          (*((volatile u8*)0x5E))
 
-//#define   SREG         (*((volatile u8*)0x5F))
+#define   SREG         (*((volatile u8*)0x5F))
 
 
 /* Interrupt vectors */
@@ -165,6 +165,16 @@
 
 
 /* Bit numbers */
+
+/* SREG */
+#define I		7  //global interrupt enable
+
+/* GICR */
+#define INT1    7
+#define INT0    6
+#define INT2    5
+#define IVSEL   1
+#define IVCE    0
 
 /* GICR */
 #define INT1    7

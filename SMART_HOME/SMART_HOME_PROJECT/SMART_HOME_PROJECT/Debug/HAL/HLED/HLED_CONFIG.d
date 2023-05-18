@@ -1,6 +1,7 @@
 HAL/HLED/HLED_CONFIG.d HAL/HLED/HLED_CONFIG.o: ../HAL/HLED/HLED_CONFIG.c \
  ../HAL/HLED/../../Libraries_/LIB_STDTypes.h \
  ../HAL/HLED/../../Libraries_/LIB_BMNP.h \
+ ../HAL/HLED/../../Libraries_/ATMega32_Registers.h \
  ../HAL/HLED/../../Libraries_/LIB_BMNP.h \
  ../HAL/HLED/../../Libraries_/ATMega32_Registers.h \
  ../HAL/HLED/../../MCAL/MDIO/MDIO_CONFIG.h \
@@ -14,6 +15,8 @@ HAL/HLED/HLED_CONFIG.d HAL/HLED/HLED_CONFIG.o: ../HAL/HLED/HLED_CONFIG.c \
 ../HAL/HLED/../../Libraries_/LIB_STDTypes.h:
 
 ../HAL/HLED/../../Libraries_/LIB_BMNP.h:
+
+../HAL/HLED/../../Libraries_/ATMega32_Registers.h:
 
 ../HAL/HLED/../../Libraries_/LIB_BMNP.h:
 

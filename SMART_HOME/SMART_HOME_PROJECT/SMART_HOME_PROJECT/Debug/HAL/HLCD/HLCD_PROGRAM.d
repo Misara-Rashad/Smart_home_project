@@ -11,6 +11,7 @@ HAL/HLCD/HLCD_PROGRAM.d HAL/HLCD/HLCD_PROGRAM.o: \
  c:\program\ files\microchip\xc8\v2.36\avr\avr\include\math.h \
  ../HAL/HLCD/../../Libraries_/LIB_STDTypes.h \
  ../HAL/HLCD/../../Libraries_/LIB_BMNP.h \
+ ../HAL/HLCD/../../Libraries_/ATMega32_Registers.h \
  ../HAL/HLCD/../../Libraries_/LIB_BMNP.h \
  ../HAL/HLCD/../../Libraries_/ATMega32_Registers.h \
  ../HAL/HLCD/../../MCAL/MDIO/MDIO_CONFIG.h \
@@ -42,6 +43,8 @@ c:\program\ files\microchip\xc8\v2.36\avr\avr\include\math.h:
 ../HAL/HLCD/../../Libraries_/LIB_STDTypes.h:
 
 ../HAL/HLCD/../../Libraries_/LIB_BMNP.h:
+
+../HAL/HLCD/../../Libraries_/ATMega32_Registers.h:
 
 ../HAL/HLCD/../../Libraries_/LIB_BMNP.h:
 

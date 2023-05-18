@@ -36,4 +36,5 @@ typedef union
     u8 Byte;
 }Register;
 
+#include "ATMega32_Registers.h"
 #endif // LIB_BMNP_H_INCLUDED

@@ -2,6 +2,7 @@ HAL/HSWITCH/HSWITCH_CONFIG.d HAL/HSWITCH/HSWITCH_CONFIG.o: \
  ../HAL/HSWITCH/HSWITCH_CONFIG.c \
  ../HAL/HSWITCH/../../Libraries_/LIB_STDTypes.h \
  ../HAL/HSWITCH/../../Libraries_/LIB_BMNP.h \
+ ../HAL/HSWITCH/../../Libraries_/ATMega32_Registers.h \
  ../HAL/HSWITCH/../../Libraries_/LIB_BMNP.h \
  ../HAL/HSWITCH/../../Libraries_/ATMega32_Registers.h \
  ../HAL/HSWITCH/../../MCAL/MDIO/MDIO_CONFIG.h \
@@ -15,6 +16,8 @@ HAL/HSWITCH/HSWITCH_CONFIG.d HAL/HSWITCH/HSWITCH_CONFIG.o: \
 ../HAL/HSWITCH/../../Libraries_/LIB_STDTypes.h:
 
 ../HAL/HSWITCH/../../Libraries_/LIB_BMNP.h:
+
+../HAL/HSWITCH/../../Libraries_/ATMega32_Registers.h:
 
 ../HAL/HSWITCH/../../Libraries_/LIB_BMNP.h:
 

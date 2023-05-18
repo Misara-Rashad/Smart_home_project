@@ -39,6 +39,7 @@ SUBDIRS :=  \
 ../HAL/HLCD/ \
 ../HAL/HLED/ \
 ../HAL/HSWITCH/ \
+../HAL/HSERVO \
 ../Libraries_/ \
 ../MCAL/ \
 ../MCAL/MADC/ \
@@ -62,6 +63,7 @@ C_SRCS +=  \
 ../HAL/HLCD/HLCD_PROGRAM.c \
 ../HAL/HLED/HLED_CONFIG.c \
 ../HAL/HLED/HLED_PROGRAM.c \
+../HAL/HSERVO/HSERVO_PROGRAM.c \
 ../HAL/HSWITCH/HSWITCH_CONFIG.c \
 ../HAL/HSWITCH/HSWITCH_PROGRAM.c \
 ../main.c \
@@ -92,6 +94,7 @@ HAL/HLCD/HLCD_CONFIG.o \
 HAL/HLCD/HLCD_PROGRAM.o \
 HAL/HLED/HLED_CONFIG.o \
 HAL/HLED/HLED_PROGRAM.o \
+HAL/HSERVO/HSERVO_PROGRAM.o \
 HAL/HSWITCH/HSWITCH_CONFIG.o \
 HAL/HSWITCH/HSWITCH_PROGRAM.o \
 main.o \
@@ -115,6 +118,7 @@ HAL/HLCD/HLCD_CONFIG.o \
 HAL/HLCD/HLCD_PROGRAM.o \
 HAL/HLED/HLED_CONFIG.o \
 HAL/HLED/HLED_PROGRAM.o \
+HAL/HSERVO/HSERVO_PROGRAM.o \
 HAL/HSWITCH/HSWITCH_CONFIG.o \
 HAL/HSWITCH/HSWITCH_PROGRAM.o \
 main.o \
@@ -138,6 +142,7 @@ HAL/HLCD/HLCD_CONFIG.d \
 HAL/HLCD/HLCD_PROGRAM.d \
 HAL/HLED/HLED_CONFIG.d \
 HAL/HLED/HLED_PROGRAM.d \
+HAL/HSERVO/HSERVO_PROGRAM.d \
 HAL/HSWITCH/HSWITCH_CONFIG.d \
 HAL/HSWITCH/HSWITCH_PROGRAM.d \
 main.d \
@@ -161,6 +166,7 @@ HAL/HLCD/HLCD_CONFIG.d \
 HAL/HLCD/HLCD_PROGRAM.d \
 HAL/HLED/HLED_CONFIG.d \
 HAL/HLED/HLED_PROGRAM.d \
+HAL/HSERVO/HSERVO_PROGRAM.d \
 HAL/HSWITCH/HSWITCH_CONFIG.d \
 HAL/HSWITCH/HSWITCH_PROGRAM.d \
 main.d \
@@ -239,6 +245,13 @@ HAL/HLED/HLED_CONFIG.o: ../HAL/HLED/HLED_CONFIG.c
 	
 
 HAL/HLED/HLED_PROGRAM.o: ../HAL/HLED/HLED_PROGRAM.c
+	@echo Building file: $<
+	@echo Invoking: XC8 C Compiler : 2.36
+	$(QUOTE)C:\Program Files\Microchip\xc8\v2.36\bin\xc8-cc.exe$(QUOTE)  -mcpu=ATmega32  -mdfp="C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\xc8"  -c -x c -funsigned-char -funsigned-bitfields -mext=cci -D__ATmega32__ -DDEBUG  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+HAL/HSERVO/HSERVO_PROGRAM.o: ../HAL/HSERVO/HSERVO_PROGRAM.c
 	@echo Building file: $<
 	@echo Invoking: XC8 C Compiler : 2.36
 	$(QUOTE)C:\Program Files\Microchip\xc8\v2.36\bin\xc8-cc.exe$(QUOTE)  -mcpu=ATmega32  -mdfp="C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\xc8"  -c -x c -funsigned-char -funsigned-bitfields -mext=cci -D__ATmega32__ -DDEBUG  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
