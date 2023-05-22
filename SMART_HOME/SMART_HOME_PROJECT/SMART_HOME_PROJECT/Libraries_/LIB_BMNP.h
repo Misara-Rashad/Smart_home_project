@@ -7,9 +7,9 @@
 
 #define Toggle_BIT( VAR, Bitno)       (VAR) ^= (1 << (Bitno))
 
-#define CLR_BIT(VAR,Bitno)            (VAR) &=~(1 << (Bitno))
+#define CLR_BIT(VAR,Bitno)            ((VAR) &=~(1 << (Bitno)))
 
-#define SET_BIT(VAR,Bitno)            (VAR) |= (1 << (Bitno))
+#define SET_BIT(VAR,Bitno)            ((VAR) |= (1 << (Bitno)))
 
 #define Conc(b0,b1,b2,b3,b4,b5,b6,b7) 0b##b7##b6##b5##b4##b3##b2##b1##b0
 

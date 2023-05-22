@@ -40,6 +40,7 @@ SUBDIRS :=  \
 ../HAL/HLED/ \
 ../HAL/HSWITCH/ \
 ../HAL/HSERVO \
+../HAL/HDC_MOTOR \
 ../Libraries_/ \
 ../MCAL/ \
 ../MCAL/MADC/ \
@@ -57,6 +58,7 @@ SUBDIRS :=  \
 C_SRCS +=  \
 ../HAL/H7SEG/H7SEG_CONFIG.c \
 ../HAL/H7SEG/H7SEG_PROGRAM.c \
+../HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.c \
 ../HAL/HKEYPAD/HKEYPAD_CONFIG.c \
 ../HAL/HKEYPAD/HKEYPAD_PROGRAM.c \
 ../HAL/HLCD/HLCD_CONFIG.c \
@@ -88,6 +90,7 @@ ASM_SRCS +=
 OBJS +=  \
 HAL/H7SEG/H7SEG_CONFIG.o \
 HAL/H7SEG/H7SEG_PROGRAM.o \
+HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.o \
 HAL/HKEYPAD/HKEYPAD_CONFIG.o \
 HAL/HKEYPAD/HKEYPAD_PROGRAM.o \
 HAL/HLCD/HLCD_CONFIG.o \
@@ -112,6 +115,7 @@ MCAL/MUSART/MUSART_PROGRAM.o
 OBJS_AS_ARGS +=  \
 HAL/H7SEG/H7SEG_CONFIG.o \
 HAL/H7SEG/H7SEG_PROGRAM.o \
+HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.o \
 HAL/HKEYPAD/HKEYPAD_CONFIG.o \
 HAL/HKEYPAD/HKEYPAD_PROGRAM.o \
 HAL/HLCD/HLCD_CONFIG.o \
@@ -136,6 +140,7 @@ MCAL/MUSART/MUSART_PROGRAM.o
 C_DEPS +=  \
 HAL/H7SEG/H7SEG_CONFIG.d \
 HAL/H7SEG/H7SEG_PROGRAM.d \
+HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.d \
 HAL/HKEYPAD/HKEYPAD_CONFIG.d \
 HAL/HKEYPAD/HKEYPAD_PROGRAM.d \
 HAL/HLCD/HLCD_CONFIG.d \
@@ -160,6 +165,7 @@ MCAL/MUSART/MUSART_PROGRAM.d
 C_DEPS_AS_ARGS +=  \
 HAL/H7SEG/H7SEG_CONFIG.d \
 HAL/H7SEG/H7SEG_PROGRAM.d \
+HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.d \
 HAL/HKEYPAD/HKEYPAD_CONFIG.d \
 HAL/HKEYPAD/HKEYPAD_PROGRAM.d \
 HAL/HLCD/HLCD_CONFIG.d \
@@ -203,6 +209,13 @@ HAL/H7SEG/H7SEG_CONFIG.o: ../HAL/H7SEG/H7SEG_CONFIG.c
 	
 
 HAL/H7SEG/H7SEG_PROGRAM.o: ../HAL/H7SEG/H7SEG_PROGRAM.c
+	@echo Building file: $<
+	@echo Invoking: XC8 C Compiler : 2.36
+	$(QUOTE)C:\Program Files\Microchip\xc8\v2.36\bin\xc8-cc.exe$(QUOTE)  -mcpu=ATmega32  -mdfp="C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\xc8"  -c -x c -funsigned-char -funsigned-bitfields -mext=cci -D__ATmega32__ -DDEBUG  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
+HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.o: ../HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.c
 	@echo Building file: $<
 	@echo Invoking: XC8 C Compiler : 2.36
 	$(QUOTE)C:\Program Files\Microchip\xc8\v2.36\bin\xc8-cc.exe$(QUOTE)  -mcpu=ATmega32  -mdfp="C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\xc8"  -c -x c -funsigned-char -funsigned-bitfields -mext=cci -D__ATmega32__ -DDEBUG  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

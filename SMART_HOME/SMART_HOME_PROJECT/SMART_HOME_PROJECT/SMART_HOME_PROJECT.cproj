@@ -103,6 +103,12 @@
     <Compile Include="HAL\H7SEG\H7SEG_PROGRAM.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="HAL\HDC_MOTOR\HDC_MOTOR_PROGRAM.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\HDC_MOTOR\HDC_MOTOR_INTERFACE.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="HAL\HKEYPAD\HKEYPAD_CONFIG.c">
       <SubType>compile</SubType>
     </Compile>
@@ -280,6 +286,7 @@
     <Folder Include="HAL\HLED\" />
     <Folder Include="HAL\HSWITCH\" />
     <Folder Include="HAL\HSERVO" />
+    <Folder Include="HAL\HDC_MOTOR" />
     <Folder Include="Libraries_\" />
     <Folder Include="MCAL\" />
     <Folder Include="MCAL\MADC\" />

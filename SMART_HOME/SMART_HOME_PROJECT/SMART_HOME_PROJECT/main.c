@@ -23,153 +23,393 @@
 #include "HAL/HLCD/HLCD_INTERFACE.h"
 #include "HAL/HSERVO/HSERVO_INTERFACE.h"
 
-//MASTER CODE
-u8 state_of_led0=100;
-u8 state_of_led1=100;
-u8 state_of_led2=100;
+f32 x=0;
+
+
+/*//MASTER CODE
+//functions declaration 
+u8 u8check_if_admin_set_pass();	//return 0
+u8 u8set_admin_pass(void);		//return 1
+u8 u8enter_admin_pass(void);	//return 2
+u8 u8check_admin_pass(void);	//return 3
+u8 u8admin_control(void);		//return 4
+
+
+
+//data types 
+typedef struct
+{
+	u8 state_of_led0:1 ;
+	u8 state_of_led1:1 ;
+	u8 state_of_led2:1 ;
+	u8 state_of_led3:1 ;
+	u8 state_of_led4:1 ;
+	u8 state_of_led5:1 ;
+	u8 state_of_led6:1 ;
+	u8 state_of_led7:1 ;
+}loads;
+
+
+//global variables
+loads loads_status;
+
 u8 value_in_keypad = 1;
+
 u8 counter_in_eeprom=0;
-u8 wrong_pass_flag=0;
-u8 pass_saved_to_eeprom=0;
-u8 q=0;
-u8 sequence=1;
+u16 address_in_eeprom=0;
+
+u8 saved_pass=0;
+u8 entered_pass=0;
+
+u8 sequence=0;
 u8 lcd_flag=0;
-u8 counter_for_wrong_pass_entered=no_of_trials;
+
+u8 counter_for_wrong_pass_entered=0;
+u8 wrong_pass_flag=0;
 
 u8 enter_password_message[]="password:";
 u8 error_massage[]= "wrong password";
 u8 right_pass[]="welcome";
 u8 choose[]="Room 1 to 9:";
+u8 set_admin_pass[]="set_admin_pass:";
+u8 on[]="ON";
+u8 off[]="OFF";
 
-f32 x=0;
+
 int main(void)
 {
 	voidtimer1_ctc_interrupt_call_back(voidservo_start_HSERVO);
 	voidinitkeypad_HKEYPAD();
 	voidinitlcd_HLCD();
-	voidinitspi_master_MSPI();	
+	//voidinitspi_master_MSPI();
 	
-	//password saved to master eeprom
-	voidEEPROM_WRITE_BYTE('4',4);
-	voidEEPROM_WRITE_BYTE('5',5);
-	voidEEPROM_WRITE_BYTE('6',6);
-	voidEEPROM_WRITE_BYTE('7',7);
-
-	pass_saved_to_eeprom=u8EEPROM_READ_BYTE_MEEPROM(3);
-
-	voidLCDstring_HLCD(enter_password_message,9,HLCD_NUM0);
+	sequence=u8check_if_admin_set_pass();
 	while (1)
 	{
-		if (1 == sequence)
-		{
-				enumkeypadgetnumber_HKEYPAD(&HKEYPAD_arrayofkeypads[0],&value_in_keypad);
-				if (value_in_keypad != 1 && counter_in_eeprom<4)
-					{
-						voidEEPROM_WRITE_BYTE(value_in_keypad,counter_in_eeprom);
-						voidLCDwrite_data_HLCD(DATA,value_in_keypad,HLCD_NUM0);
-						value_in_keypad=1;
-						counter_in_eeprom++;
-					}
-					
-		     	else{}
-
-		pass_saved_to_eeprom=u8EEPROM_READ_BYTE_MEEPROM(3);
-		
-				if ( pass_saved_to_eeprom != 255 && wrong_pass_flag ==0)
-					{
-						voidlcdclear();
-							for (u8 i=0;i<4;i++)
-								{
-									q=u8EEPROM_READ_BYTE_MEEPROM(i+4);
-									pass_saved_to_eeprom=u8EEPROM_READ_BYTE_MEEPROM(i);
-									if (q != pass_saved_to_eeprom)
-										{
-											voidLCDstring_HLCD(error_massage,14,HLCD_NUM0);
-											wrong_pass_flag=1;
-											counter_for_wrong_pass_entered++;
-											if (counter_for_wrong_pass_entered ==no_of_trials)
-											{
-													break;
-											}
-										//	goto enter_pass_again;
-										}
-										
-									else{}
-			}
-			
-			if (wrong_pass_flag !=1)    //wrong_pass_flag=0 so entered right password
+			switch(sequence)
 			{
-				voidLCDstring_HLCD(right_pass,7,HLCD_NUM0);
-				wrong_pass_flag=1;
-				sequence=2;
-				x=f32initservo_HSERVO(180);
-				_delay_ms(1000);
-				x=f32initservo_HSERVO(0);
+				case 0:
+				sequence=u8set_admin_pass();
+				break;
+				
+				case 1:
+				sequence=u8enter_admin_pass();
+				break;
+				
+				case 2:
+				sequence=u8check_admin_pass();
+				break;
+				
+				case 3:
+				sequence=u8admin_control();
+				break;
+				
+				default:
+				break;													
 			}
-			
-			}
-		else{}
-
-
-		
-		}
-
-	else if (2==sequence)    //entered a right password so we will enter seq=2 which allows to control
-		{
-		if (0==lcd_flag)
-		{
-		voidlcdclear();
-		voidLCDstring_HLCD(choose,12,HLCD_NUM0);
-		lcd_flag=1;
-		}
-		
-		else{}
-			
-		enumkeypadgetnumber_HKEYPAD(&HKEYPAD_arrayofkeypads[0],&value_in_keypad);
-		if (value_in_keypad != 1)
-		{
-		voidLCDwrite_data_HLCD(DATA,value_in_keypad,HLCD_NUM0);
-		voidinitspi_master_MSPI();
-		switch(value_in_keypad)
-			{
-			case '1':
-			voidspi_master_transmit_byte_MSPI(1);
-			_delay_ms(100);
-			state_of_led0=u8spi_master_receive_byte_MSPI();
-			voidLCDwrite_data_HLCD(DATA,'0'+state_of_led0,HLCD_NUM0);
-			break; 
-
-			case '2':
-			voidspi_master_transmit_byte_MSPI(2);
-			_delay_ms(100);
-			state_of_led1=u8spi_master_receive_byte_MSPI();
-			voidLCDwrite_data_HLCD(DATA,'0'+state_of_led1,HLCD_NUM0);
-			break;
-
-			case '3':
-			voidspi_master_transmit_byte_MSPI(3);
-			_delay_ms(100);
-			state_of_led2=u8spi_master_receive_byte_MSPI();
-			voidLCDwrite_data_HLCD(DATA,'0'+state_of_led2,HLCD_NUM0);
-			break;
-			
-			default:
-			break;
-			}
-			value_in_keypad=1;
-		}
-		}
-}
-	
+	}
 	return 0;
-	
 }
+
+
+
+u8 u8check_if_admin_set_pass()
+{
+	u8 data=0,local_variable=0;
+	data=u8EEPROM_READ_BYTE_MEEPROM(3);
+	if (0xff==data)
+	{
+		local_variable=0;	//admin has not set a pass
+	}
+	else
+	{
+		local_variable=1;	//admin had set pass before
+		counter_in_eeprom=4;
+		address_in_eeprom=4;
+	}
+	return local_variable;
+}
+
+
+u8 u8set_admin_pass(void)
+{
+	u8 local_variable=0;
+	voidLCDstring_HLCD(set_admin_pass,16,HLCD_NUM0);
+	
+	while (4!=counter_in_eeprom)
+	{
+			enumkeypadgetnumber_HKEYPAD(&HKEYPAD_arrayofkeypads[0],&value_in_keypad);
+			if (1!=value_in_keypad)
+			{
+				voidLCDwrite_data_HLCD(DATA,value_in_keypad,HLCD_NUM0);
+				voidEEPROM_WRITE_BYTE(value_in_keypad,address_in_eeprom);
+				address_in_eeprom++;
+				counter_in_eeprom++;
+				value_in_keypad=1;
+			}
+	}
+	
+	voidlcdclear();
+	local_variable=1;
+	return local_variable;
+}
+
+
+u8 u8enter_admin_pass(void)
+{
+	u8 local_variable=1;
+	voidLCDstring_HLCD(enter_password_message,9,HLCD_NUM0);
+	while (8!=counter_in_eeprom)
+	{
+			enumkeypadgetnumber_HKEYPAD(&HKEYPAD_arrayofkeypads[0],&value_in_keypad);
+			if (1!=value_in_keypad)
+			{
+				voidLCDwrite_data_HLCD(DATA,value_in_keypad,HLCD_NUM0);
+				voidEEPROM_WRITE_BYTE(value_in_keypad,address_in_eeprom);
+				address_in_eeprom++;
+				counter_in_eeprom++;
+				value_in_keypad=1;
+			}
+	}
+	
+	voidlcdclear();
+	local_variable=2;
+	return local_variable;
+
+}
+
+
+u8 u8check_admin_pass(void)	//return 3
+{
+	u8 local_variable=2;
+	while (no_of_trials>counter_for_wrong_pass_entered)
+	{
+		for (int i=0;i<4;i++)
+		{
+			saved_pass=u8EEPROM_READ_BYTE_MEEPROM(i);
+			entered_pass=u8EEPROM_READ_BYTE_MEEPROM(i+4);
+			if (saved_pass!=entered_pass)
+			{
+				wrong_pass_flag=1;
+				counter_for_wrong_pass_entered++;
+				voidLCDstring_HLCD(error_massage,14,HLCD_NUM0);
+				voidlcdclear();
+				break;
+			}
+		}
+		
+		if (1!=wrong_pass_flag)		//right pass
+		{
+			voidLCDstring_HLCD(right_pass,7,HLCD_NUM0);
+			voidlcdclear();
+			local_variable=3;
+			break;
+		}
+		else						//wrong pass
+		{
+			local_variable=1;
+			address_in_eeprom=4;
+			counter_in_eeprom=4;
+			wrong_pass_flag=0;
+			break;
+		}
+
+	}
+	return local_variable;
+}
+
+
+u8 u8admin_control(void)		//return 4
+{
+	u8 local_variable=3;
+	voidLCDstring_HLCD(choose,12,HLCD_NUM0);
+	while (3==local_variable)
+	{
+			enumkeypadgetnumber_HKEYPAD(&HKEYPAD_arrayofkeypads[0],&value_in_keypad);
+			if (1!=value_in_keypad)
+			{
+				voidLCDwrite_data_HLCD(DATA,value_in_keypad,HLCD_NUM0);
+				voidinitspi_master_MSPI();
+				switch(value_in_keypad)
+				{
+					case '0':
+					value_in_keypad=1;
+					voidspi_master_transmit_byte_MSPI(0);
+					_delay_ms(100);
+					loads_status.state_of_led0=u8spi_master_receive_byte_MSPI();
+					voidlcdclear();
+					loads_status.state_of_led0 ?voidLCDstring_HLCD(on,2,HLCD_NUM0) :
+												voidLCDstring_HLCD(off,3,HLCD_NUM0);
+					while (value_in_keypad==1)
+					{
+						enumkeypadgetnumber_HKEYPAD(&HKEYPAD_arrayofkeypads[0],&value_in_keypad);
+						if (1!=value_in_keypad)
+						{
+							voidLCDwrite_data_HLCD(DATA,value_in_keypad,HLCD_NUM0);
+							voidspi_master_transmit_byte_MSPI(value_in_keypad);
+						}
+					}
+					local_variable=4;
+					break	;
+					
+					case '1':
+					value_in_keypad=1;
+					voidspi_master_transmit_byte_MSPI(1);
+					_delay_ms(100);
+					loads_status.state_of_led1=u8spi_master_receive_byte_MSPI();
+					voidlcdclear();
+					loads_status.state_of_led1 ?voidLCDstring_HLCD(on,2,HLCD_NUM0) :
+												voidLCDstring_HLCD(off,3,HLCD_NUM0);
+					while (value_in_keypad==1)
+					{
+						enumkeypadgetnumber_HKEYPAD(&HKEYPAD_arrayofkeypads[0],&value_in_keypad);
+						if (1!=value_in_keypad)
+						{
+							voidLCDwrite_data_HLCD(DATA,value_in_keypad,HLCD_NUM0);
+							voidspi_master_transmit_byte_MSPI(value_in_keypad);					
+						}
+					}
+					local_variable=4;
+					break	;
+					
+					case '2':
+					value_in_keypad=1;
+					voidspi_master_transmit_byte_MSPI(2);
+					_delay_ms(100);
+					loads_status.state_of_led2=u8spi_master_receive_byte_MSPI();
+					voidlcdclear();
+					loads_status.state_of_led2 ?voidLCDstring_HLCD(on,2,HLCD_NUM0) :
+												voidLCDstring_HLCD(off,3,HLCD_NUM0);
+					while (value_in_keypad==1)
+					{
+						enumkeypadgetnumber_HKEYPAD(&HKEYPAD_arrayofkeypads[0],&value_in_keypad);
+						if (1!=value_in_keypad)
+						{
+							voidLCDwrite_data_HLCD(DATA,value_in_keypad,HLCD_NUM0);
+							voidspi_master_transmit_byte_MSPI(value_in_keypad);
+						}
+					}
+					local_variable=4;
+					break	;
+					
+					case '3':
+					value_in_keypad=1;
+					voidspi_master_transmit_byte_MSPI(3);
+					_delay_ms(100);
+					loads_status.state_of_led3=u8spi_master_receive_byte_MSPI();
+					voidlcdclear();
+					loads_status.state_of_led3 ?voidLCDstring_HLCD(on,2,HLCD_NUM0) :
+												voidLCDstring_HLCD(off,3,HLCD_NUM0);
+					while (value_in_keypad==1)
+					{
+						enumkeypadgetnumber_HKEYPAD(&HKEYPAD_arrayofkeypads[0],&value_in_keypad);
+						if (1!=value_in_keypad)
+						{
+							voidLCDwrite_data_HLCD(DATA,value_in_keypad,HLCD_NUM0);
+							voidspi_master_transmit_byte_MSPI(value_in_keypad);
+						}
+					}
+					local_variable=4;					
+					break	;
+					
+					case '4':
+					value_in_keypad=1;
+					voidspi_master_transmit_byte_MSPI(4);
+					_delay_ms(100);
+					loads_status.state_of_led4=u8spi_master_receive_byte_MSPI();
+					voidlcdclear();
+					loads_status.state_of_led4 ?voidLCDstring_HLCD(on,2,HLCD_NUM0) :
+												voidLCDstring_HLCD(off,3,HLCD_NUM0);
+					while (value_in_keypad==1)
+					{
+						enumkeypadgetnumber_HKEYPAD(&HKEYPAD_arrayofkeypads[0],&value_in_keypad);
+						if (1!=value_in_keypad)
+						{
+							voidLCDwrite_data_HLCD(DATA,value_in_keypad,HLCD_NUM0);
+							voidspi_master_transmit_byte_MSPI(value_in_keypad);
+						}
+					}				
+					local_variable=4;
+					break	;
+					
+					case '5':
+					value_in_keypad=1;
+					voidspi_master_transmit_byte_MSPI(5);
+					_delay_ms(100);
+					loads_status.state_of_led5=u8spi_master_receive_byte_MSPI();
+					voidlcdclear();
+					loads_status.state_of_led5 ?voidLCDstring_HLCD(on,2,HLCD_NUM0) :
+												voidLCDstring_HLCD(off,3,HLCD_NUM0);
+					while (value_in_keypad==1)
+					{
+						enumkeypadgetnumber_HKEYPAD(&HKEYPAD_arrayofkeypads[0],&value_in_keypad);
+						if (1!=value_in_keypad)
+						{
+							voidLCDwrite_data_HLCD(DATA,value_in_keypad,HLCD_NUM0);
+							voidspi_master_transmit_byte_MSPI(value_in_keypad);
+						}
+					}					
+					local_variable=4;
+					break	;
+					
+					case '6':
+					value_in_keypad=1;
+					voidspi_master_transmit_byte_MSPI(6);
+					_delay_ms(100);
+					loads_status.state_of_led6=u8spi_master_receive_byte_MSPI();
+					voidlcdclear();
+					loads_status.state_of_led6 ?voidLCDstring_HLCD(on,2,HLCD_NUM0) :
+												voidLCDstring_HLCD(off,3,HLCD_NUM0);
+					while (value_in_keypad==1)
+					{
+						enumkeypadgetnumber_HKEYPAD(&HKEYPAD_arrayofkeypads[0],&value_in_keypad);
+						if (1!=value_in_keypad)
+						{
+							voidLCDwrite_data_HLCD(DATA,value_in_keypad,HLCD_NUM0);
+							voidspi_master_transmit_byte_MSPI(value_in_keypad);
+						}
+					}				
+					local_variable=4;
+					break	;
+					
+					case '7':
+					value_in_keypad=1;
+					voidspi_master_transmit_byte_MSPI(7);
+					_delay_ms(100);
+					loads_status.state_of_led7=u8spi_master_receive_byte_MSPI();
+					voidlcdclear();
+					loads_status.state_of_led7 ?voidLCDstring_HLCD(on,2,HLCD_NUM0) :
+												voidLCDstring_HLCD(off,3,HLCD_NUM0);
+					while (value_in_keypad==1)
+					{
+						enumkeypadgetnumber_HKEYPAD(&HKEYPAD_arrayofkeypads[0],&value_in_keypad);
+						if (1!=value_in_keypad)
+						{
+							voidLCDwrite_data_HLCD(DATA,value_in_keypad,HLCD_NUM0);
+							voidspi_master_transmit_byte_MSPI(value_in_keypad);
+						}
+					}					
+					local_variable=4;
+					break	;
+					
+					default:
+					break	;
+					
+				}
+				value_in_keypad=1;
+			}
+	}
+
+		
+		return local_variable;	
+}*/
+
 
 
 
 
 //SLAVE CODE
-/*u8 data_from_master=0;
+u8 data_from_master=0;
 u8 data_to_master=0;
 int main(void)
 {	
@@ -182,7 +422,9 @@ int main(void)
 	voidledon_HLED(&HLED_arrayofleds[2]);		//led3
 
 	voidinitlcd_HLCD();	
+	
 	voidinitspi_slave_MSPI();
+	
 	while (1)
 	{
 		
@@ -192,21 +434,95 @@ int main(void)
 	voidLCDwrite_data_HLCD(DATA,'0'+data_from_master,HLCD_NUM0);
 	switch(data_from_master)
 		{
+			
+		case 0:
+		//data_to_master=GET_BIT(PORTC_REGISTER,MDIO_PIN2);
+		voidspi_slave_transmit_byte_MSPI(data_to_master);
+		data_from_master=0;
+		while (0 == data_from_master)
+		{
+			data_from_master=u8spi_slave_receive_byte_MSPI();
+		}
+		//(data_from_master-48)>0 ? SET_BIT(PORTC_REGISTER,MDIO_PIN2) : CLR_BIT(PORTC_REGISTER,MDIO_PIN2) ;
+		break;
+					
 		case 1:
 		data_to_master=GET_BIT(PORTC_REGISTER,MDIO_PIN2);
 		voidspi_slave_transmit_byte_MSPI(data_to_master);
+		data_from_master=0;
+		while (0 == data_from_master)
+		{
+			data_from_master=u8spi_slave_receive_byte_MSPI();
+		}
+		(data_from_master-48)>0 ? SET_BIT(PORTC_REGISTER,MDIO_PIN2) : CLR_BIT(PORTC_REGISTER,MDIO_PIN2) ;
 		break;
 		
 		case 2:
 		data_to_master=GET_BIT(PORTC_REGISTER,MDIO_PIN7);
 		voidspi_slave_transmit_byte_MSPI(data_to_master);
+		data_from_master=0;
+		while (0 == data_from_master)
+		{
+			data_from_master=u8spi_slave_receive_byte_MSPI();
+		}
+		(data_from_master-48)>0 ? SET_BIT(PORTC_REGISTER,MDIO_PIN7) : CLR_BIT(PORTC_REGISTER,MDIO_PIN7) ;
 		break;	
 		
 		case 3:
 		data_to_master=GET_BIT(PORTD_REGISTER,MDIO_PIN3);
 		voidspi_slave_transmit_byte_MSPI(data_to_master);
-		break;						
+		data_from_master=0;
+		while (0 == data_from_master)
+		{
+			data_from_master=u8spi_slave_receive_byte_MSPI();
+		}
+		(data_from_master-48)>0 ? SET_BIT(PORTD_REGISTER,MDIO_PIN3) : CLR_BIT(PORTD_REGISTER,MDIO_PIN3) ;
+		break;
 		
+		case 4:
+		//data_to_master=GET_BIT(PORTD_REGISTER,MDIO_PIN3);
+		voidspi_slave_transmit_byte_MSPI(data_to_master);
+		data_from_master=0;
+		while (0 == data_from_master)
+		{
+			data_from_master=u8spi_slave_receive_byte_MSPI();
+		}
+		//(data_from_master-48)>0 ? SET_BIT(PORTD_REGISTER,MDIO_PIN3) : CLR_BIT(PORTD_REGISTER,MDIO_PIN3);		
+		break;
+		
+		case 5:
+		//data_to_master=GET_BIT(PORTD_REGISTER,MDIO_PIN3);
+		voidspi_slave_transmit_byte_MSPI(data_to_master);
+		data_from_master=0;
+		while (0 == data_from_master)
+		{
+			data_from_master=u8spi_slave_receive_byte_MSPI();
+		}
+		//(data_from_master-48)>0 ? SET_BIT(PORTD_REGISTER,MDIO_PIN3) : CLR_BIT(PORTD_REGISTER,MDIO_PIN3);
+		break;
+		
+		case 6:
+		//data_to_master=GET_BIT(PORTD_REGISTER,MDIO_PIN3);
+		voidspi_slave_transmit_byte_MSPI(data_to_master);
+		data_from_master=0;
+		while (0 == data_from_master)
+		{
+			data_from_master=u8spi_slave_receive_byte_MSPI();
+		}
+		//(data_from_master-48)>0 ? SET_BIT(PORTD_REGISTER,MDIO_PIN3) : CLR_BIT(PORTD_REGISTER,MDIO_PIN3);
+		break;
+		
+		case 7:
+		//data_to_master=GET_BIT(PORTD_REGISTER,MDIO_PIN3);
+		voidspi_slave_transmit_byte_MSPI(data_to_master);
+		data_from_master=0;
+		while (0 == data_from_master)
+		{
+			data_from_master=u8spi_slave_receive_byte_MSPI();
+		}
+		//(data_from_master-48)>0 ? SET_BIT(PORTD_REGISTER,MDIO_PIN3) : CLR_BIT(PORTD_REGISTER,MDIO_PIN3);
+		break;
+											
 		default:
 		break;		
 		}
@@ -215,343 +531,5 @@ int main(void)
 
 	}
 	return 0;
-}*/
-
-
-
-
-
-//ULTRASONIC CODE
-/*u8 y=0;
-f32 x=0;
-f32 distance_in_cm=0,distance_in_m=0;
-
-DIO_PIN PD7_pin={
-	.enumpin= MDIO_PIN7,
-	.enumport= MDIO_PORTD,
-	.enummode= MDIO_OUTPUT,
-	.enumoutputlevel=MDIO_HIGH
-};
-
-void fun (void);
-
-int main(void)
-{
-	voidinitlcd_HLCD();
-	voidinitinterrupt_MINT();
-	voidINTENABLEHandler_MINT(MINT_EXINT0, MINT_ISC_RISING_EDGE);
-	voidINTSetCallBack_MINT(fun, MINT_EXINT0);
-	enumpindirection_MDIO(&PD7_pin);
-	
-
-	
-	while (1)
-	{
-			enumpinvalue_selection_MDIO(&PD7_pin,MDIO_HIGH);
-			_delay_ms(0.01); //delay 10us
-			enumpinvalue_selection_MDIO(&PD7_pin,MDIO_LOW);
-			distance_in_cm=(x)/58;
-			voidlcdfloat_number_HLCD(distance_in_cm,HLCD_NUM0);
-			distance_in_m=distance_in_cm/100;
-			voidLCDwrite_data_HLCD(DATA,' ',HLCD_NUM0);
-			voidlcdfloat_number_HLCD(distance_in_m,HLCD_NUM0);
-			_delay_ms(1000);
-			voidlcdclear();
-	}
-	return 0;
 }
 
-
-
-void fun (void)
-{
-	if (0==y)
-	{
-	voidtimer_start_timer_MTIMER(&TIMER0_STRUCT);
-	voidINTENABLEHandler_MINT(MINT_EXINT0, MINT_ISC_FALLING_EDGE);
-	y=1;
-	}
-	
-	else if (1==y)
-	{
-	voidtimer_end_timer_MTIMER(&TIMER0_STRUCT);
-	y=0;
-	voidINTENABLEHandler_MINT(MINT_EXINT0, MINT_ISC_RISING_EDGE);
-	x=f32timer_get_timer_value_in_us(&TIMER0_STRUCT);
-	}
-	
-	else{}
-}*/
-
-
-//SERVO MOTOR
-/*f32 x=0;
-u32 y=0;
-DIO_PIN PD7_pin={
-	.enumpin= MDIO_PIN7,
-	.enumport= MDIO_PORTD,
-	.enummode= MDIO_OUTPUT,
-	.enumoutputlevel=MDIO_HIGH
-};
-
-int main(void)
-{
-	
-	enumpindirection_MDIO(&PD7_pin);
-	enumpinvalue_selection_MDIO(&PD7_pin,MDIO_HIGH);
-	voidtimer_start_timer_MTIMER(&TIMER0_STRUCT);
-
-	
-	while (1)
-	{
-		if(100 ==u16get_counter0_value())
-		{
-			x=f32timer_get_timer_value_in_ms(&TIMER0_STRUCT);
-			y=u16get_counter0_value();
-		}
-	}
-	
-	return 0;
-}*/
-
-
-
-
-//f32 x=0;
-//u32 y=0;
-//
-//DIO_PIN PD7_pin={
-	//.enumpin= MDIO_PIN7,
-	//.enumport= MDIO_PORTD,
-	//.enummode= MDIO_OUTPUT,
-	//.enumoutputlevel=MDIO_HIGH
-//};
-//
-//int main(void)
-//{
-	//
-	//voidtimer_start_timer_MTIMER(&TIMER0_STRUCT);
-	//_delay_ms(1600);
-	//voidtimer_end_timer_MTIMER(&TIMER0_STRUCT);
-	//x=f32timer_get_timer_value_in_ms(&TIMER0_STRUCT);
-	//y=u16get_counter0_value();
-	//while (1)
-	//{
-//
-	//}
-	//
-	//return 0;
-//}
-
-
-//MASTER CODE
-/*u8 state_of_led0=100;
-u8 state_of_led1=100;
-u8 state_of_led2=100;
-u8 value_in_keypad = 0;
-u8 add_of_pass_saved_in_eeprom=0;
-u8 add_of_pass_entered_by_user=4;
-u8 sequence=0;
-u8 lcd_flag=0;
-u8 counter_for_wrong_pass_entered=0;
-
-u8 set_admin_pass[]="Set Admin Pass of 4 digits:";
-u8 pass_saved_successfully[]="password saved successfully";
-u8 enter_password_message[]="password:";
-u8 error_massage[]= "wrong password";
-u8 restart_system[]="Restart....";
-u8 right_pass[]="welcome :)";
-u8 choose[]="Room 1 to 9:";
-u8 on[]="on";
-u8 off[]="off";
-int main(void)
-{
-	voidinitkeypad_HKEYPAD();
-	voidinitlcd_HLCD();
-	if (u8EEPROM_READ_BYTE_MEEPROM(3) != 0xFF)
-	{
-		sequence=1;
-	}
-	
-	while (1)
-	{
-		
-		
-		if (0 == sequence) //to save password of admin to master eeprom in the beigning
-		{
-			if (0==lcd_flag)
-			{
-				voidLCDstring_HLCD(set_admin_pass,27,HLCD_NUM0);
-				lcd_flag=1;
-			}
-			
-			else
-			{
-				enumkeypadgetnumber_HKEYPAD(&HKEYPAD_arrayofkeypads[0],&value_in_keypad);
-				if (0 != value_in_keypad)
-				{
-					voidEEPROM_WRITE_BYTE(value_in_keypad,add_of_pass_saved_in_eeprom);
-					voidLCDwrite_data_HLCD(DATA,value_in_keypad,HLCD_NUM0);
-					if (3==add_of_pass_saved_in_eeprom)
-					{
-						voidlcdclear();
-						voidLCDstring_HLCD(pass_saved_successfully,27,HLCD_NUM0);
-						lcd_flag=0;
-						sequence=1;
-					}
-					add_of_pass_saved_in_eeprom++;  //0 1 2 3
-					value_in_keypad=0;
-				}
-			}
-
-		} 
-		else if (1 == sequence  && counter_for_wrong_pass_entered <= no_of_trials)
-		{
-			
-			if (0==lcd_flag)
-			{
-				voidlcdclear();
-				voidLCDstring_HLCD(enter_password_message,9,HLCD_NUM0);
-				lcd_flag=1;
-			}
-			
-			else
-			{
-				enumkeypadgetnumber_HKEYPAD(&HKEYPAD_arrayofkeypads[0],&value_in_keypad);
-				if (0!=value_in_keypad)
-				{
-					voidEEPROM_WRITE_BYTE(value_in_keypad,add_of_pass_entered_by_user);
-					voidLCDwrite_data_HLCD(DATA,value_in_keypad,HLCD_NUM0);
-					value_in_keypad=0;
-					if (7==add_of_pass_entered_by_user)
-					{
-						voidlcdclear();
-						for (u8 i=0;i<4;i++)
-						{
-							if (u8EEPROM_READ_BYTE_MEEPROM(i)!= u8EEPROM_READ_BYTE_MEEPROM(i+4))
-							{
-								voidLCDstring_HLCD(error_massage,14,HLCD_NUM0);
-								counter_for_wrong_pass_entered++;
-								if (3==counter_for_wrong_pass_entered)
-								{
-									lcd_flag=0;
-									voidLCDstring_HLCD(restart_system,11,HLCD_NUM0);
-								}
-								add_of_pass_entered_by_user=3;
-								lcd_flag=0;
-								break;
-							}
-							
-							else if ((u8EEPROM_READ_BYTE_MEEPROM(i) == u8EEPROM_READ_BYTE_MEEPROM(i+4)) 
-									 && 3==i)
-							{
-								voidLCDstring_HLCD(right_pass,10,HLCD_NUM0);
-								_delay_ms(500);
-								lcd_flag=0;
-								sequence=2;
-							}
-						}
-					}
-					add_of_pass_entered_by_user++;
-				}
-			}
-			
-		}
-		else if (2 == sequence)
-		{
-			if (0==lcd_flag)
-			{
-				voidlcdclear();
-				voidLCDstring_HLCD(choose,12,HLCD_NUM0);
-				lcd_flag=1;
-			}
-			else{}
-				
-			enumkeypadgetnumber_HKEYPAD(&HKEYPAD_arrayofkeypads[0],&value_in_keypad);
-			if (0!=value_in_keypad)
-			{
-				voidLCDwrite_data_HLCD(DATA,value_in_keypad,HLCD_NUM0);
-				voidinitspi_master_MSPI();
-				switch(value_in_keypad)
-					{
-						case '1':
-						voidspi_master_transmit_byte_MSPI(1);
-						_delay_ms(100);
-						state_of_led0=u8spi_master_receive_byte_MSPI();
-						if (0==state_of_led0)
-						{
-							voidlcdclear();
-							voidLCDstring_HLCD(off,3,HLCD_NUM0);
-						}
-						else
-						{
-							voidlcdclear();
-							voidLCDstring_HLCD(on,2,HLCD_NUM0);							
-						}
-						break;
-
-						case '2':
-						voidspi_master_transmit_byte_MSPI(2);
-						_delay_ms(100);
-						state_of_led1=u8spi_master_receive_byte_MSPI();
-						if (0==state_of_led1)
-						{
-							voidlcdclear();
-							voidLCDstring_HLCD(off,3,HLCD_NUM0);
-						}
-						else
-						{
-							voidlcdclear();
-							voidLCDstring_HLCD(on,2,HLCD_NUM0);
-						}
-						break;
-
-						case '3':
-						voidspi_master_transmit_byte_MSPI(3);
-						_delay_ms(100);
-						state_of_led2=u8spi_master_receive_byte_MSPI();
-						if (0==state_of_led2)
-						{
-							voidlcdclear();
-							voidLCDstring_HLCD(off,3,HLCD_NUM0);
-						}
-						else
-						{
-							voidlcdclear();
-							voidLCDstring_HLCD(on,2,HLCD_NUM0);
-						}
-						break;
-			
-						default:
-						break;
-					}
-				value_in_keypad=0;
-			}
-			
-		}
-	}
-	
-	return 0;	
-}*/
-
-/*f32 x=0;
-int main(void)
-{
-	voidtimer1_ctc_interrupt_call_back(voidservo_start_HSERVO);
-
-
-	while (1)
-	{
-	for (u8 i=0;i<180;i++)
-	{
-		x=f32initservo_HSERVO(i);
-		_delay_ms(10);
-	}
-	for (u8 i=180;i>0;i--)
-	{
-		x=f32initservo_HSERVO(i);
-		_delay_ms(10);
-	}
-	}	
-	return 0;
-}*/
