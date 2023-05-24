@@ -32,11 +32,11 @@ LED_T HLED_arrayofleds[NUM_OF_LEDS];
 
 
 //functions prototype
-void voidinitLED_HLED(void);
-void voidledon_HLED(LED_T* pstructcpy_pin);
-void voidledoff_HLED(LED_T* pstructcpy_pin);
-void voidledtoggle_HLED(LED_T* pstructcpy_pin);
-void voidledcontrolbrightness_HLED(u8 u8cpy_value_to_OCRn);  
+tenumFncErrorState led_init(void);
+tenumFncErrorState led_on(LED_T* pstructcpy_pin);
+tenumFncErrorState led_off(LED_T* pstructcpy_pin);
+tenumFncErrorState led_toggle(LED_T* pstructcpy_pin);
+tenumFncErrorState led_control_brightness(u8 u8cpy_value_to_OCRn);  
 
 
 

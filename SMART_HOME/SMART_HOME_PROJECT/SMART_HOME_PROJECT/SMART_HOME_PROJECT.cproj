@@ -163,6 +163,12 @@
     <Compile Include="HAL\HSWITCH\HSWITCH_PROGRAM.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="HAL\HTEMP_SENSOR_LM35\HTEMP_SENSOR_LM35_INTERFACE.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="HAL\HTEMP_SENSOR_LM35\HTEMP_SENSOR_LM35_program.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="Libraries_\ATMega32_Registers.h">
       <SubType>compile</SubType>
     </Compile>
@@ -182,9 +188,6 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="MCAL\MADC\MADC_REGISTERS.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="MCAL\MDIO\MDIO_CONFIG.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="MCAL\MDIO\MDIO_INTERFACE.h">
@@ -227,12 +230,6 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="MCAL\MSPI\MSPI_REGISTERS.h">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="MCAL\MTIMER\MPWM\MPWM_CONFIG.c">
-      <SubType>compile</SubType>
-    </Compile>
-    <Compile Include="MCAL\MTIMER\MPWM\MPWM_CONFIG.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="MCAL\MTIMER\MPWM\MPWM_INTERFACE.h">
@@ -287,6 +284,7 @@
     <Folder Include="HAL\HSWITCH\" />
     <Folder Include="HAL\HSERVO" />
     <Folder Include="HAL\HDC_MOTOR" />
+    <Folder Include="HAL\HTEMP_SENSOR_LM35" />
     <Folder Include="Libraries_\" />
     <Folder Include="MCAL\" />
     <Folder Include="MCAL\MADC\" />

@@ -65,10 +65,10 @@ MODES_OF_LCD enummode;
 LCD_T HLCD_arrayoflcds[NUM_OF_LCDS];
 
 //functions prototype
-void voidinitlcd_HLCD(void);
-void voidLCDwrite_data_HLCD(HLCD_DATA_TYPE enumcpy_data_type,u8 u8Cpy_LCDData, u8 u8Cpy_LCDNumber);
-void voidLCDintegartostring_HLCD(u32 u32cpu_integar,  u8 u8Cpy_LCDNumber);
-void voidLCDstring_HLCD(u8 u8array_of_char[],u8 u8array_size,u8 u8Cpy_LCDNumber);
-void voidlcdfloat_number_HLCD(f32 f32float_number,u8 u8Cpy_LCDNumber);
-void voidlcdclear(void);
+tenumFncErrorState lcd_init(void);
+tenumFncErrorState lcd_write_data(HLCD_DATA_TYPE enumcpy_data_type,u8 u8Cpy_LCDData, u8 u8Cpy_LCDNumber);
+tenumFncErrorState LCDintegartostring(u32 u32cpu_integar,  u8 u8Cpy_LCDNumber);
+tenumFncErrorState LCDstring(u8 u8array_of_char[],u8 u8array_size,u8 u8Cpy_LCDNumber);
+tenumFncErrorState lcdfloat_number(f32 f32float_number,u8 u8Cpy_LCDNumber);
+tenumFncErrorState lcdclear(void);
 #endif /* HLCD_INTERFACE_H_ */

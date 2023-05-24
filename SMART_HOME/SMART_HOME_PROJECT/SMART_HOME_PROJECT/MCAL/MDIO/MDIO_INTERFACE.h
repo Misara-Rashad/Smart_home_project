@@ -13,7 +13,6 @@
 #include "../../Libraries_/LIB_STDTypes.h"
 
 #include "MDIO_REGISTERS.h"
-#include "MDIO_CONFIG.h"
 
 //4 ports in ATMEGA32
 typedef enum
@@ -56,18 +55,18 @@ typedef struct
 
 //functions prototype
 //2.direction of port or pin
-tenumFncErrorState enumpindirection_MDIO(DIO_PIN* pstructcpy_pin);
-tenumFncErrorState enumportdirection_MDIO(DIO_PORT* pstructcpy_port);
+tenumFncErrorState pin_direction(DIO_PIN* pstructcpy_pin);
+tenumFncErrorState port_direction(DIO_PORT* pstructcpy_port);
 
 //3.pin
-tenumFncErrorState enumpinvalue_MDIO(DIO_PIN* pstructcpy_pin);
-tenumFncErrorState enumpinvalue_selection_MDIO(DIO_PIN* pstructcpy_pin,OUTPUT_LEVEL enumoutputlevel);
-tenumFncErrorState enumpintoggle_MDIO(DIO_PIN* pstructcpy_pin);
-tenumFncErrorState enumpingetvalue_MDIO(DIO_PIN* pstructcpy_pin,pu8 pu8cpy_pin);
+tenumFncErrorState pin_value(DIO_PIN* pstructcpy_pin);
+tenumFncErrorState pin_value_selection(DIO_PIN* pstructcpy_pin,OUTPUT_LEVEL enumoutputlevel);
+tenumFncErrorState pin_toggle(DIO_PIN* pstructcpy_pin);
+tenumFncErrorState pin_get_value(DIO_PIN* pstructcpy_pin,pu8 pu8cpy_pin);
 
 
 //4.port
-tenumFncErrorState enumportvalue_MDIO(DIO_PORT* pstructcpy_port,u8 u8cpy_value );
+tenumFncErrorState port_value(DIO_PORT* pstructcpy_port,u8 u8cpy_value );
 
 
 

@@ -1,5 +1,23 @@
 HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.d HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.o: \
  ../HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.c \
- ../HAL/HDC_MOTOR/HDC_MOTOR_INTERFACE.h
+ ../HAL/HDC_MOTOR/HDC_MOTOR_INTERFACE.h \
+ ../HAL/HDC_MOTOR/../../Libraries_/LIB_STDTypes.h \
+ ../HAL/HDC_MOTOR/../../Libraries_/LIB_BMNP.h \
+ ../HAL/HDC_MOTOR/../../Libraries_/ATMega32_Registers.h \
+ ../HAL/HDC_MOTOR/../../MCAL/MDIO/MDIO_INTERFACE.h \
+ ../HAL/HDC_MOTOR/../../MCAL/MDIO/../../Libraries_/LIB_STDTypes.h \
+ ../HAL/HDC_MOTOR/../../MCAL/MDIO/MDIO_REGISTERS.h
 
 ../HAL/HDC_MOTOR/HDC_MOTOR_INTERFACE.h:
+
+../HAL/HDC_MOTOR/../../Libraries_/LIB_STDTypes.h:
+
+../HAL/HDC_MOTOR/../../Libraries_/LIB_BMNP.h:
+
+../HAL/HDC_MOTOR/../../Libraries_/ATMega32_Registers.h:
+
+../HAL/HDC_MOTOR/../../MCAL/MDIO/MDIO_INTERFACE.h:
+
+../HAL/HDC_MOTOR/../../MCAL/MDIO/../../Libraries_/LIB_STDTypes.h:
+
+../HAL/HDC_MOTOR/../../MCAL/MDIO/MDIO_REGISTERS.h:

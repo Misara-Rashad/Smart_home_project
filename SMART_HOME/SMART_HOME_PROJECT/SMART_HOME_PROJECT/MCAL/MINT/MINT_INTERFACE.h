@@ -28,13 +28,13 @@ typedef enum{
 }MINT_INTFLAGVALUE;
 
 
-void voidinitinterrupt_MINT(void);
-void voidINTExitCriticalSection_MINT(void);
-void voidINTEnterCriticalSection_MINT(void);
-void voidINTGETFlag_MINT(MINT_EXINTS enumCpy_ExInt, pu8 pu8Cpy_INTFlag);
-void voidINTSETFlag_MINT(MINT_EXINTS enumCpy_ExInt, MINT_INTFLAGVALUE enumCpy_INTFlagValue);
-void voidINTENABLEHandler_MINT(MINT_EXINTS enumCpy_ExInt,MINT_RESPONSE_LEVEL enumcpy_response_level);
-void voidINTDISABLEHandler_MINT(MINT_EXINTS enumCpy_ExInt);
-void voidINTSetCallBack_MINT(void (*ptr) (void), MINT_EXINTS enumCpy_ExInt);
+tenumFncErrorState interrupt_initT(void);
+tenumFncErrorState INTExitCriticalSection(void);
+tenumFncErrorState INTEnterCriticalSection(void);
+tenumFncErrorState INTGETFlag(MINT_EXINTS enumCpy_ExInt, pu8 pu8Cpy_INTFlag);
+tenumFncErrorState INTSETFlag(MINT_EXINTS enumCpy_ExInt, MINT_INTFLAGVALUE enumCpy_INTFlagValue);
+tenumFncErrorState INTENABLEHandler(MINT_EXINTS enumCpy_ExInt,MINT_RESPONSE_LEVEL enumcpy_response_level);
+tenumFncErrorState INTDISABLEHandler(MINT_EXINTS enumCpy_ExInt);
+tenumFncErrorState INTSetCallBack(void (*ptr) (void), MINT_EXINTS enumCpy_ExInt);
 
 #endif /* MINT_INTERFACE_H_ */

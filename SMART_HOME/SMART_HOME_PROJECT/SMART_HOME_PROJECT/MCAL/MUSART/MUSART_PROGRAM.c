@@ -7,19 +7,18 @@
 
 //includes section
 #include "../../Libraries_/LIB_STDTypes.h"
-#include "../../Libraries_/LIB_BMNP.h"
-#include "../../Libraries_/ATMega32_Registers.h"
+
 
 #include "MUSART_INTERFACE.h"
-#include "MUSART_CONFIG.h"
-#include "MUSART_REGISTERS.h"
+
 
 
 
 
 //functions implementation
-void voidinitUART_MUSART(void)
+tenumFncErrorState UART_INIT(void)
 {
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
 	#if speed_of_Async_mode == NORMAL_SPEED   
 	CLR_BIT(UCSRA,U2X);
 	SET_BIT(UCSRA,MPCM);
@@ -55,27 +54,39 @@ void voidinitUART_MUSART(void)
 
 
 	#endif	
+	return error;
 }
 
 
 
-void voidUART_send_byte(u8 u8data_to_be_send)
+tenumFncErrorState UART_send_byte(u8 u8data_to_be_send)
 {
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
 	SET_BIT(UCSRB,TXEN);
 	
 	while (!GET_BIT(UCSRA,UDRE));
 	
 	UDR=u8data_to_be_send;
+	return error;
 }
 
 
 
 
-u8 u8UART_receive_byte(void)
+tenumFncErrorState UART_receive_byte(pu8 pu8variable)
 {
-	SET_BIT(UCSRB,RXEN);
-	
-	while (!GET_BIT(UCSRA,RXC));
-	
-	return UDR;
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
+	if (NULL==pu8variable)
+	{
+	}
+	else
+	{
+		SET_BIT(UCSRB,RXEN);
+			
+		while (!GET_BIT(UCSRA,RXC));
+			
+		*pu8variable=UDR;
+	}
+	return error;
+
 }

@@ -10,12 +10,9 @@
 
 //includes
 #include "../../Libraries_/LIB_STDTypes.h"
-#include "../../Libraries_/LIB_BMNP.h"
 
 #include "../MDIO/MDIO_INTERFACE.h"
 
-#include "MSPI_REGISTERS.h"
-#include "MSPI_CONFIG.h"
 #include "MSPI_INTERFACE.h"
 
 
@@ -54,20 +51,21 @@ DIO_PIN SCK_PIN={
 
 //functions implementation
 //master init
-void voidinitspi_master_MSPI(void)
+tenumFncErrorState spi_master_init(void)
 {
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
 	/* Set MOSI and SCK output, all others input */
 	MOSI_PIN.enummode=MDIO_OUTPUT;
 	SCK_PIN.enummode=MDIO_OUTPUT;
 	MISO_PIN.enummode=MDIO_INPUT;
-	enumpindirection_MDIO(&MOSI_PIN);
-	enumpindirection_MDIO(&MISO_PIN);
-	enumpindirection_MDIO(&SCK_PIN);
+	pin_direction(&MOSI_PIN);
+	pin_direction(&MISO_PIN);
+	pin_direction(&SCK_PIN);
 	//set ss to output & high
 	SS_PIN.enummode=MDIO_OUTPUT;
 	SS_PIN.enumoutputlevel=MDIO_HIGH;
-	enumpindirection_MDIO(&SS_PIN);
-	enumpinvalue_MDIO(&SS_PIN);
+	pin_direction(&SS_PIN);
+	pin_value(&SS_PIN);
 	
 	/* Enable SPI, Master, set clock rate  */
 	SET_BIT(SPCR,SPE);
@@ -86,22 +84,23 @@ void voidinitspi_master_MSPI(void)
 	SET_BIT(SPCR,SPR0);
 	CLR_BIT(SPCR,SPR1);
 	SET_BIT(SPSR,SPI2X);
-
+	return error;
 
 }
 /*..................*/
 //slave init
-void voidinitspi_slave_MSPI(void)
+tenumFncErrorState spi_slave_init(void)
 {
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
 	/* Set MISO output, all others input */
 	MOSI_PIN.enummode=MDIO_INPUT;
 	SCK_PIN.enummode=MDIO_INPUT;
 	MISO_PIN.enummode=MDIO_OUTPUT;
 	SS_PIN.enummode=MDIO_INPUT;
-	enumpindirection_MDIO(&MOSI_PIN);
-	enumpindirection_MDIO(&MISO_PIN);
-	enumpindirection_MDIO(&SCK_PIN);
-	enumpindirection_MDIO(&SS_PIN);
+	pin_direction(&MOSI_PIN);
+	pin_direction(&MISO_PIN);
+	pin_direction(&SCK_PIN);
+	pin_direction(&SS_PIN);
 	
 	//enable spi
 	SET_BIT(SPCR,SPE);
@@ -115,14 +114,16 @@ void voidinitspi_slave_MSPI(void)
 	//When this bit is written to one, SCK is high when idle.
 	SET_BIT(SPCR,CPOL); //leading edge is falling edge
 	SET_BIT(SPCR,CPHA); //reads on leading edge
+	return error;
 }
 /*..................*/
 
-void voidspi_master_transmit_byte_MSPI(u8 data)
+tenumFncErrorState spi_master_transmit_byte(u8 data)
 {
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
 	//ss  low
 	SS_PIN.enumoutputlevel=MDIO_LOW;
-	enumpinvalue_MDIO(&SS_PIN);
+	pin_value(&SS_PIN);
 	
 	/* Start transmission */
 	SPDR=data;
@@ -132,41 +133,59 @@ void voidspi_master_transmit_byte_MSPI(u8 data)
 	
 	//ss  high again
 	SS_PIN.enumoutputlevel=MDIO_HIGH;
-	enumpinvalue_MDIO(&SS_PIN);
+	pin_value(&SS_PIN);
+	return error;
 }
 
 
-u8 u8spi_master_receive_byte_MSPI(void)
+tenumFncErrorState spi_master_receive_byte(pu8 pu8variable)
 {
-	u8 x=0;
-	//ss  low
-	SS_PIN.enumoutputlevel=MDIO_LOW;
-	enumpinvalue_MDIO(&SS_PIN);
-	
-	SPDR=x;				//dummy data
-	
-	/* Wait for transmission complete */
-	while (!(GET_BIT(SPSR,SPIF)));
-	x=SPDR;
-	
-	//ss  high again
-	SS_PIN.enumoutputlevel=MDIO_HIGH;
-	enumpinvalue_MDIO(&SS_PIN);
-	
-	return x;
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
+	if (NULL==pu8variable)
+	{
+		error=LSTY_NULL_POINTER;
+	}
+	else
+	{
+			u8 x=0;
+			//ss  low
+			SS_PIN.enumoutputlevel=MDIO_LOW;
+			pin_value(&SS_PIN);
+			
+			SPDR=x;				//dummy data
+			
+			/* Wait for transmission complete */
+			while (!(GET_BIT(SPSR,SPIF)));
+			*pu8variable=SPDR;
+			
+			//ss  high again
+			SS_PIN.enumoutputlevel=MDIO_HIGH;
+			pin_value(&SS_PIN);
+	}
+	return error;
+
 }
 
 
 
-void voidspi_slave_transmit_byte_MSPI(u8 data)
+tenumFncErrorState spi_slave_transmit_byte(u8 data)
 {
 	SPDR=data;
 }
 
 
 
-u8	 u8spi_slave_receive_byte_MSPI(void)
+tenumFncErrorState spi_slave_receive_byte(pu8 pu8variable)
 {
-	while (!(GET_BIT(SPSR,SPIF)));
-	return SPDR;
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
+	if (NULL==pu8variable)
+	{
+	}
+	else
+	{
+		while (!(GET_BIT(SPSR,SPIF)));
+		*pu8variable=SPDR;	
+	}
+	return error;
+	
 }

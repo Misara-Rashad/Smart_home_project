@@ -73,23 +73,23 @@ TIMER_T TIMER2_STRUCT;
 
 
 //functions prototype
-//t0
-void voidtimerdelay_in_ms_MTIMER(u32 desired_time_in_ms,TIMER_T* ptostruct);
-void voidtimerdelay_in_us_MTIMER(u32 desired_time_in_us,TIMER_T* ptostruct);
-void voidtimerctc_mode_MTIMER(u32 time_to_clear_on,TIMER_T* ptostruct,u8 u8value_to_be_set_in_OCR0_register );
 
-void voidtimer_start_timer_MTIMER(TIMER_T* ptostruct);
-void voidtimer_end_timer_MTIMER(TIMER_T* ptostruct);
-void voidtimer_continue_timer_MTIMER(TIMER_T* ptostruct);
-f32  f32timer_get_timer_value_in_us(TIMER_T* ptostruct);
-f32  f32timer_get_timer_value_in_ms(TIMER_T* ptostruct);
+tenumFncErrorState timerdelay_in_millisec(u32 desired_time_in_ms,TIMER_T* ptostruct);
+tenumFncErrorState timerdelay_in_microsec(u32 desired_time_in_us,TIMER_T* ptostruct);
+tenumFncErrorState timerctc_mode(u32 time_to_clear_on,TIMER_T* ptostruct,u8 u8value_to_be_set_in_OCR0_register );
 
-void voidcounter_start_counter_MTIMER(TIMER_T* ptostruct);
-void voidcounter_end_counter_MTIMER(TIMER_T* ptostruct);
-void voidcounter_continue_counter_MTIMER(TIMER_T* ptostruct);
-u32  u32counter_get_counter_value(TIMER_T* ptostruct);
+tenumFncErrorState timer_start_timer(TIMER_T* ptostruct);
+tenumFncErrorState timer_end_timer(TIMER_T* ptostruct);
+tenumFncErrorState timer_continue_timer(TIMER_T* ptostruct);
+tenumFncErrorState timer_get_timer_value_in_millisec(TIMER_T* ptostruct,pf32 pf32_variable);
+tenumFncErrorState timer_get_timer_value_in_microsec(TIMER_T* ptostruct,pf32 pf32_variable);
 
-void voidtimer1_ctc_interrupt_call_back(void (*ptr) (f32));
+tenumFncErrorState counter_start_counter(TIMER_T* ptostruct);
+tenumFncErrorState counter_end_counter(TIMER_T* ptostruct);
+tenumFncErrorState counter_continue_counter(TIMER_T* ptostruct);
+tenumFncErrorState counter_get_counter_value(TIMER_T* ptostruct,pu32 pu32variable);
+
+tenumFncErrorState timer1_ctc_interrupt_call_back(void (*ptr) (f32));
 
 
 

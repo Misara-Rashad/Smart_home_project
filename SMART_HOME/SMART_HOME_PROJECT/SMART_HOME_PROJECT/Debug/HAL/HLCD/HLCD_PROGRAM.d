@@ -12,15 +12,10 @@ HAL/HLCD/HLCD_PROGRAM.d HAL/HLCD/HLCD_PROGRAM.o: \
  ../HAL/HLCD/../../Libraries_/LIB_STDTypes.h \
  ../HAL/HLCD/../../Libraries_/LIB_BMNP.h \
  ../HAL/HLCD/../../Libraries_/ATMega32_Registers.h \
- ../HAL/HLCD/../../Libraries_/LIB_BMNP.h \
- ../HAL/HLCD/../../Libraries_/ATMega32_Registers.h \
- ../HAL/HLCD/../../MCAL/MDIO/MDIO_CONFIG.h \
  ../HAL/HLCD/../../MCAL/MDIO/MDIO_INTERFACE.h \
  ../HAL/HLCD/../../MCAL/MDIO/../../Libraries_/LIB_STDTypes.h \
  ../HAL/HLCD/../../MCAL/MDIO/MDIO_REGISTERS.h \
- ../HAL/HLCD/../../MCAL/MDIO/MDIO_CONFIG.h \
- ../HAL/HLCD/../../MCAL/MDIO/MDIO_REGISTERS.h ../HAL/HLCD/HLCD_CONFIG.h \
- ../HAL/HLCD/HLCD_INTERFACE.h
+ ../HAL/HLCD/HLCD_INTERFACE.h ../HAL/HLCD/HLCD_CONFIG.h
 
 c:\program\ files\microchip\xc8\v2.36\avr\avr\include\util\delay.h:
 
@@ -46,22 +41,12 @@ c:\program\ files\microchip\xc8\v2.36\avr\avr\include\math.h:
 
 ../HAL/HLCD/../../Libraries_/ATMega32_Registers.h:
 
-../HAL/HLCD/../../Libraries_/LIB_BMNP.h:
-
-../HAL/HLCD/../../Libraries_/ATMega32_Registers.h:
-
-../HAL/HLCD/../../MCAL/MDIO/MDIO_CONFIG.h:
-
 ../HAL/HLCD/../../MCAL/MDIO/MDIO_INTERFACE.h:
 
 ../HAL/HLCD/../../MCAL/MDIO/../../Libraries_/LIB_STDTypes.h:
 
 ../HAL/HLCD/../../MCAL/MDIO/MDIO_REGISTERS.h:
 
-../HAL/HLCD/../../MCAL/MDIO/MDIO_CONFIG.h:
-
-../HAL/HLCD/../../MCAL/MDIO/MDIO_REGISTERS.h:
+../HAL/HLCD/HLCD_INTERFACE.h:
 
 ../HAL/HLCD/HLCD_CONFIG.h:
-
-../HAL/HLCD/HLCD_INTERFACE.h:

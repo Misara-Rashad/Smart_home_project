@@ -26,7 +26,7 @@ KEYPAD_T HKEYPAD_arrayofkeypads[NUM_OF_KEYPADS];
 
 
 //functions prototype
-void voidinitkeypad_HKEYPAD(void);
-tenumFncErrorState enumkeypadgetnumber_HKEYPAD(KEYPAD_T* pstructcpy,pu8 pu8cpy_value);
+tenumFncErrorState keypad_init(void);
+tenumFncErrorState keypadgetnumber(KEYPAD_T* pstructcpy,pu8 pu8cpy_value);
 
 #endif /* HKEYPAD_INTERFACE_H_ */

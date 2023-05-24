@@ -9,83 +9,107 @@
 /*............includes section........*/
 //libraries
 #include "../../Libraries_/LIB_STDTypes.h"
-#include "../../Libraries_/LIB_BMNP.h"
-#include "../../Libraries_/ATMega32_Registers.h"
 
 //MCAL
-#include "../../MCAL/MDIO/MDIO_CONFIG.h"
 #include "../../MCAL/MDIO/MDIO_INTERFACE.h"
-#include "../../MCAL/MDIO/MDIO_REGISTERS.h"
-
-
 
 //HAL
-#include "HLED_CONFIG.h"
 #include "HLED_INTERFACE.h"
 
 
 
 
 //include pwm to enable led control brightness
-#include "../../MCAL/MTIMER/MPWM/MPWM_CONFIG.h"
 #include "../../MCAL/MTIMER/MPWM/MPWM_INTERFACE.h"
 
 
 //functions implementation
-void voidinitLED_HLED(void)
+tenumFncErrorState led_init(void)
 {	
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
 	u8 i;
 	for(i=0;i<NUM_OF_LEDS;i++)
 	{
-			enumpindirection_MDIO(&HLED_arrayofleds[i].structpin);
+			pin_direction(&HLED_arrayofleds[i].structpin);
 	}
+	return error;
 }
 
 
-void voidledon_HLED(LED_T* pstructcpy_pin)
+tenumFncErrorState led_on(LED_T* pstructcpy_pin)
 {
-	if((pstructcpy_pin->enumoutputlevel=ACTIVE_HIGH_LED))
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
+	if (NULL==pstructcpy_pin)
 	{
-		pstructcpy_pin->structpin.enumoutputlevel=MDIO_HIGH;
-		enumpinvalue_MDIO(&pstructcpy_pin->structpin);
+		error=LSTY_NULL_POINTER;
 	}
-else //ACTIVE_LOW_LED
+	else
 	{
-		pstructcpy_pin->structpin.enumoutputlevel=MDIO_LOW;
-		enumpinvalue_MDIO(&pstructcpy_pin->structpin);
+		if((pstructcpy_pin->enumoutputlevel=ACTIVE_HIGH_LED))
+		{
+			pstructcpy_pin->structpin.enumoutputlevel=MDIO_HIGH;
+			pin_value(&pstructcpy_pin->structpin);
+		}
+		else //ACTIVE_LOW_LED
+		{
+			pstructcpy_pin->structpin.enumoutputlevel=MDIO_LOW;
+			pin_value(&pstructcpy_pin->structpin);
+		}
 	}
-}
-
-
-void voidledoff_HLED(LED_T* pstructcpy_pin)
-{
-	if((pstructcpy_pin->enumoutputlevel=ACTIVE_HIGH_LED))
-	{
-	pstructcpy_pin->structpin.enumoutputlevel=MDIO_LOW;
-	enumpinvalue_MDIO(&pstructcpy_pin->structpin);
-	}
-else //ACTIVE_LOW_LED
-{
-	pstructcpy_pin->structpin.enumoutputlevel=MDIO_HIGH;
-	enumpinvalue_MDIO(&pstructcpy_pin->structpin);
-}
-}
-
-
-
-void voidledtoggle_HLED(LED_T* pstructcpy_pin)
-{
-	enumpintoggle_MDIO(&pstructcpy_pin->structpin);
-}
-
-
-
-
-void voidledcontrolbrightness_HLED(u8 u8cpy_value_to_OCRn)   //set OC0 for example
-{
+	return error;
 	
-	voidinitpwm_MPWM(&HPWM_arrayofpwm[0]);
-		
-	voidpwm_change_duty_cycle_MPWM(u8cpy_value_to_OCRn,&HPWM_arrayofpwm[0]);
+}
 
+
+tenumFncErrorState led_off(LED_T* pstructcpy_pin)
+{
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
+	if (NULL==pstructcpy_pin)
+	{
+		error=LSTY_NULL_POINTER;
+	}
+	else
+	{
+		if((pstructcpy_pin->enumoutputlevel=ACTIVE_HIGH_LED))
+		{
+			pstructcpy_pin->structpin.enumoutputlevel=MDIO_LOW;
+			pin_value(&pstructcpy_pin->structpin);
+		}
+		else //ACTIVE_LOW_LED
+		{
+			pstructcpy_pin->structpin.enumoutputlevel=MDIO_HIGH;
+			pin_value(&pstructcpy_pin->structpin);
+		}
+	}
+	return error;
+	
+}
+
+
+
+tenumFncErrorState led_toggle(LED_T* pstructcpy_pin)
+{
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
+	if (NULL==pstructcpy_pin)
+	{
+		error=LSTY_NULL_POINTER;
+	}
+	else
+	{
+		pin_toggle(&pstructcpy_pin->structpin);
+	}
+	return error;
+
+}
+
+
+
+
+tenumFncErrorState led_control_brightness(u8 u8cpy_value_to_OCRn)   //set OC0 for example
+{
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
+	PWM_init_MPWM(&HPWM_arrayofpwm[0]);
+		
+	pwm_change_duty_cycle_MPWM(u8cpy_value_to_OCRn,&HPWM_arrayofpwm[0]);
+	return error;
 }

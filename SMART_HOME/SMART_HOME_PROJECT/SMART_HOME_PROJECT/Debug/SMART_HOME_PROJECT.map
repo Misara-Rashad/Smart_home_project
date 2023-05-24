@@ -47,6 +47,7 @@ Allocating common symbols
 Common symbol       size              file
 
 timer1_ctc_int      0x2               MCAL/MTIMER/MTIMER_PROGRAM.o
+loads_status        0x8               main.o
 
 Discarded input sections
 
@@ -67,104 +68,115 @@ Discarded input sections
  .text          0x0000000000000000        0x0 HAL/H7SEG/H7SEG_PROGRAM.o
  .data          0x0000000000000000        0x0 HAL/H7SEG/H7SEG_PROGRAM.o
  .bss           0x0000000000000000        0x0 HAL/H7SEG/H7SEG_PROGRAM.o
- .text.voidinit7seg_H7SEG
-                0x0000000000000000       0x5c HAL/H7SEG/H7SEG_PROGRAM.o
- .text.void7seg_enable_one_H7SEG
-                0x0000000000000000       0x10 HAL/H7SEG/H7SEG_PROGRAM.o
- .text.void7seg_disable_one_H7SEG
-                0x0000000000000000       0x10 HAL/H7SEG/H7SEG_PROGRAM.o
- .text.void7seg_sendnumber_H7SEG
-                0x0000000000000000       0x52 HAL/H7SEG/H7SEG_PROGRAM.o
- .debug_info    0x0000000000000000      0x84b HAL/H7SEG/H7SEG_PROGRAM.o
- .debug_abbrev  0x0000000000000000      0x163 HAL/H7SEG/H7SEG_PROGRAM.o
- .debug_loc     0x0000000000000000      0x14a HAL/H7SEG/H7SEG_PROGRAM.o
+ .text.seven_segment_init
+                0x0000000000000000       0x5e HAL/H7SEG/H7SEG_PROGRAM.o
+ .text.seven_segment_enable_one
+                0x0000000000000000       0x1a HAL/H7SEG/H7SEG_PROGRAM.o
+ .text.seven_segment_disable_one
+                0x0000000000000000       0x1a HAL/H7SEG/H7SEG_PROGRAM.o
+ .text.seven_segment_sendnumber
+                0x0000000000000000       0x5e HAL/H7SEG/H7SEG_PROGRAM.o
+ .debug_info    0x0000000000000000      0x92d HAL/H7SEG/H7SEG_PROGRAM.o
+ .debug_abbrev  0x0000000000000000      0x185 HAL/H7SEG/H7SEG_PROGRAM.o
+ .debug_loc     0x0000000000000000      0x20e HAL/H7SEG/H7SEG_PROGRAM.o
  .debug_aranges
                 0x0000000000000000       0x38 HAL/H7SEG/H7SEG_PROGRAM.o
  .debug_ranges  0x0000000000000000       0x28 HAL/H7SEG/H7SEG_PROGRAM.o
- .debug_line    0x0000000000000000      0x1c3 HAL/H7SEG/H7SEG_PROGRAM.o
- .debug_str     0x0000000000000000       0x40 HAL/H7SEG/H7SEG_PROGRAM.o
+ .debug_line    0x0000000000000000      0x206 HAL/H7SEG/H7SEG_PROGRAM.o
+ .debug_str     0x0000000000000000       0x36 HAL/H7SEG/H7SEG_PROGRAM.o
  .comment       0x0000000000000000       0x30 HAL/H7SEG/H7SEG_PROGRAM.o
  .debug_frame   0x0000000000000000       0x70 HAL/H7SEG/H7SEG_PROGRAM.o
  .text          0x0000000000000000        0x0 HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.o
  .data          0x0000000000000000        0x0 HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.o
  .bss           0x0000000000000000        0x0 HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.o
- .debug_line    0x0000000000000000        0x0 HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.o
- .debug_str     0x0000000000000000        0x0 HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.o
+ .text.Motor_init
+                0x0000000000000000       0x2a HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.o
+ .text.Motor_right
+                0x0000000000000000       0x30 HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.o
+ .text.Motor_left
+                0x0000000000000000       0x30 HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.o
+ .text.Motor_stop
+                0x0000000000000000       0x12 HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.o
+ .data.MOTOR1   0x0000000000000000        0xc HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.o
+ .debug_info    0x0000000000000000      0x760 HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.o
+ .debug_abbrev  0x0000000000000000      0x108 HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.o
+ .debug_loc     0x0000000000000000      0x21f HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.o
+ .debug_aranges
+                0x0000000000000000       0x38 HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.o
+ .debug_ranges  0x0000000000000000       0x28 HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.o
+ .debug_line    0x0000000000000000      0x1a2 HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.o
+ .debug_str     0x0000000000000000       0x39 HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.o
  .comment       0x0000000000000000       0x30 HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.o
+ .debug_frame   0x0000000000000000       0x78 HAL/HDC_MOTOR/HDC_MOTOR_PROGRAM.o
  .text          0x0000000000000000        0x0 HAL/HKEYPAD/HKEYPAD_CONFIG.o
  .data          0x0000000000000000        0x0 HAL/HKEYPAD/HKEYPAD_CONFIG.o
  .bss           0x0000000000000000        0x0 HAL/HKEYPAD/HKEYPAD_CONFIG.o
- .data.HKEYPAD_arrayofkeypads
-                0x0000000000000000       0x20 HAL/HKEYPAD/HKEYPAD_CONFIG.o
- .debug_info    0x0000000000000000      0x4a4 HAL/HKEYPAD/HKEYPAD_CONFIG.o
- .debug_abbrev  0x0000000000000000       0x7f HAL/HKEYPAD/HKEYPAD_CONFIG.o
- .debug_aranges
-                0x0000000000000000       0x18 HAL/HKEYPAD/HKEYPAD_CONFIG.o
- .debug_line    0x0000000000000000       0x87 HAL/HKEYPAD/HKEYPAD_CONFIG.o
- .debug_str     0x0000000000000000        0x0 HAL/HKEYPAD/HKEYPAD_CONFIG.o
- .comment       0x0000000000000000       0x30 HAL/HKEYPAD/HKEYPAD_CONFIG.o
  .text          0x0000000000000000        0x0 HAL/HKEYPAD/HKEYPAD_PROGRAM.o
  .data          0x0000000000000000        0x0 HAL/HKEYPAD/HKEYPAD_PROGRAM.o
  .bss           0x0000000000000000        0x0 HAL/HKEYPAD/HKEYPAD_PROGRAM.o
- .text.voidinitkeypad_HKEYPAD
-                0x0000000000000000       0xd0 HAL/HKEYPAD/HKEYPAD_PROGRAM.o
- .text.enumkeypadgetnumber_HKEYPAD
-                0x0000000000000000      0x120 HAL/HKEYPAD/HKEYPAD_PROGRAM.o
- .data.keypad   0x0000000000000000       0x10 HAL/HKEYPAD/HKEYPAD_PROGRAM.o
- .debug_info    0x0000000000000000      0x93c HAL/HKEYPAD/HKEYPAD_PROGRAM.o
- .debug_abbrev  0x0000000000000000      0x19c HAL/HKEYPAD/HKEYPAD_PROGRAM.o
- .debug_loc     0x0000000000000000      0x29d HAL/HKEYPAD/HKEYPAD_PROGRAM.o
- .debug_aranges
-                0x0000000000000000       0x28 HAL/HKEYPAD/HKEYPAD_PROGRAM.o
- .debug_ranges  0x0000000000000000       0x18 HAL/HKEYPAD/HKEYPAD_PROGRAM.o
- .debug_line    0x0000000000000000      0x2ca HAL/HKEYPAD/HKEYPAD_PROGRAM.o
- .debug_str     0x0000000000000000       0x3d HAL/HKEYPAD/HKEYPAD_PROGRAM.o
- .comment       0x0000000000000000       0x30 HAL/HKEYPAD/HKEYPAD_PROGRAM.o
- .debug_frame   0x0000000000000000       0xb8 HAL/HKEYPAD/HKEYPAD_PROGRAM.o
  .text          0x0000000000000000        0x0 HAL/HLCD/HLCD_CONFIG.o
  .data          0x0000000000000000        0x0 HAL/HLCD/HLCD_CONFIG.o
  .bss           0x0000000000000000        0x0 HAL/HLCD/HLCD_CONFIG.o
  .text          0x0000000000000000        0x0 HAL/HLCD/HLCD_PROGRAM.o
  .data          0x0000000000000000        0x0 HAL/HLCD/HLCD_PROGRAM.o
  .bss           0x0000000000000000        0x0 HAL/HLCD/HLCD_PROGRAM.o
- .text.voidLCDintegartostring_HLCD
-                0x0000000000000000      0x178 HAL/HLCD/HLCD_PROGRAM.o
- .text.voidlcdclear
-                0x0000000000000000        0xc HAL/HLCD/HLCD_PROGRAM.o
- .text.voidLCDstring_HLCD
-                0x0000000000000000       0x50 HAL/HLCD/HLCD_PROGRAM.o
- .text.voidlcdfloat_number_HLCD
-                0x0000000000000000      0x2b4 HAL/HLCD/HLCD_PROGRAM.o
+ .text.LCDintegartostring
+                0x0000000000000000      0x17a HAL/HLCD/HLCD_PROGRAM.o
+ .text.lcdfloat_number
+                0x0000000000000000      0x2b6 HAL/HLCD/HLCD_PROGRAM.o
  .text          0x0000000000000000        0x0 HAL/HLED/HLED_CONFIG.o
  .data          0x0000000000000000        0x0 HAL/HLED/HLED_CONFIG.o
  .bss           0x0000000000000000        0x0 HAL/HLED/HLED_CONFIG.o
+ .data.HLED_arrayofleds
+                0x0000000000000000        0xf HAL/HLED/HLED_CONFIG.o
+ .debug_info    0x0000000000000000      0x4c8 HAL/HLED/HLED_CONFIG.o
+ .debug_abbrev  0x0000000000000000       0x8e HAL/HLED/HLED_CONFIG.o
+ .debug_aranges
+                0x0000000000000000       0x18 HAL/HLED/HLED_CONFIG.o
+ .debug_line    0x0000000000000000       0x7b HAL/HLED/HLED_CONFIG.o
+ .debug_str     0x0000000000000000       0x10 HAL/HLED/HLED_CONFIG.o
+ .comment       0x0000000000000000       0x30 HAL/HLED/HLED_CONFIG.o
  .text          0x0000000000000000        0x0 HAL/HLED/HLED_PROGRAM.o
  .data          0x0000000000000000        0x0 HAL/HLED/HLED_PROGRAM.o
  .bss           0x0000000000000000        0x0 HAL/HLED/HLED_PROGRAM.o
- .text.voidledtoggle_HLED
-                0x0000000000000000        0x6 HAL/HLED/HLED_PROGRAM.o
- .text.voidledcontrolbrightness_HLED
-                0x0000000000000000       0x1a HAL/HLED/HLED_PROGRAM.o
+ .text.led_init
+                0x0000000000000000       0x2c HAL/HLED/HLED_PROGRAM.o
+ .text.led_on   0x0000000000000000       0x18 HAL/HLED/HLED_PROGRAM.o
+ .text.led_off  0x0000000000000000       0x18 HAL/HLED/HLED_PROGRAM.o
+ .text.led_toggle
+                0x0000000000000000       0x10 HAL/HLED/HLED_PROGRAM.o
+ .text.led_control_brightness
+                0x0000000000000000       0x1c HAL/HLED/HLED_PROGRAM.o
+ .debug_info    0x0000000000000000      0x9f5 HAL/HLED/HLED_PROGRAM.o
+ .debug_abbrev  0x0000000000000000      0x161 HAL/HLED/HLED_PROGRAM.o
+ .debug_loc     0x0000000000000000      0x1b8 HAL/HLED/HLED_PROGRAM.o
+ .debug_aranges
+                0x0000000000000000       0x40 HAL/HLED/HLED_PROGRAM.o
+ .debug_ranges  0x0000000000000000       0x30 HAL/HLED/HLED_PROGRAM.o
+ .debug_line    0x0000000000000000      0x1e5 HAL/HLED/HLED_PROGRAM.o
+ .debug_str     0x0000000000000000       0x71 HAL/HLED/HLED_PROGRAM.o
+ .comment       0x0000000000000000       0x30 HAL/HLED/HLED_PROGRAM.o
+ .debug_frame   0x0000000000000000       0x74 HAL/HLED/HLED_PROGRAM.o
  COMMON         0x0000000000000000        0x0 HAL/HLED/HLED_PROGRAM.o
  .text          0x0000000000000000        0x0 HAL/HSERVO/HSERVO_PROGRAM.o
  .data          0x0000000000000000        0x0 HAL/HSERVO/HSERVO_PROGRAM.o
  .bss           0x0000000000000000        0x0 HAL/HSERVO/HSERVO_PROGRAM.o
- .text.f32initservo_HSERVO
-                0x0000000000000000       0x7a HAL/HSERVO/HSERVO_PROGRAM.o
- .text.voidservo_start_HSERVO
-                0x0000000000000000       0x7e HAL/HSERVO/HSERVO_PROGRAM.o
+ .text.servo_init
+                0x0000000000000000       0x94 HAL/HSERVO/HSERVO_PROGRAM.o
+ .text.servo_start
+                0x0000000000000000       0x80 HAL/HSERVO/HSERVO_PROGRAM.o
  .bss.flag      0x0000000000000000        0x1 HAL/HSERVO/HSERVO_PROGRAM.o
  .data.A0       0x0000000000000000        0x4 HAL/HSERVO/HSERVO_PROGRAM.o
- .debug_info    0x0000000000000000      0x59f HAL/HSERVO/HSERVO_PROGRAM.o
- .debug_abbrev  0x0000000000000000      0x11b HAL/HSERVO/HSERVO_PROGRAM.o
- .debug_loc     0x0000000000000000      0x185 HAL/HSERVO/HSERVO_PROGRAM.o
+ .debug_info    0x0000000000000000      0x67e HAL/HSERVO/HSERVO_PROGRAM.o
+ .debug_abbrev  0x0000000000000000      0x122 HAL/HSERVO/HSERVO_PROGRAM.o
+ .debug_loc     0x0000000000000000      0x207 HAL/HSERVO/HSERVO_PROGRAM.o
  .debug_aranges
                 0x0000000000000000       0x28 HAL/HSERVO/HSERVO_PROGRAM.o
  .debug_ranges  0x0000000000000000       0x18 HAL/HSERVO/HSERVO_PROGRAM.o
- .debug_line    0x0000000000000000      0x132 HAL/HSERVO/HSERVO_PROGRAM.o
- .debug_str     0x0000000000000000       0x3d HAL/HSERVO/HSERVO_PROGRAM.o
+ .debug_line    0x0000000000000000      0x14a HAL/HSERVO/HSERVO_PROGRAM.o
+ .debug_str     0x0000000000000000       0x2d HAL/HSERVO/HSERVO_PROGRAM.o
  .comment       0x0000000000000000       0x30 HAL/HSERVO/HSERVO_PROGRAM.o
- .debug_frame   0x0000000000000000       0x5c HAL/HSERVO/HSERVO_PROGRAM.o
+ .debug_frame   0x0000000000000000       0x68 HAL/HSERVO/HSERVO_PROGRAM.o
  .text          0x0000000000000000        0x0 HAL/HSWITCH/HSWITCH_CONFIG.o
  .data          0x0000000000000000        0x0 HAL/HSWITCH/HSWITCH_CONFIG.o
  .bss           0x0000000000000000        0x0 HAL/HSWITCH/HSWITCH_CONFIG.o
@@ -180,135 +192,130 @@ Discarded input sections
  .text          0x0000000000000000        0x0 HAL/HSWITCH/HSWITCH_PROGRAM.o
  .data          0x0000000000000000        0x0 HAL/HSWITCH/HSWITCH_PROGRAM.o
  .bss           0x0000000000000000        0x0 HAL/HSWITCH/HSWITCH_PROGRAM.o
- .text.voidinitSWITCH_HSWITCH
-                0x0000000000000000       0x2a HAL/HSWITCH/HSWITCH_PROGRAM.o
- .text.enumswitchgetvalue_HSWITCH
-                0x0000000000000000       0x86 HAL/HSWITCH/HSWITCH_PROGRAM.o
- .debug_info    0x0000000000000000      0x72e HAL/HSWITCH/HSWITCH_PROGRAM.o
- .debug_abbrev  0x0000000000000000      0x14a HAL/HSWITCH/HSWITCH_PROGRAM.o
- .debug_loc     0x0000000000000000      0x189 HAL/HSWITCH/HSWITCH_PROGRAM.o
+ .text.SWITCH_INIT
+                0x0000000000000000       0x2c HAL/HSWITCH/HSWITCH_PROGRAM.o
+ .text.switch_get_value
+                0x0000000000000000       0x7e HAL/HSWITCH/HSWITCH_PROGRAM.o
+ .debug_info    0x0000000000000000      0x746 HAL/HSWITCH/HSWITCH_PROGRAM.o
+ .debug_abbrev  0x0000000000000000      0x13f HAL/HSWITCH/HSWITCH_PROGRAM.o
+ .debug_loc     0x0000000000000000      0x188 HAL/HSWITCH/HSWITCH_PROGRAM.o
  .debug_aranges
                 0x0000000000000000       0x28 HAL/HSWITCH/HSWITCH_PROGRAM.o
  .debug_ranges  0x0000000000000000       0x18 HAL/HSWITCH/HSWITCH_PROGRAM.o
- .debug_line    0x0000000000000000      0x17e HAL/HSWITCH/HSWITCH_PROGRAM.o
- .debug_str     0x0000000000000000       0x34 HAL/HSWITCH/HSWITCH_PROGRAM.o
+ .debug_line    0x0000000000000000      0x17c HAL/HSWITCH/HSWITCH_PROGRAM.o
+ .debug_str     0x0000000000000000       0x25 HAL/HSWITCH/HSWITCH_PROGRAM.o
  .comment       0x0000000000000000       0x30 HAL/HSWITCH/HSWITCH_PROGRAM.o
  .debug_frame   0x0000000000000000       0x58 HAL/HSWITCH/HSWITCH_PROGRAM.o
+ .text          0x0000000000000000        0x0 HAL/HTEMP_SENSOR_LM35/HTEMP_SENSOR_LM35_program.o
+ .data          0x0000000000000000        0x0 HAL/HTEMP_SENSOR_LM35/HTEMP_SENSOR_LM35_program.o
+ .bss           0x0000000000000000        0x0 HAL/HTEMP_SENSOR_LM35/HTEMP_SENSOR_LM35_program.o
+ .text.temp_sensor_init
+                0x0000000000000000        0x6 HAL/HTEMP_SENSOR_LM35/HTEMP_SENSOR_LM35_program.o
+ .text.temp_value
+                0x0000000000000000       0x42 HAL/HTEMP_SENSOR_LM35/HTEMP_SENSOR_LM35_program.o
+ .data.HTEMP_SENSOR
+                0x0000000000000000        0x6 HAL/HTEMP_SENSOR_LM35/HTEMP_SENSOR_LM35_program.o
+ .debug_info    0x0000000000000000      0x741 HAL/HTEMP_SENSOR_LM35/HTEMP_SENSOR_LM35_program.o
+ .debug_abbrev  0x0000000000000000      0x115 HAL/HTEMP_SENSOR_LM35/HTEMP_SENSOR_LM35_program.o
+ .debug_loc     0x0000000000000000      0x124 HAL/HTEMP_SENSOR_LM35/HTEMP_SENSOR_LM35_program.o
+ .debug_aranges
+                0x0000000000000000       0x28 HAL/HTEMP_SENSOR_LM35/HTEMP_SENSOR_LM35_program.o
+ .debug_ranges  0x0000000000000000       0x18 HAL/HTEMP_SENSOR_LM35/HTEMP_SENSOR_LM35_program.o
+ .debug_line    0x0000000000000000      0x10f HAL/HTEMP_SENSOR_LM35/HTEMP_SENSOR_LM35_program.o
+ .debug_str     0x0000000000000000       0x3d HAL/HTEMP_SENSOR_LM35/HTEMP_SENSOR_LM35_program.o
+ .comment       0x0000000000000000       0x30 HAL/HTEMP_SENSOR_LM35/HTEMP_SENSOR_LM35_program.o
+ .debug_frame   0x0000000000000000       0x48 HAL/HTEMP_SENSOR_LM35/HTEMP_SENSOR_LM35_program.o
  .text          0x0000000000000000        0x0 main.o
  .data          0x0000000000000000        0x0 main.o
  .bss           0x0000000000000000        0x0 main.o
- COMMON         0x0000000000000000        0x0 main.o
  .text          0x0000000000000000        0x0 MCAL/MADC/MADC_PROGRAM.o
  .data          0x0000000000000000        0x0 MCAL/MADC/MADC_PROGRAM.o
  .bss           0x0000000000000000        0x0 MCAL/MADC/MADC_PROGRAM.o
- .text.voidinitADC_MADC
-                0x0000000000000000      0x244 MCAL/MADC/MADC_PROGRAM.o
- .progmem.gcc_sw_table.voidinitADC_MADC
+ .text.ADC_init
+                0x0000000000000000      0x268 MCAL/MADC/MADC_PROGRAM.o
+ .progmem.gcc_sw_table.ADC_init
                 0x0000000000000000       0x10 MCAL/MADC/MADC_PROGRAM.o
- .text.voidADCget_analog_value
-                0x0000000000000000        0x2 MCAL/MADC/MADC_PROGRAM.o
+ .text.ADC_START_CONVERSION
+                0x0000000000000000        0xa MCAL/MADC/MADC_PROGRAM.o
+ .text.ADC_get_analog_value
+                0x0000000000000000       0x8a MCAL/MADC/MADC_PROGRAM.o
  .data.HADC     0x0000000000000000        0x6 MCAL/MADC/MADC_PROGRAM.o
- .debug_info    0x0000000000000000      0x5cc MCAL/MADC/MADC_PROGRAM.o
- .debug_abbrev  0x0000000000000000       0xbd MCAL/MADC/MADC_PROGRAM.o
+ .debug_info    0x0000000000000000      0x758 MCAL/MADC/MADC_PROGRAM.o
+ .debug_abbrev  0x0000000000000000       0xf9 MCAL/MADC/MADC_PROGRAM.o
+ .debug_loc     0x0000000000000000      0x1d1 MCAL/MADC/MADC_PROGRAM.o
  .debug_aranges
-                0x0000000000000000       0x28 MCAL/MADC/MADC_PROGRAM.o
- .debug_ranges  0x0000000000000000       0x18 MCAL/MADC/MADC_PROGRAM.o
- .debug_line    0x0000000000000000      0x2d2 MCAL/MADC/MADC_PROGRAM.o
- .debug_str     0x0000000000000000        0x0 MCAL/MADC/MADC_PROGRAM.o
+                0x0000000000000000       0x30 MCAL/MADC/MADC_PROGRAM.o
+ .debug_ranges  0x0000000000000000       0x20 MCAL/MADC/MADC_PROGRAM.o
+ .debug_line    0x0000000000000000      0x3b7 MCAL/MADC/MADC_PROGRAM.o
+ .debug_str     0x0000000000000000        0xa MCAL/MADC/MADC_PROGRAM.o
  .comment       0x0000000000000000       0x30 MCAL/MADC/MADC_PROGRAM.o
- .debug_frame   0x0000000000000000       0x34 MCAL/MADC/MADC_PROGRAM.o
+ .debug_frame   0x0000000000000000       0x50 MCAL/MADC/MADC_PROGRAM.o
  .text          0x0000000000000000        0x0 MCAL/MDIO/MDIO_PROGRAM.o
  .data          0x0000000000000000        0x0 MCAL/MDIO/MDIO_PROGRAM.o
  .bss           0x0000000000000000        0x0 MCAL/MDIO/MDIO_PROGRAM.o
- .text.enumportdirection_MDIO
+ .text.port_direction
                 0x0000000000000000       0x6a MCAL/MDIO/MDIO_PROGRAM.o
- .text.enumpinvalue_selection_MDIO
+ .text.pin_value_selection
                 0x0000000000000000      0x114 MCAL/MDIO/MDIO_PROGRAM.o
- .text.enumpintoggle_MDIO
+ .text.pin_toggle
                 0x0000000000000000       0x9e MCAL/MDIO/MDIO_PROGRAM.o
- .text.enumpingetvalue_MDIO
-                0x0000000000000000       0xaa MCAL/MDIO/MDIO_PROGRAM.o
- .text.enumportvalue_MDIO
+ .text.port_value
                 0x0000000000000000       0x42 MCAL/MDIO/MDIO_PROGRAM.o
  .text          0x0000000000000000        0x0 MCAL/MEEPROM/MEEPROM_PROGRAM.o
  .data          0x0000000000000000        0x0 MCAL/MEEPROM/MEEPROM_PROGRAM.o
  .bss           0x0000000000000000        0x0 MCAL/MEEPROM/MEEPROM_PROGRAM.o
- .text.voidEEPROM_WRITE_BYTE
-                0x0000000000000000       0x18 MCAL/MEEPROM/MEEPROM_PROGRAM.o
- .text.u8EEPROM_READ_BYTE_MEEPROM
-                0x0000000000000000       0x12 MCAL/MEEPROM/MEEPROM_PROGRAM.o
- .debug_info    0x0000000000000000      0x323 MCAL/MEEPROM/MEEPROM_PROGRAM.o
- .debug_abbrev  0x0000000000000000       0x8f MCAL/MEEPROM/MEEPROM_PROGRAM.o
- .debug_loc     0x0000000000000000       0x5f MCAL/MEEPROM/MEEPROM_PROGRAM.o
- .debug_aranges
-                0x0000000000000000       0x28 MCAL/MEEPROM/MEEPROM_PROGRAM.o
- .debug_ranges  0x0000000000000000       0x18 MCAL/MEEPROM/MEEPROM_PROGRAM.o
- .debug_line    0x0000000000000000       0xd6 MCAL/MEEPROM/MEEPROM_PROGRAM.o
- .debug_str     0x0000000000000000       0x12 MCAL/MEEPROM/MEEPROM_PROGRAM.o
- .comment       0x0000000000000000       0x30 MCAL/MEEPROM/MEEPROM_PROGRAM.o
- .debug_frame   0x0000000000000000       0x34 MCAL/MEEPROM/MEEPROM_PROGRAM.o
  .text          0x0000000000000000        0x0 MCAL/MINT/MINT_PROGRAM.o
  .data          0x0000000000000000        0x0 MCAL/MINT/MINT_PROGRAM.o
  .bss           0x0000000000000000        0x0 MCAL/MINT/MINT_PROGRAM.o
- .text.voidinitinterrupt_MINT
-                0x0000000000000000        0x8 MCAL/MINT/MINT_PROGRAM.o
- .text.voidINTExitCriticalSection_MINT
-                0x0000000000000000        0x8 MCAL/MINT/MINT_PROGRAM.o
- .text.voidINTEnterCriticalSection_MINT
-                0x0000000000000000        0x8 MCAL/MINT/MINT_PROGRAM.o
- .text.voidINTGETFlag_MINT
+ .text.interrupt_initT
+                0x0000000000000000        0xa MCAL/MINT/MINT_PROGRAM.o
+ .text.INTExitCriticalSection
+                0x0000000000000000        0xa MCAL/MINT/MINT_PROGRAM.o
+ .text.INTEnterCriticalSection
+                0x0000000000000000        0xa MCAL/MINT/MINT_PROGRAM.o
+ .text.INTGETFlag
+                0x0000000000000000       0x52 MCAL/MINT/MINT_PROGRAM.o
+ .text.INTSETFlag
+                0x0000000000000000       0x68 MCAL/MINT/MINT_PROGRAM.o
+ .text.INTENABLEHandler
+                0x0000000000000000      0x102 MCAL/MINT/MINT_PROGRAM.o
+ .text.INTDISABLEHandler
                 0x0000000000000000       0x36 MCAL/MINT/MINT_PROGRAM.o
- .text.voidINTSETFlag_MINT
-                0x0000000000000000       0x48 MCAL/MINT/MINT_PROGRAM.o
- .text.voidINTENABLEHandler_MINT
-                0x0000000000000000       0xca MCAL/MINT/MINT_PROGRAM.o
- .text.voidINTDISABLEHandler_MINT
-                0x0000000000000000       0x24 MCAL/MINT/MINT_PROGRAM.o
- .text.voidINTSetCallBack_MINT
-                0x0000000000000000       0x2a MCAL/MINT/MINT_PROGRAM.o
+ .text.INTSetCallBack
+                0x0000000000000000       0x44 MCAL/MINT/MINT_PROGRAM.o
  .text          0x0000000000000000        0x0 MCAL/MSPI/MSPI_PROGRAM.o
  .data          0x0000000000000000        0x0 MCAL/MSPI/MSPI_PROGRAM.o
  .bss           0x0000000000000000        0x0 MCAL/MSPI/MSPI_PROGRAM.o
- .text.voidinitspi_master_MSPI
-                0x0000000000000000       0x72 MCAL/MSPI/MSPI_PROGRAM.o
- .text.voidspi_master_transmit_byte_MSPI
-                0x0000000000000000       0x28 MCAL/MSPI/MSPI_PROGRAM.o
- .text.u8spi_master_receive_byte_MSPI
-                0x0000000000000000       0x2a MCAL/MSPI/MSPI_PROGRAM.o
- .text          0x0000000000000000        0x0 MCAL/MTIMER/MPWM/MPWM_CONFIG.o
- .data          0x0000000000000000        0x0 MCAL/MTIMER/MPWM/MPWM_CONFIG.o
- .bss           0x0000000000000000        0x0 MCAL/MTIMER/MPWM/MPWM_CONFIG.o
- .data.HPWM_arrayofpwm
-                0x0000000000000000       0x12 MCAL/MTIMER/MPWM/MPWM_CONFIG.o
- .debug_info    0x0000000000000000      0x4d7 MCAL/MTIMER/MPWM/MPWM_CONFIG.o
- .debug_abbrev  0x0000000000000000       0x7f MCAL/MTIMER/MPWM/MPWM_CONFIG.o
- .debug_aranges
-                0x0000000000000000       0x18 MCAL/MTIMER/MPWM/MPWM_CONFIG.o
- .debug_line    0x0000000000000000       0x8d MCAL/MTIMER/MPWM/MPWM_CONFIG.o
- .debug_str     0x0000000000000000        0x0 MCAL/MTIMER/MPWM/MPWM_CONFIG.o
- .comment       0x0000000000000000       0x30 MCAL/MTIMER/MPWM/MPWM_CONFIG.o
+ .text.spi_slave_init
+                0x0000000000000000       0x54 MCAL/MSPI/MSPI_PROGRAM.o
+ .text.spi_slave_transmit_byte
+                0x0000000000000000        0x4 MCAL/MSPI/MSPI_PROGRAM.o
+ .text.spi_slave_receive_byte
+                0x0000000000000000       0x12 MCAL/MSPI/MSPI_PROGRAM.o
  .text          0x0000000000000000        0x0 MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
  .data          0x0000000000000000        0x0 MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
  .bss           0x0000000000000000        0x0 MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
- .text.voidinitpwm_MPWM
-                0x0000000000000000      0x3d8 MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
- .text.voidpwm_change_duty_cycle_MPWM
-                0x0000000000000000       0x22 MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
- .text.voidpwm_disable_MPWM
-                0x0000000000000000       0x46 MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
+ .text.PWM_init_MPWM
+                0x0000000000000000      0x458 MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
+ .text.pwm_change_duty_cycle_MPWM
+                0x0000000000000000       0x36 MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
+ .text.pwm_disable_MPWM
+                0x0000000000000000       0x5e MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
  .data.OC2_PIN  0x0000000000000000        0x4 MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
  .data.OC1B_PIN
                 0x0000000000000000        0x4 MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
  .data.OC1A_PIN
                 0x0000000000000000        0x4 MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
  .data.OC0_PIN  0x0000000000000000        0x4 MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
- .debug_info    0x0000000000000000      0x843 MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
- .debug_abbrev  0x0000000000000000      0x134 MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
- .debug_loc     0x0000000000000000       0xcd MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
+ .data.HPWM_arrayofpwm
+                0x0000000000000000       0x12 MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
+ .debug_info    0x0000000000000000      0x962 MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
+ .debug_abbrev  0x0000000000000000      0x17e MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
+ .debug_loc     0x0000000000000000      0x215 MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
  .debug_aranges
                 0x0000000000000000       0x30 MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
- .debug_ranges  0x0000000000000000       0x20 MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
- .debug_line    0x0000000000000000      0x54a MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
+ .debug_ranges  0x0000000000000000       0xf0 MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
+ .debug_line    0x0000000000000000      0x65c MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
  .debug_str     0x0000000000000000       0x20 MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
  .comment       0x0000000000000000       0x30 MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
  .debug_frame   0x0000000000000000       0x50 MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
@@ -321,32 +328,32 @@ Discarded input sections
                 0x0000000000000000       0x1a MCAL/MTIMER/MTIMER_PROGRAM.o
  .text.u16get_counter0_value
                 0x0000000000000000        0xa MCAL/MTIMER/MTIMER_PROGRAM.o
- .text.voidtimerdelay_in_ms_MTIMER
-                0x0000000000000000       0x80 MCAL/MTIMER/MTIMER_PROGRAM.o
- .text.voidtimerdelay_in_us_MTIMER
-                0x0000000000000000        0x2 MCAL/MTIMER/MTIMER_PROGRAM.o
- .text.voidtimerctc_mode_MTIMER
-                0x0000000000000000       0x7a MCAL/MTIMER/MTIMER_PROGRAM.o
- .text.voidtimer_start_timer_MTIMER
-                0x0000000000000000       0x28 MCAL/MTIMER/MTIMER_PROGRAM.o
- .text.voidtimer_end_timer_MTIMER
-                0x0000000000000000       0x12 MCAL/MTIMER/MTIMER_PROGRAM.o
- .text.voidtimer_continue_timer_MTIMER
-                0x0000000000000000       0x12 MCAL/MTIMER/MTIMER_PROGRAM.o
- .text.f32timer_get_timer_value_in_ms
-                0x0000000000000000       0x9e MCAL/MTIMER/MTIMER_PROGRAM.o
- .text.f32timer_get_timer_value_in_us
-                0x0000000000000000       0x1a MCAL/MTIMER/MTIMER_PROGRAM.o
- .text.voidcounter_start_counter_MTIMER
-                0x0000000000000000       0x6e MCAL/MTIMER/MTIMER_PROGRAM.o
- .text.voidcounter_end_counter_MTIMER
-                0x0000000000000000       0x18 MCAL/MTIMER/MTIMER_PROGRAM.o
- .text.voidcounter_continue_counter_MTIMER
-                0x0000000000000000       0x48 MCAL/MTIMER/MTIMER_PROGRAM.o
- .text.u32counter_get_counter_value
+ .text.timerdelay_in_millisec
+                0x0000000000000000       0x8c MCAL/MTIMER/MTIMER_PROGRAM.o
+ .text.timerdelay_in_microsec
+                0x0000000000000000        0xc MCAL/MTIMER/MTIMER_PROGRAM.o
+ .text.timerctc_mode
+                0x0000000000000000       0x94 MCAL/MTIMER/MTIMER_PROGRAM.o
+ .text.timer_start_timer
                 0x0000000000000000       0x38 MCAL/MTIMER/MTIMER_PROGRAM.o
- .text.voidtimer1_ctc_interrupt_call_back
-                0x0000000000000000        0xa MCAL/MTIMER/MTIMER_PROGRAM.o
+ .text.timer_end_timer
+                0x0000000000000000       0x1c MCAL/MTIMER/MTIMER_PROGRAM.o
+ .text.timer_continue_timer
+                0x0000000000000000       0x20 MCAL/MTIMER/MTIMER_PROGRAM.o
+ .text.timer_get_timer_value_in_millisec
+                0x0000000000000000      0x230 MCAL/MTIMER/MTIMER_PROGRAM.o
+ .text.timer_get_timer_value_in_microsec
+                0x0000000000000000       0x40 MCAL/MTIMER/MTIMER_PROGRAM.o
+ .text.counter_start_counter
+                0x0000000000000000       0x86 MCAL/MTIMER/MTIMER_PROGRAM.o
+ .text.counter_end_counter
+                0x0000000000000000       0x22 MCAL/MTIMER/MTIMER_PROGRAM.o
+ .text.counter_continue_counter
+                0x0000000000000000       0x5c MCAL/MTIMER/MTIMER_PROGRAM.o
+ .text.counter_get_counter_value
+                0x0000000000000000       0x68 MCAL/MTIMER/MTIMER_PROGRAM.o
+ .text.timer1_ctc_interrupt_call_back
+                0x0000000000000000       0x14 MCAL/MTIMER/MTIMER_PROGRAM.o
  .data.T1_PIN   0x0000000000000000        0x4 MCAL/MTIMER/MTIMER_PROGRAM.o
  .data.T0_PIN   0x0000000000000000        0x4 MCAL/MTIMER/MTIMER_PROGRAM.o
  .data.TIMER2_STRUCT
@@ -358,53 +365,54 @@ Discarded input sections
  .text          0x0000000000000000        0x0 MCAL/MTWI/MTWI_PROGRAM.o
  .data          0x0000000000000000        0x0 MCAL/MTWI/MTWI_PROGRAM.o
  .bss           0x0000000000000000        0x0 MCAL/MTWI/MTWI_PROGRAM.o
- .text.voidinitTWI_MTWI
-                0x0000000000000000       0x12 MCAL/MTWI/MTWI_PROGRAM.o
- .text.voidTWI_START_CONDITION_MTWI
-                0x0000000000000000       0x30 MCAL/MTWI/MTWI_PROGRAM.o
- .text.voidTWI_REPEATED_START_CONDITION
-                0x0000000000000000       0x30 MCAL/MTWI/MTWI_PROGRAM.o
- .text.voidTWI_STOP_CONDITION_MTWI
-                0x0000000000000000       0x2a MCAL/MTWI/MTWI_PROGRAM.o
- .text.voidTWI_SEND_SLAVE_ADDRESS_AND_RW_BIT_MTWI
-                0x0000000000000000       0x36 MCAL/MTWI/MTWI_PROGRAM.o
- .text.voidTWI_SEND_BYTE_AFTER_SENDING_ADDRESS_MTWI
+ .text.TWI_INIT
+                0x0000000000000000       0x14 MCAL/MTWI/MTWI_PROGRAM.o
+ .text.TWI_START_CONDITION
                 0x0000000000000000       0x32 MCAL/MTWI/MTWI_PROGRAM.o
- .text.voidTWI_RECEIVE_BYTE_AFTER_SENDING_ADDRESS_MTWI
-                0x0000000000000000        0x8 MCAL/MTWI/MTWI_PROGRAM.o
- .text.voidTWI_CHECK_STATUS_REGISTER_MTWI
-                0x0000000000000000       0x10 MCAL/MTWI/MTWI_PROGRAM.o
- .text.voidTWI_MASTER_TRANSMIT_BYTE
-                0x0000000000000000       0x24 MCAL/MTWI/MTWI_PROGRAM.o
- .text.voidTWI_MASTER_RECEIVE_BYTE
-                0x0000000000000000       0x28 MCAL/MTWI/MTWI_PROGRAM.o
- .text.voidTWI_SLAVE_RECEIVE_BYTE
+ .text.TWI_REPEATED_START_CONDITION
+                0x0000000000000000       0x32 MCAL/MTWI/MTWI_PROGRAM.o
+ .text.TWI_STOP_CONDITION
+                0x0000000000000000       0x2c MCAL/MTWI/MTWI_PROGRAM.o
+ .text.TWI_SEND_SLAVE_ADDRESS_AND_RW_BIT
+                0x0000000000000000       0x38 MCAL/MTWI/MTWI_PROGRAM.o
+ .text.TWI_SEND_BYTE_AFTER_SENDING_ADDRESS
                 0x0000000000000000       0x34 MCAL/MTWI/MTWI_PROGRAM.o
- .debug_info    0x0000000000000000      0x682 MCAL/MTWI/MTWI_PROGRAM.o
- .debug_abbrev  0x0000000000000000      0x119 MCAL/MTWI/MTWI_PROGRAM.o
- .debug_loc     0x0000000000000000      0x1cc MCAL/MTWI/MTWI_PROGRAM.o
+ .text.TWI_RECEIVE_BYTE_AFTER_SENDING_ADDRESS
+                0x0000000000000000       0x12 MCAL/MTWI/MTWI_PROGRAM.o
+ .text.TWI_CHECK_STATUS_REGISTER
+                0x0000000000000000       0x1a MCAL/MTWI/MTWI_PROGRAM.o
+ .text.TWI_MASTER_TRANSMIT_BYTE
+                0x0000000000000000       0x26 MCAL/MTWI/MTWI_PROGRAM.o
+ .text.TWI_MASTER_RECEIVE_BYTE
+                0x0000000000000000       0x34 MCAL/MTWI/MTWI_PROGRAM.o
+ .text.TWI_SLAVE_RECEIVE_BYTE
+                0x0000000000000000       0x40 MCAL/MTWI/MTWI_PROGRAM.o
+ .debug_info    0x0000000000000000      0x79a MCAL/MTWI/MTWI_PROGRAM.o
+ .debug_abbrev  0x0000000000000000      0x12e MCAL/MTWI/MTWI_PROGRAM.o
+ .debug_loc     0x0000000000000000      0x30a MCAL/MTWI/MTWI_PROGRAM.o
  .debug_aranges
                 0x0000000000000000       0x70 MCAL/MTWI/MTWI_PROGRAM.o
  .debug_ranges  0x0000000000000000       0x60 MCAL/MTWI/MTWI_PROGRAM.o
- .debug_line    0x0000000000000000      0x20b MCAL/MTWI/MTWI_PROGRAM.o
- .debug_str     0x0000000000000000       0x22 MCAL/MTWI/MTWI_PROGRAM.o
+ .debug_line    0x0000000000000000      0x271 MCAL/MTWI/MTWI_PROGRAM.o
+ .debug_str     0x0000000000000000       0x28 MCAL/MTWI/MTWI_PROGRAM.o
  .comment       0x0000000000000000       0x30 MCAL/MTWI/MTWI_PROGRAM.o
  .debug_frame   0x0000000000000000       0xe0 MCAL/MTWI/MTWI_PROGRAM.o
  .text          0x0000000000000000        0x0 MCAL/MUSART/MUSART_PROGRAM.o
  .data          0x0000000000000000        0x0 MCAL/MUSART/MUSART_PROGRAM.o
  .bss           0x0000000000000000        0x0 MCAL/MUSART/MUSART_PROGRAM.o
- .text.voidinitUART_MUSART
-                0x0000000000000000       0x2a MCAL/MUSART/MUSART_PROGRAM.o
- .text.voidUART_send_byte
-                0x0000000000000000        0xe MCAL/MUSART/MUSART_PROGRAM.o
- .text.u8UART_receive_byte
-                0x0000000000000000        0xe MCAL/MUSART/MUSART_PROGRAM.o
- .debug_info    0x0000000000000000      0x31b MCAL/MUSART/MUSART_PROGRAM.o
- .debug_abbrev  0x0000000000000000       0x89 MCAL/MUSART/MUSART_PROGRAM.o
+ .text.UART_INIT
+                0x0000000000000000       0x2c MCAL/MUSART/MUSART_PROGRAM.o
+ .text.UART_send_byte
+                0x0000000000000000       0x10 MCAL/MUSART/MUSART_PROGRAM.o
+ .text.UART_receive_byte
+                0x0000000000000000       0x18 MCAL/MUSART/MUSART_PROGRAM.o
+ .debug_info    0x0000000000000000      0x409 MCAL/MUSART/MUSART_PROGRAM.o
+ .debug_abbrev  0x0000000000000000       0xa3 MCAL/MUSART/MUSART_PROGRAM.o
+ .debug_loc     0x0000000000000000       0x47 MCAL/MUSART/MUSART_PROGRAM.o
  .debug_aranges
                 0x0000000000000000       0x30 MCAL/MUSART/MUSART_PROGRAM.o
  .debug_ranges  0x0000000000000000       0x20 MCAL/MUSART/MUSART_PROGRAM.o
- .debug_line    0x0000000000000000      0x102 MCAL/MUSART/MUSART_PROGRAM.o
+ .debug_line    0x0000000000000000      0x114 MCAL/MUSART/MUSART_PROGRAM.o
  .debug_str     0x0000000000000000        0x0 MCAL/MUSART/MUSART_PROGRAM.o
  .comment       0x0000000000000000       0x30 MCAL/MUSART/MUSART_PROGRAM.o
  .debug_frame   0x0000000000000000       0x44 MCAL/MUSART/MUSART_PROGRAM.o
@@ -648,13 +656,13 @@ LOAD HAL/HLED/HLED_PROGRAM.o
 LOAD HAL/HSERVO/HSERVO_PROGRAM.o
 LOAD HAL/HSWITCH/HSWITCH_CONFIG.o
 LOAD HAL/HSWITCH/HSWITCH_PROGRAM.o
+LOAD HAL/HTEMP_SENSOR_LM35/HTEMP_SENSOR_LM35_program.o
 LOAD main.o
 LOAD MCAL/MADC/MADC_PROGRAM.o
 LOAD MCAL/MDIO/MDIO_PROGRAM.o
 LOAD MCAL/MEEPROM/MEEPROM_PROGRAM.o
 LOAD MCAL/MINT/MINT_PROGRAM.o
 LOAD MCAL/MSPI/MSPI_PROGRAM.o
-LOAD MCAL/MTIMER/MPWM/MPWM_CONFIG.o
 LOAD MCAL/MTIMER/MPWM/MPWM_PROGRAM.o
 LOAD MCAL/MTIMER/MTIMER_PROGRAM.o
 LOAD MCAL/MTWI/MTWI_PROGRAM.o
@@ -768,54 +776,53 @@ END GROUP
 .rela.plt
  *(.rela.plt)
 
-.text           0x0000000000000000       0xd6
+.text           0x0000000000000000       0xe8
  *(.vectors)
  .vectors       0x0000000000000000       0x54 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/xc8/avr/lib/avr5/memx-const/crtatmega32.o
                 0x0000000000000000                __vector_default
                 0x0000000000000000                __vectors
  *(.vectors)
  *(.progmem.gcc*)
- .progmem.gcc_sw_table.main
+ .progmem.gcc_sw_table.u8admin_control
                 0x0000000000000054       0x10 main.o
  *(.dinit)
- .dinit         0x0000000000000064       0x1d data_init
-                0x0000000000000082                . = ALIGN (0x2)
- *fill*         0x0000000000000081        0x1 
-                0x0000000000000082                __trampolines_start = .
+ .dinit         0x0000000000000064       0x30 data_init
+                0x0000000000000094                . = ALIGN (0x2)
+                0x0000000000000094                __trampolines_start = .
  *(.trampolines)
- .trampolines   0x0000000000000082        0x0 linker stubs
+ .trampolines   0x0000000000000094        0x0 linker stubs
  *(.trampolines*)
-                0x0000000000000082                __trampolines_end = .
+                0x0000000000000094                __trampolines_end = .
  *libprintf_flt.a:*(.progmem.data)
  *libc.a:*(.progmem.data)
-                0x0000000000000082                . = ALIGN (0x2)
+                0x0000000000000094                . = ALIGN (0x2)
  *(.jumptables)
  *(.jumptables*)
  *(.lowtext)
  *(.lowtext*)
-                0x0000000000000082                __ctors_start = .
+                0x0000000000000094                __ctors_start = .
  *(.ctors)
-                0x0000000000000082                __ctors_end = .
-                0x0000000000000082                __dtors_start = .
+                0x0000000000000094                __ctors_end = .
+                0x0000000000000094                __dtors_start = .
  *(.dtors)
-                0x0000000000000082                __dtors_end = .
+                0x0000000000000094                __dtors_end = .
  SORT(*)(.ctors)
  SORT(*)(.dtors)
  *(.init0)
- .init0         0x0000000000000082        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/xc8/avr/lib/avr5/memx-const/crtatmega32.o
-                0x0000000000000082                __init
+ .init0         0x0000000000000094        0x0 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/xc8/avr/lib/avr5/memx-const/crtatmega32.o
+                0x0000000000000094                __init
  *(.init0)
  *(.init1)
  *(.init1)
  *(.init2)
- .init2         0x0000000000000082        0xc C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/xc8/avr/lib/avr5/memx-const/crtatmega32.o
+ .init2         0x0000000000000094        0xc C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/xc8/avr/lib/avr5/memx-const/crtatmega32.o
  *(.init2)
  *(.init3)
  *(.init3)
  *(.init4)
- .init4         0x000000000000008e       0x3c c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/avr5/memx-const\libgcc.a(_copy_data.o)
-                0x000000000000008e                __do_copy_data
-                0x00000000000000bc                __do_clear_bss
+ .init4         0x00000000000000a0       0x3c c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/avr5/memx-const\libgcc.a(_copy_data.o)
+                0x00000000000000a0                __do_copy_data
+                0x00000000000000ce                __do_clear_bss
  *(.init4)
  *(.init5)
  *(.init5)
@@ -826,12 +833,12 @@ END GROUP
  *(.init8)
  *(.init8)
  *(.init9)
- .init9         0x00000000000000ca        0x8 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/xc8/avr/lib/avr5/memx-const/crtatmega32.o
+ .init9         0x00000000000000dc        0x8 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/xc8/avr/lib/avr5/memx-const/crtatmega32.o
  *(.init9)
-                0x00000000000000d2                . = ALIGN (0x2)
+                0x00000000000000e4                . = ALIGN (0x2)
  *(.fini9)
- .fini9         0x00000000000000d2        0x0 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/avr5/memx-const\libgcc.a(_exit.o)
-                0x00000000000000d2                _exit
+ .fini9         0x00000000000000e4        0x0 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/avr5/memx-const\libgcc.a(_exit.o)
+                0x00000000000000e4                _exit
  *(.fini9)
  *(.fini8)
  *(.fini8)
@@ -850,32 +857,35 @@ END GROUP
  *(.fini1)
  *(.fini1)
  *(.fini0)
- .fini0         0x00000000000000d2        0x4 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/avr5/memx-const\libgcc.a(_exit.o)
+ .fini0         0x00000000000000e4        0x4 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/avr5/memx-const\libgcc.a(_exit.o)
  *(.fini0)
-                0x00000000000000d6                _etext = .
+                0x00000000000000e8                _etext = .
 
-.data           0x0000000000800060        0x0 load address 0x00000000000000d6
+.data           0x0000000000800060        0x0 load address 0x00000000000000e8
                 [!provide]                        PROVIDE (__data_start, .)
  *(.gnu.linkonce.d*)
  *(.gnu.linkonce.r*)
                 0x0000000000800060                . = ALIGN (0x2)
+ *fill*         0x0000000000800060        0x0 
                 0x0000000000800060                _edata = .
                 [!provide]                        PROVIDE (__data_end, .)
 
-.bss            0x0000000000800060        0x2
+.bss            0x0000000000800060        0xa
                 [!provide]                        PROVIDE (__bss_start, .)
  *(COMMON)
- COMMON         0x0000000000800060        0x2 MCAL/MTIMER/MTIMER_PROGRAM.o
-                0x0000000000800060                timer1_ctc_int
+ COMMON         0x0000000000800060        0x8 main.o
+                0x0000000000800060                loads_status
+ COMMON         0x0000000000800068        0x2 MCAL/MTIMER/MTIMER_PROGRAM.o
+                0x0000000000800068                timer1_ctc_int
                 [!provide]                        PROVIDE (__bss_end, .)
-                0x00000000000000d6                __data_load_start = LOADADDR (.data)
-                0x00000000000000d6                __data_load_end = (__data_load_start + SIZEOF (.data))
+                0x00000000000000e8                __data_load_start = LOADADDR (.data)
+                0x00000000000000e8                __data_load_end = (__data_load_start + SIZEOF (.data))
 
-.noinit         0x0000000000800062        0x0
+.noinit         0x000000000080006a        0x0
                 [!provide]                        PROVIDE (__noinit_start, .)
  *(.noinit*)
                 [!provide]                        PROVIDE (__noinit_end, .)
-                0x0000000000800062                _end = .
+                0x000000000080006a                _end = .
 
 .eeprom         0x0000000000810000        0x0
  *(.eeprom*)
@@ -916,13 +926,14 @@ END GROUP
 
 .comment        0x0000000000000000       0x2f
  *(.comment)
- .comment       0x0000000000000000       0x2f HAL/HLCD/HLCD_CONFIG.o
+ .comment       0x0000000000000000       0x2f HAL/HKEYPAD/HKEYPAD_CONFIG.o
                                          0x30 (size before relaxing)
+ .comment       0x000000000000002f       0x30 HAL/HKEYPAD/HKEYPAD_PROGRAM.o
+ .comment       0x000000000000002f       0x30 HAL/HLCD/HLCD_CONFIG.o
  .comment       0x000000000000002f       0x30 HAL/HLCD/HLCD_PROGRAM.o
- .comment       0x000000000000002f       0x30 HAL/HLED/HLED_CONFIG.o
- .comment       0x000000000000002f       0x30 HAL/HLED/HLED_PROGRAM.o
  .comment       0x000000000000002f       0x30 main.o
  .comment       0x000000000000002f       0x30 MCAL/MDIO/MDIO_PROGRAM.o
+ .comment       0x000000000000002f       0x30 MCAL/MEEPROM/MEEPROM_PROGRAM.o
  .comment       0x000000000000002f       0x30 MCAL/MINT/MINT_PROGRAM.o
  .comment       0x000000000000002f       0x30 MCAL/MSPI/MSPI_PROGRAM.o
  .comment       0x000000000000002f       0x30 MCAL/MTIMER/MTIMER_PROGRAM.o
@@ -958,100 +969,109 @@ END GROUP
 .debug_sfnames
  *(.debug_sfnames)
 
-.debug_aranges  0x0000000000000000      0x288
+.debug_aranges  0x0000000000000000      0x2c0
  *(.debug_aranges)
  .debug_aranges
-                0x0000000000000000       0x18 HAL/HLCD/HLCD_CONFIG.o
+                0x0000000000000000       0x18 HAL/HKEYPAD/HKEYPAD_CONFIG.o
  .debug_aranges
-                0x0000000000000018       0x48 HAL/HLCD/HLCD_PROGRAM.o
+                0x0000000000000018       0x28 HAL/HKEYPAD/HKEYPAD_PROGRAM.o
  .debug_aranges
-                0x0000000000000060       0x18 HAL/HLED/HLED_CONFIG.o
+                0x0000000000000040       0x18 HAL/HLCD/HLCD_CONFIG.o
  .debug_aranges
-                0x0000000000000078       0x40 HAL/HLED/HLED_PROGRAM.o
+                0x0000000000000058       0x48 HAL/HLCD/HLCD_PROGRAM.o
  .debug_aranges
-                0x00000000000000b8       0x20 main.o
+                0x00000000000000a0       0x48 main.o
  .debug_aranges
-                0x00000000000000d8       0x50 MCAL/MDIO/MDIO_PROGRAM.o
+                0x00000000000000e8       0x50 MCAL/MDIO/MDIO_PROGRAM.o
  .debug_aranges
-                0x0000000000000128       0x70 MCAL/MINT/MINT_PROGRAM.o
+                0x0000000000000138       0x28 MCAL/MEEPROM/MEEPROM_PROGRAM.o
  .debug_aranges
-                0x0000000000000198       0x48 MCAL/MSPI/MSPI_PROGRAM.o
+                0x0000000000000160       0x70 MCAL/MINT/MINT_PROGRAM.o
  .debug_aranges
-                0x00000000000001e0       0xa8 MCAL/MTIMER/MTIMER_PROGRAM.o
+                0x00000000000001d0       0x48 MCAL/MSPI/MSPI_PROGRAM.o
+ .debug_aranges
+                0x0000000000000218       0xa8 MCAL/MTIMER/MTIMER_PROGRAM.o
 
 .debug_pubnames
  *(.debug_pubnames)
 
-.debug_info     0x0000000000000000     0x5989
+.debug_info     0x0000000000000000     0x7429
  *(.debug_info .gnu.linkonce.wi.*)
  .debug_info    0x0000000000000000      0x4e6 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/xc8/avr/lib/avr5/memx-const/crtatmega32.o
- .debug_info    0x00000000000004e6      0x543 HAL/HLCD/HLCD_CONFIG.o
- .debug_info    0x0000000000000a29     0x11dc HAL/HLCD/HLCD_PROGRAM.o
- .debug_info    0x0000000000001c05      0x4c8 HAL/HLED/HLED_CONFIG.o
- .debug_info    0x00000000000020cd      0x927 HAL/HLED/HLED_PROGRAM.o
- .debug_info    0x00000000000029f4      0xc0f main.o
- .debug_info    0x0000000000003603      0x713 MCAL/MDIO/MDIO_PROGRAM.o
- .debug_info    0x0000000000003d16      0x66b MCAL/MINT/MINT_PROGRAM.o
- .debug_info    0x0000000000004381      0x762 MCAL/MSPI/MSPI_PROGRAM.o
- .debug_info    0x0000000000004ae3      0xea6 MCAL/MTIMER/MTIMER_PROGRAM.o
+ .debug_info    0x00000000000004e6      0x4a4 HAL/HKEYPAD/HKEYPAD_CONFIG.o
+ .debug_info    0x000000000000098a      0x94f HAL/HKEYPAD/HKEYPAD_PROGRAM.o
+ .debug_info    0x00000000000012d9      0x543 HAL/HLCD/HLCD_CONFIG.o
+ .debug_info    0x000000000000181c     0x12b9 HAL/HLCD/HLCD_PROGRAM.o
+ .debug_info    0x0000000000002ad5     0x1e56 main.o
+ .debug_info    0x000000000000492b      0x6dc MCAL/MDIO/MDIO_PROGRAM.o
+ .debug_info    0x0000000000005007      0x40c MCAL/MEEPROM/MEEPROM_PROGRAM.o
+ .debug_info    0x0000000000005413      0x761 MCAL/MINT/MINT_PROGRAM.o
+ .debug_info    0x0000000000005b74      0x85d MCAL/MSPI/MSPI_PROGRAM.o
+ .debug_info    0x00000000000063d1     0x1058 MCAL/MTIMER/MTIMER_PROGRAM.o
 
-.debug_abbrev   0x0000000000000000     0x1057
+.debug_abbrev   0x0000000000000000     0x12a4
  *(.debug_abbrev)
  .debug_abbrev  0x0000000000000000      0x4a3 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/xc8/avr/lib/avr5/memx-const/crtatmega32.o
- .debug_abbrev  0x00000000000004a3       0x8e HAL/HLCD/HLCD_CONFIG.o
- .debug_abbrev  0x0000000000000531      0x25a HAL/HLCD/HLCD_PROGRAM.o
- .debug_abbrev  0x000000000000078b       0x8e HAL/HLED/HLED_CONFIG.o
- .debug_abbrev  0x0000000000000819      0x13f HAL/HLED/HLED_PROGRAM.o
- .debug_abbrev  0x0000000000000958      0x103 main.o
- .debug_abbrev  0x0000000000000a5b      0x108 MCAL/MDIO/MDIO_PROGRAM.o
- .debug_abbrev  0x0000000000000b63      0x106 MCAL/MINT/MINT_PROGRAM.o
- .debug_abbrev  0x0000000000000c69      0x140 MCAL/MSPI/MSPI_PROGRAM.o
- .debug_abbrev  0x0000000000000da9      0x2ae MCAL/MTIMER/MTIMER_PROGRAM.o
+ .debug_abbrev  0x00000000000004a3       0x7f HAL/HKEYPAD/HKEYPAD_CONFIG.o
+ .debug_abbrev  0x0000000000000522      0x191 HAL/HKEYPAD/HKEYPAD_PROGRAM.o
+ .debug_abbrev  0x00000000000006b3       0x8e HAL/HLCD/HLCD_CONFIG.o
+ .debug_abbrev  0x0000000000000741      0x28f HAL/HLCD/HLCD_PROGRAM.o
+ .debug_abbrev  0x00000000000009d0      0x200 main.o
+ .debug_abbrev  0x0000000000000bd0      0x108 MCAL/MDIO/MDIO_PROGRAM.o
+ .debug_abbrev  0x0000000000000cd8       0xd0 MCAL/MEEPROM/MEEPROM_PROGRAM.o
+ .debug_abbrev  0x0000000000000da8      0x130 MCAL/MINT/MINT_PROGRAM.o
+ .debug_abbrev  0x0000000000000ed8      0x13e MCAL/MSPI/MSPI_PROGRAM.o
+ .debug_abbrev  0x0000000000001016      0x28e MCAL/MTIMER/MTIMER_PROGRAM.o
 
-.debug_line     0x0000000000000000     0x1b85
+.debug_line     0x0000000000000000     0x26cc
  *(.debug_line .debug_line.* .debug_line_end)
  .debug_line    0x0000000000000000      0x119 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/xc8/avr/lib/avr5/memx-const/crtatmega32.o
- .debug_line    0x0000000000000119       0x7b HAL/HLCD/HLCD_CONFIG.o
- .debug_line    0x0000000000000194      0x61c HAL/HLCD/HLCD_PROGRAM.o
- .debug_line    0x00000000000007b0       0x7b HAL/HLED/HLED_CONFIG.o
- .debug_line    0x000000000000082b      0x19c HAL/HLED/HLED_PROGRAM.o
- .debug_line    0x00000000000009c7      0x2d7 main.o
- .debug_line    0x0000000000000c9e      0x4d1 MCAL/MDIO/MDIO_PROGRAM.o
- .debug_line    0x000000000000116f      0x2dd MCAL/MINT/MINT_PROGRAM.o
- .debug_line    0x000000000000144c      0x235 MCAL/MSPI/MSPI_PROGRAM.o
- .debug_line    0x0000000000001681      0x504 MCAL/MTIMER/MTIMER_PROGRAM.o
+ .debug_line    0x0000000000000119       0x87 HAL/HKEYPAD/HKEYPAD_CONFIG.o
+ .debug_line    0x00000000000001a0      0x2e5 HAL/HKEYPAD/HKEYPAD_PROGRAM.o
+ .debug_line    0x0000000000000485       0x7b HAL/HLCD/HLCD_CONFIG.o
+ .debug_line    0x0000000000000500      0x635 HAL/HLCD/HLCD_PROGRAM.o
+ .debug_line    0x0000000000000b35      0x82b main.o
+ .debug_line    0x0000000000001360      0x4d1 MCAL/MDIO/MDIO_PROGRAM.o
+ .debug_line    0x0000000000001831      0x10c MCAL/MEEPROM/MEEPROM_PROGRAM.o
+ .debug_line    0x000000000000193d      0x440 MCAL/MINT/MINT_PROGRAM.o
+ .debug_line    0x0000000000001d7d      0x259 MCAL/MSPI/MSPI_PROGRAM.o
+ .debug_line    0x0000000000001fd6      0x6f6 MCAL/MTIMER/MTIMER_PROGRAM.o
 
-.debug_frame    0x0000000000000000      0x6c4
+.debug_frame    0x0000000000000000      0x7c4
  *(.debug_frame)
- .debug_frame   0x0000000000000000      0x18c HAL/HLCD/HLCD_PROGRAM.o
- .debug_frame   0x000000000000018c       0x74 HAL/HLED/HLED_PROGRAM.o
- .debug_frame   0x0000000000000200       0x24 main.o
- .debug_frame   0x0000000000000224       0x84 MCAL/MDIO/MDIO_PROGRAM.o
- .debug_frame   0x00000000000002a8      0x19c MCAL/MINT/MINT_PROGRAM.o
- .debug_frame   0x0000000000000444       0x8c MCAL/MSPI/MSPI_PROGRAM.o
- .debug_frame   0x00000000000004d0      0x1f4 MCAL/MTIMER/MTIMER_PROGRAM.o
+ .debug_frame   0x0000000000000000       0xb8 HAL/HKEYPAD/HKEYPAD_PROGRAM.o
+ .debug_frame   0x00000000000000b8      0x18c HAL/HLCD/HLCD_PROGRAM.o
+ .debug_frame   0x0000000000000244       0x90 main.o
+ .debug_frame   0x00000000000002d4       0x84 MCAL/MDIO/MDIO_PROGRAM.o
+ .debug_frame   0x0000000000000358       0x34 MCAL/MEEPROM/MEEPROM_PROGRAM.o
+ .debug_frame   0x000000000000038c      0x19c MCAL/MINT/MINT_PROGRAM.o
+ .debug_frame   0x0000000000000528       0x90 MCAL/MSPI/MSPI_PROGRAM.o
+ .debug_frame   0x00000000000005b8      0x20c MCAL/MTIMER/MTIMER_PROGRAM.o
 
-.debug_str      0x0000000000000000      0x3e4
+.debug_str      0x0000000000000000      0x3a0
  *(.debug_str)
  .debug_str     0x0000000000000000      0x196 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/xc8/avr/lib/avr5/memx-const/crtatmega32.o
- .debug_str     0x0000000000000196        0x9 HAL/HLCD/HLCD_CONFIG.o
- .debug_str     0x000000000000019f       0x4d HAL/HLCD/HLCD_PROGRAM.o
- .debug_str     0x00000000000001ec       0x10 HAL/HLED/HLED_CONFIG.o
- .debug_str     0x00000000000001fc       0x8a HAL/HLED/HLED_PROGRAM.o
- .debug_str     0x0000000000000286       0xc7 main.o
- .debug_str     0x000000000000034d       0x41 MCAL/MDIO/MDIO_PROGRAM.o
- .debug_str     0x000000000000038e        0xe MCAL/MINT/MINT_PROGRAM.o
- .debug_str     0x000000000000039c       0x28 MCAL/MSPI/MSPI_PROGRAM.o
- .debug_str     0x00000000000003c4       0x20 MCAL/MTIMER/MTIMER_PROGRAM.o
+ .debug_str     0x0000000000000196        0x0 HAL/HKEYPAD/HKEYPAD_CONFIG.o
+ .debug_str     0x0000000000000196       0x26 HAL/HKEYPAD/HKEYPAD_PROGRAM.o
+ .debug_str     0x00000000000001bc        0x9 HAL/HLCD/HLCD_CONFIG.o
+ .debug_str     0x00000000000001c5       0x43 HAL/HLCD/HLCD_PROGRAM.o
+ .debug_str     0x0000000000000208       0xdb main.o
+ .debug_str     0x00000000000002e3       0x41 MCAL/MDIO/MDIO_PROGRAM.o
+ .debug_str     0x0000000000000324       0x12 MCAL/MEEPROM/MEEPROM_PROGRAM.o
+ .debug_str     0x0000000000000336       0x14 MCAL/MINT/MINT_PROGRAM.o
+ .debug_str     0x000000000000034a       0x2a MCAL/MSPI/MSPI_PROGRAM.o
+ .debug_str     0x0000000000000374       0x2c MCAL/MTIMER/MTIMER_PROGRAM.o
 
-.debug_loc      0x0000000000000000     0x1ae1
+.debug_loc      0x0000000000000000     0x2c55
  *(.debug_loc)
- .debug_loc     0x0000000000000000      0xb7d HAL/HLCD/HLCD_PROGRAM.o
- .debug_loc     0x0000000000000b7d      0x101 HAL/HLED/HLED_PROGRAM.o
- .debug_loc     0x0000000000000c7e      0x2e0 MCAL/MDIO/MDIO_PROGRAM.o
- .debug_loc     0x0000000000000f5e      0x3f8 MCAL/MINT/MINT_PROGRAM.o
- .debug_loc     0x0000000000001356       0xbc MCAL/MSPI/MSPI_PROGRAM.o
- .debug_loc     0x0000000000001412      0x6cf MCAL/MTIMER/MTIMER_PROGRAM.o
+ .debug_loc     0x0000000000000000      0x2e9 HAL/HKEYPAD/HKEYPAD_PROGRAM.o
+ .debug_loc     0x00000000000002e9      0xbce HAL/HLCD/HLCD_PROGRAM.o
+ .debug_loc     0x0000000000000eb7      0x38d main.o
+ .debug_loc     0x0000000000001244      0x2e0 MCAL/MDIO/MDIO_PROGRAM.o
+ .debug_loc     0x0000000000001524       0xf2 MCAL/MEEPROM/MEEPROM_PROGRAM.o
+ .debug_loc     0x0000000000001616      0x665 MCAL/MINT/MINT_PROGRAM.o
+ .debug_loc     0x0000000000001c7b      0x15d MCAL/MSPI/MSPI_PROGRAM.o
+ .debug_loc     0x0000000000001dd8      0xe7d MCAL/MTIMER/MTIMER_PROGRAM.o
 
 .debug_macinfo
  *(.debug_macinfo)
@@ -1071,15 +1091,16 @@ END GROUP
 .debug_pubtypes
  *(.debug_pubtypes)
 
-.debug_ranges   0x0000000000000000      0x200
+.debug_ranges   0x0000000000000000      0x278
  *(.debug_ranges)
- .debug_ranges  0x0000000000000000       0x50 HAL/HLCD/HLCD_PROGRAM.o
- .debug_ranges  0x0000000000000050       0x30 HAL/HLED/HLED_PROGRAM.o
- .debug_ranges  0x0000000000000080       0x10 main.o
- .debug_ranges  0x0000000000000090       0x40 MCAL/MDIO/MDIO_PROGRAM.o
- .debug_ranges  0x00000000000000d0       0x60 MCAL/MINT/MINT_PROGRAM.o
- .debug_ranges  0x0000000000000130       0x38 MCAL/MSPI/MSPI_PROGRAM.o
- .debug_ranges  0x0000000000000168       0x98 MCAL/MTIMER/MTIMER_PROGRAM.o
+ .debug_ranges  0x0000000000000000       0x18 HAL/HKEYPAD/HKEYPAD_PROGRAM.o
+ .debug_ranges  0x0000000000000018       0x50 HAL/HLCD/HLCD_PROGRAM.o
+ .debug_ranges  0x0000000000000068       0x50 main.o
+ .debug_ranges  0x00000000000000b8       0x40 MCAL/MDIO/MDIO_PROGRAM.o
+ .debug_ranges  0x00000000000000f8       0x18 MCAL/MEEPROM/MEEPROM_PROGRAM.o
+ .debug_ranges  0x0000000000000110       0x60 MCAL/MINT/MINT_PROGRAM.o
+ .debug_ranges  0x0000000000000170       0x38 MCAL/MSPI/MSPI_PROGRAM.o
+ .debug_ranges  0x00000000000001a8       0xd0 MCAL/MTIMER/MTIMER_PROGRAM.o
 
 .debug_macro
  *(.debug_macro)
@@ -1092,201 +1113,341 @@ LOAD data_init
  .note.gnu.avr.deviceinfo
                 0x0000000000000000       0x3c C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/xc8/avr/lib/avr5/memx-const/crtatmega32.o
 
-.bss.data_to_master
-                0x00000000008000ba        0x1
- .bss.data_to_master
-                0x00000000008000ba        0x1 main.o
-                0x00000000008000ba                data_to_master
+.bss.wrong_pass_flag
+                0x000000000080013d        0x1
+ .bss.wrong_pass_flag
+                0x000000000080013d        0x1 main.o
+                0x000000000080013d                wrong_pass_flag
 
-.bss.data_from_master
-                0x00000000008000bb        0x1
- .bss.data_from_master
-                0x00000000008000bb        0x1 main.o
-                0x00000000008000bb                data_from_master
+.bss.counter_for_wrong_pass_entered
+                0x000000000080013e        0x1
+ .bss.counter_for_wrong_pass_entered
+                0x000000000080013e        0x1 main.o
+                0x000000000080013e                counter_for_wrong_pass_entered
 
-.bss.x          0x00000000008000a4        0x4
- .bss.x         0x00000000008000a4        0x4 main.o
-                0x00000000008000a4                x
+.bss.lcd_flag   0x000000000080013f        0x1
+ .bss.lcd_flag  0x000000000080013f        0x1 main.o
+                0x000000000080013f                lcd_flag
+
+.bss.sequence   0x0000000000800140        0x1
+ .bss.sequence  0x0000000000800140        0x1 main.o
+                0x0000000000800140                sequence
+
+.bss.entered_pass
+                0x0000000000800141        0x1
+ .bss.entered_pass
+                0x0000000000800141        0x1 main.o
+                0x0000000000800141                entered_pass
+
+.bss.saved_pass
+                0x0000000000800142        0x1
+ .bss.saved_pass
+                0x0000000000800142        0x1 main.o
+                0x0000000000800142                saved_pass
+
+.bss.address_in_eeprom
+                0x0000000000800139        0x2
+ .bss.address_in_eeprom
+                0x0000000000800139        0x2 main.o
+                0x0000000000800139                address_in_eeprom
+
+.bss.counter_in_eeprom
+                0x0000000000800143        0x1
+ .bss.counter_in_eeprom
+                0x0000000000800143        0x1 main.o
+                0x0000000000800143                counter_in_eeprom
+
+.bss.x          0x0000000000800122        0x4
+ .bss.x         0x0000000000800122        0x4 main.o
+                0x0000000000800122                x
 
 .bss.EXINT_CALLBACK
-                0x000000000080009e        0x6
+                0x0000000000800118        0x6
  .bss.EXINT_CALLBACK
-                0x000000000080009e        0x6 MCAL/MINT/MINT_PROGRAM.o
+                0x0000000000800118        0x6 MCAL/MINT/MINT_PROGRAM.o
 
 .bss.u16counter_of_ovf_timer0
-                0x00000000008000b8        0x2
+                0x000000000080013b        0x2
  .bss.u16counter_of_ovf_timer0
-                0x00000000008000b8        0x2 MCAL/MTIMER/MTIMER_PROGRAM.o
+                0x000000000080013b        0x2 MCAL/MTIMER/MTIMER_PROGRAM.o
 
-.text.voidLCDwrite_data_HLCD
-                0x00000000000000d6      0x23c
- .text.voidLCDwrite_data_HLCD
-                0x00000000000000d6      0x23c HAL/HLCD/HLCD_PROGRAM.o
-                0x00000000000000d6                voidLCDwrite_data_HLCD
+.text.u8admin_control
+                0x00000000000000e8      0x590
+ .text.u8admin_control
+                0x00000000000000e8      0x590 main.o
+                0x00000000000000e8                u8admin_control
 
-.text.main      0x0000000000000312      0x1b0
- .text.main     0x0000000000000312      0x1b0 main.o
-                0x0000000000000312                main
+.text.lcd_write_data
+                0x0000000000000678      0x246
+ .text.lcd_write_data
+                0x0000000000000678      0x246 HAL/HLCD/HLCD_PROGRAM.o
+                0x0000000000000678                lcd_write_data
 
-.text.voidinitlcd_HLCD
-                0x00000000000004c2      0x178
- .text.voidinitlcd_HLCD
-                0x00000000000004c2      0x178 HAL/HLCD/HLCD_PROGRAM.o
-                0x00000000000004c2                voidinitlcd_HLCD
+.text.lcd_init  0x00000000000008be      0x17a
+ .text.lcd_init
+                0x00000000000008be      0x17a HAL/HLCD/HLCD_PROGRAM.o
+                0x00000000000008be                lcd_init
 
-.text.enumpindirection_MDIO
-                0x000000000000063a      0x114
- .text.enumpindirection_MDIO
-                0x000000000000063a      0x114 MCAL/MDIO/MDIO_PROGRAM.o
-                0x000000000000063a                enumpindirection_MDIO
+.text.keypadgetnumber
+                0x0000000000000a38      0x136
+ .text.keypadgetnumber
+                0x0000000000000a38      0x136 HAL/HKEYPAD/HKEYPAD_PROGRAM.o
+                0x0000000000000a38                keypadgetnumber
 
-.text.enumpinvalue_MDIO
-                0x000000000000074e      0x114
- .text.enumpinvalue_MDIO
-                0x000000000000074e      0x114 MCAL/MDIO/MDIO_PROGRAM.o
-                0x000000000000074e                enumpinvalue_MDIO
+.text.pin_direction
+                0x0000000000000b6e      0x114
+ .text.pin_direction
+                0x0000000000000b6e      0x114 MCAL/MDIO/MDIO_PROGRAM.o
+                0x0000000000000b6e                pin_direction
+
+.text.pin_value
+                0x0000000000000c82      0x114
+ .text.pin_value
+                0x0000000000000c82      0x114 MCAL/MDIO/MDIO_PROGRAM.o
+                0x0000000000000c82                pin_value
+
+.text.keypad_init
+                0x0000000000000d96       0xd2
+ .text.keypad_init
+                0x0000000000000d96       0xd2 HAL/HKEYPAD/HKEYPAD_PROGRAM.o
+                0x0000000000000d96                keypad_init
+
+.text.pin_get_value
+                0x0000000000000e68       0xaa
+ .text.pin_get_value
+                0x0000000000000e68       0xaa MCAL/MDIO/MDIO_PROGRAM.o
+                0x0000000000000e68                pin_get_value
+
+.text.u8check_admin_pass
+                0x0000000000000f12       0x9a
+ .text.u8check_admin_pass
+                0x0000000000000f12       0x9a main.o
+                0x0000000000000f12                u8check_admin_pass
+
+.text.spi_master_init
+                0x0000000000000fac       0x74
+ .text.spi_master_init
+                0x0000000000000fac       0x74 MCAL/MSPI/MSPI_PROGRAM.o
+                0x0000000000000fac                spi_master_init
+
+.text.u8set_admin_pass
+                0x0000000000001020       0x6c
+ .text.u8set_admin_pass
+                0x0000000000001020       0x6c main.o
+                0x0000000000001020                u8set_admin_pass
+
+.text.u8enter_admin_pass
+                0x000000000000108c       0x6c
+ .text.u8enter_admin_pass
+                0x000000000000108c       0x6c main.o
+                0x000000000000108c                u8enter_admin_pass
 
 .text.__vector_7
-                0x0000000000000862       0x5e
+                0x00000000000010f8       0x5e
  .text.__vector_7
-                0x0000000000000862       0x5e MCAL/MTIMER/MTIMER_PROGRAM.o
-                0x0000000000000862                __vector_7
+                0x00000000000010f8       0x5e MCAL/MTIMER/MTIMER_PROGRAM.o
+                0x00000000000010f8                __vector_7
 
-.text.voidinitspi_slave_MSPI
-                0x00000000000008c0       0x52
- .text.voidinitspi_slave_MSPI
-                0x00000000000008c0       0x52 MCAL/MSPI/MSPI_PROGRAM.o
-                0x00000000000008c0                voidinitspi_slave_MSPI
+.text.LCDstring
+                0x0000000000001156       0x52
+ .text.LCDstring
+                0x0000000000001156       0x52 HAL/HLCD/HLCD_PROGRAM.o
+                0x0000000000001156                LCDstring
 
 .text.__vector_1
-                0x0000000000000912       0x4e
+                0x00000000000011a8       0x4e
  .text.__vector_1
-                0x0000000000000912       0x4e MCAL/MINT/MINT_PROGRAM.o
-                0x0000000000000912                __vector_1
+                0x00000000000011a8       0x4e MCAL/MINT/MINT_PROGRAM.o
+                0x00000000000011a8                __vector_1
 
 .text.__vector_2
-                0x0000000000000960       0x4e
+                0x00000000000011f6       0x4e
  .text.__vector_2
-                0x0000000000000960       0x4e MCAL/MINT/MINT_PROGRAM.o
-                0x0000000000000960                __vector_2
+                0x00000000000011f6       0x4e MCAL/MINT/MINT_PROGRAM.o
+                0x00000000000011f6                __vector_2
 
 .text.__vector_3
-                0x00000000000009ae       0x4e
+                0x0000000000001244       0x4e
  .text.__vector_3
-                0x00000000000009ae       0x4e MCAL/MINT/MINT_PROGRAM.o
-                0x00000000000009ae                __vector_3
+                0x0000000000001244       0x4e MCAL/MINT/MINT_PROGRAM.o
+                0x0000000000001244                __vector_3
+
+.text.main      0x0000000000001292       0x46
+ .text.main     0x0000000000001292       0x46 main.o
+                0x0000000000001292                main
+
+.text.u8check_if_admin_set_pass
+                0x00000000000012d8       0x40
+ .text.u8check_if_admin_set_pass
+                0x00000000000012d8       0x40 main.o
+                0x00000000000012d8                u8check_if_admin_set_pass
+
+.text.spi_master_receive_byte
+                0x0000000000001318       0x3a
+ .text.spi_master_receive_byte
+                0x0000000000001318       0x3a MCAL/MSPI/MSPI_PROGRAM.o
+                0x0000000000001318                spi_master_receive_byte
+
+.text.EEPROM_READ_BYTE_MEEPROM
+                0x0000000000001352       0x2e
+ .text.EEPROM_READ_BYTE_MEEPROM
+                0x0000000000001352       0x2e MCAL/MEEPROM/MEEPROM_PROGRAM.o
+                0x0000000000001352                EEPROM_READ_BYTE_MEEPROM
 
 .text.__vector_11
-                0x00000000000009fc       0x2e
+                0x0000000000001380       0x2e
  .text.__vector_11
-                0x00000000000009fc       0x2e MCAL/MTIMER/MTIMER_PROGRAM.o
-                0x00000000000009fc                __vector_11
+                0x0000000000001380       0x2e MCAL/MTIMER/MTIMER_PROGRAM.o
+                0x0000000000001380                __vector_11
 
-.text.voidinitLED_HLED
-                0x0000000000000a2a       0x2a
- .text.voidinitLED_HLED
-                0x0000000000000a2a       0x2a HAL/HLED/HLED_PROGRAM.o
-                0x0000000000000a2a                voidinitLED_HLED
+.text.spi_master_transmit_byte
+                0x00000000000013ae       0x2a
+ .text.spi_master_transmit_byte
+                0x00000000000013ae       0x2a MCAL/MSPI/MSPI_PROGRAM.o
+                0x00000000000013ae                spi_master_transmit_byte
 
-.text.exit      0x0000000000000a54       0x16
- .text.exit     0x0000000000000a54       0x16 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libc.a(exit.o)
-                0x0000000000000a54                exit
+.text.EEPROM_WRITE_BYTE
+                0x00000000000013d8       0x26
+ .text.EEPROM_WRITE_BYTE
+                0x00000000000013d8       0x26 MCAL/MEEPROM/MEEPROM_PROGRAM.o
+                0x00000000000013d8                EEPROM_WRITE_BYTE
 
-.text.voidledon_HLED
-                0x0000000000000a6a        0xe
- .text.voidledon_HLED
-                0x0000000000000a6a        0xe HAL/HLED/HLED_PROGRAM.o
-                0x0000000000000a6a                voidledon_HLED
+.text.exit      0x00000000000013fe       0x16
+ .text.exit     0x00000000000013fe       0x16 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libc.a(exit.o)
+                0x00000000000013fe                exit
 
-.text.voidledoff_HLED
-                0x0000000000000a78        0xe
- .text.voidledoff_HLED
-                0x0000000000000a78        0xe HAL/HLED/HLED_PROGRAM.o
-                0x0000000000000a78                voidledoff_HLED
+.text.lcdclear  0x0000000000001414        0xe
+ .text.lcdclear
+                0x0000000000001414        0xe HAL/HLCD/HLCD_PROGRAM.o
+                0x0000000000001414                lcdclear
 
-.text.libgcc    0x0000000000000a86        0xc
- .text.libgcc   0x0000000000000a86        0xc c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/avr5/memx-const\libgcc.a(_tablejump2.o)
-                0x0000000000000a86                __tablejump2__
+.text.libgcc    0x0000000000001422        0xc
+ .text.libgcc   0x0000000000001422        0xc c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/avr5/memx-const\libgcc.a(_tablejump2.o)
+                0x0000000000001422                __tablejump2__
 
-.text.u8spi_slave_receive_byte_MSPI
-                0x0000000000000a92        0x8
- .text.u8spi_slave_receive_byte_MSPI
-                0x0000000000000a92        0x8 MCAL/MSPI/MSPI_PROGRAM.o
-                0x0000000000000a92                u8spi_slave_receive_byte_MSPI
+.text           0x000000000000142e        0x4
+ .text          0x000000000000142e        0x4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/xc8/avr/lib/avr5/memx-const/crtatmega32.o
+                0x000000000000142e                __vector_12
+                0x000000000000142e                __bad_interrupt
+                0x000000000000142e                __vector_6
+                0x000000000000142e                __vector_13
+                0x000000000000142e                __vector_17
+                0x000000000000142e                __vector_19
+                0x000000000000142e                __vector_5
+                0x000000000000142e                __vector_4
+                0x000000000000142e                __vector_9
+                0x000000000000142e                __vector_15
+                0x000000000000142e                __vector_8
+                0x000000000000142e                __vector_14
+                0x000000000000142e                __vector_10
+                0x000000000000142e                __vector_16
+                0x000000000000142e                __vector_18
+                0x000000000000142e                __vector_20
 
-.text           0x0000000000000a9a        0x4
- .text          0x0000000000000a9a        0x4 C:/Program Files (x86)/Atmel/Studio/7.0/Packs/atmel/ATmega_DFP/1.7.374/xc8/avr/lib/avr5/memx-const/crtatmega32.o
-                0x0000000000000a9a                __vector_12
-                0x0000000000000a9a                __bad_interrupt
-                0x0000000000000a9a                __vector_6
-                0x0000000000000a9a                __vector_13
-                0x0000000000000a9a                __vector_17
-                0x0000000000000a9a                __vector_19
-                0x0000000000000a9a                __vector_5
-                0x0000000000000a9a                __vector_4
-                0x0000000000000a9a                __vector_9
-                0x0000000000000a9a                __vector_15
-                0x0000000000000a9a                __vector_8
-                0x0000000000000a9a                __vector_14
-                0x0000000000000a9a                __vector_10
-                0x0000000000000a9a                __vector_16
-                0x0000000000000a9a                __vector_18
-                0x0000000000000a9a                __vector_20
-
-.text.voidspi_slave_transmit_byte_MSPI
-                0x0000000000000a9e        0x4
- .text.voidspi_slave_transmit_byte_MSPI
-                0x0000000000000a9e        0x4 MCAL/MSPI/MSPI_PROGRAM.o
-                0x0000000000000a9e                voidspi_slave_transmit_byte_MSPI
-
-.text._Exit     0x0000000000000aa2        0x4
- .text._Exit    0x0000000000000aa2        0x4 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libc.a(_Exit.o)
-                0x0000000000000aa2                _Exit
+.text._Exit     0x0000000000001432        0x4
+ .text._Exit    0x0000000000001432        0x4 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libc.a(_Exit.o)
+                0x0000000000001432                _Exit
 
 .text.__dummy_fini
-                0x0000000000000aa6        0x2
+                0x0000000000001436        0x2
  .text.__dummy_fini
-                0x0000000000000aa6        0x2 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libc.a(exit.o)
-                0x0000000000000aa6                _fini
+                0x0000000000001436        0x2 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libc.a(exit.o)
+                0x0000000000001436                _fini
 
 .text.__dummy_funcs_on_exit
-                0x0000000000000aa8        0x2
+                0x0000000000001438        0x2
  .text.__dummy_funcs_on_exit
-                0x0000000000000aa8        0x2 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libc.a(exit.o)
-                0x0000000000000aa8                __funcs_on_exit
+                0x0000000000001438        0x2 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libc.a(exit.o)
+                0x0000000000001438                __funcs_on_exit
 
 .text.__dummy_simulator_exit
-                0x0000000000000aaa        0x2
+                0x000000000000143a        0x2
  .text.__dummy_simulator_exit
-                0x0000000000000aaa        0x2 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libc.a(exit.o)
-                0x0000000000000aaa                __simulator_exit
+                0x000000000000143a        0x2 c:/program files/microchip/xc8/v2.36/avr/bin/../lib/gcc/avr/5.4.0/../../../../avr/lib/avr5/memx-const\libc.a(exit.o)
+                0x000000000000143a                __simulator_exit
 
 .data.HLCD_arrayoflcds
-                0x0000000000800062       0x2d load address 0x0000000000000aac
+                0x000000000080006a       0x2d load address 0x000000000000143c
  .data.HLCD_arrayoflcds
-                0x0000000000800062       0x2d HAL/HLCD/HLCD_CONFIG.o
-                0x0000000000800062                HLCD_arrayoflcds
+                0x000000000080006a       0x2d HAL/HLCD/HLCD_CONFIG.o
+                0x000000000080006a                HLCD_arrayoflcds
 
-.data.HLED_arrayofleds
-                0x000000000080008f        0xf load address 0x0000000000000ad9
- .data.HLED_arrayofleds
-                0x000000000080008f        0xf HAL/HLED/HLED_CONFIG.o
-                0x000000000080008f                HLED_arrayofleds
+.data.HKEYPAD_arrayofkeypads
+                0x0000000000800097       0x20 load address 0x0000000000001469
+ .data.HKEYPAD_arrayofkeypads
+                0x0000000000800097       0x20 HAL/HKEYPAD/HKEYPAD_CONFIG.o
+                0x0000000000800097                HKEYPAD_arrayofkeypads
 
-.data.SCK_PIN   0x00000000008000a8        0x4 load address 0x0000000000000ae8
- .data.SCK_PIN  0x00000000008000a8        0x4 MCAL/MSPI/MSPI_PROGRAM.o
-                0x00000000008000a8                SCK_PIN
+.data.keypad    0x00000000008000b7       0x10 load address 0x0000000000001489
+ .data.keypad   0x00000000008000b7       0x10 HAL/HKEYPAD/HKEYPAD_PROGRAM.o
+                0x00000000008000b7                keypad
 
-.data.MISO_PIN  0x00000000008000ac        0x4 load address 0x0000000000000aec
+.data.set_admin_pass
+                0x00000000008000c7       0x10 load address 0x0000000000001499
+ .data.set_admin_pass
+                0x00000000008000c7       0x10 main.o
+                0x00000000008000c7                set_admin_pass
+
+.data.error_message
+                0x00000000008000d7        0xf load address 0x00000000000014a9
+ .data.error_message
+                0x00000000008000d7        0xf main.o
+                0x00000000008000d7                error_message
+
+.data.choose    0x00000000008000e6        0xd load address 0x00000000000014b8
+ .data.choose   0x00000000008000e6        0xd main.o
+                0x00000000008000e6                choose
+
+.data.choose_op_level
+                0x00000000008000f3        0xb load address 0x00000000000014c5
+ .data.choose_op_level
+                0x00000000008000f3        0xb main.o
+                0x00000000008000f3                choose_op_level
+
+.data.enter_password_message
+                0x00000000008000fe        0xa load address 0x00000000000014d0
+ .data.enter_password_message
+                0x00000000008000fe        0xa main.o
+                0x00000000008000fe                enter_password_message
+
+.data.status    0x0000000000800108        0x8 load address 0x00000000000014da
+ .data.status   0x0000000000800108        0x8 main.o
+                0x0000000000800108                status
+
+.data.right_pass
+                0x0000000000800110        0x8 load address 0x00000000000014e2
+ .data.right_pass
+                0x0000000000800110        0x8 main.o
+                0x0000000000800110                right_pass
+
+.data.off       0x000000000080011e        0x4 load address 0x00000000000014ea
+ .data.off      0x000000000080011e        0x4 main.o
+                0x000000000080011e                off
+
+.data.SCK_PIN   0x0000000000800126        0x4 load address 0x00000000000014ee
+ .data.SCK_PIN  0x0000000000800126        0x4 MCAL/MSPI/MSPI_PROGRAM.o
+                0x0000000000800126                SCK_PIN
+
+.data.MISO_PIN  0x000000000080012a        0x4 load address 0x00000000000014f2
  .data.MISO_PIN
-                0x00000000008000ac        0x4 MCAL/MSPI/MSPI_PROGRAM.o
-                0x00000000008000ac                MISO_PIN
+                0x000000000080012a        0x4 MCAL/MSPI/MSPI_PROGRAM.o
+                0x000000000080012a                MISO_PIN
 
-.data.MOSI_PIN  0x00000000008000b0        0x4 load address 0x0000000000000af0
+.data.MOSI_PIN  0x000000000080012e        0x4 load address 0x00000000000014f6
  .data.MOSI_PIN
-                0x00000000008000b0        0x4 MCAL/MSPI/MSPI_PROGRAM.o
-                0x00000000008000b0                MOSI_PIN
+                0x000000000080012e        0x4 MCAL/MSPI/MSPI_PROGRAM.o
+                0x000000000080012e                MOSI_PIN
 
-.data.SS_PIN    0x00000000008000b4        0x4 load address 0x0000000000000af4
- .data.SS_PIN   0x00000000008000b4        0x4 MCAL/MSPI/MSPI_PROGRAM.o
-                0x00000000008000b4                SS_PIN
+.data.SS_PIN    0x0000000000800132        0x4 load address 0x00000000000014fa
+ .data.SS_PIN   0x0000000000800132        0x4 MCAL/MSPI/MSPI_PROGRAM.o
+                0x0000000000800132                SS_PIN
+
+.data.on        0x0000000000800136        0x3 load address 0x00000000000014fe
+ .data.on       0x0000000000800136        0x3 main.o
+                0x0000000000800136                on
+
+.data.value_in_keypad
+                0x0000000000800144        0x1 load address 0x0000000000001501
+ .data.value_in_keypad
+                0x0000000000800144        0x1 main.o
+                0x0000000000800144                value_in_keypad

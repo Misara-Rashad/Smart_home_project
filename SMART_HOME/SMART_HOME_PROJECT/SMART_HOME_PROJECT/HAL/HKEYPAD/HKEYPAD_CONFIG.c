@@ -8,18 +8,14 @@
 /*.........includes section........*/
 //libraries
 #include "../../Libraries_/LIB_STDTypes.h"
-#include "../../Libraries_/LIB_BMNP.h"
-#include "../../Libraries_/ATMega32_Registers.h"
+
 
 //MCAL
-#include "../../MCAL/MDIO/MDIO_CONFIG.h"
 #include "../../MCAL/MDIO/MDIO_INTERFACE.h"
-#include "../../MCAL/MDIO/MDIO_REGISTERS.h"
 
 
 
 //HAL
-#include "HKEYPAD_CONFIG.h"
 #include "HKEYPAD_INTERFACE.h"
 
 

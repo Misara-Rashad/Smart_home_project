@@ -13,9 +13,7 @@
 #include "../../Libraries_/ATMega32_Registers.h"
 
 //MCAL
-#include "../../MCAL/MDIO/MDIO_CONFIG.h"
 #include "../../MCAL/MDIO/MDIO_INTERFACE.h"
-#include "../../MCAL/MDIO/MDIO_REGISTERS.h"
 
 
 

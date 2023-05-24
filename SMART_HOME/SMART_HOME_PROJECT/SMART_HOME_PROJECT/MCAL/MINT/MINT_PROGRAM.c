@@ -17,57 +17,85 @@
 static void (* EXINT_CALLBACK[3]) (void); //static to only be used in this file .c
 
 
-void voidinitinterrupt_MINT(void)
+tenumFncErrorState interrupt_initT(void)
 {
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
 	SET_BIT(SREG,I);  //enable global interrupt	
+	return error;
 }
 
-void voidINTExitCriticalSection_MINT(void)
+tenumFncErrorState INTExitCriticalSection(void)
 {
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
 	CLR_BIT(SREG,I);
+	return error;	
 }
 
 
-void voidINTEnterCriticalSection_MINT(void)
+tenumFncErrorState INTEnterCriticalSection(void)
 {
-	SET_BIT(SREG,I);	
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;	
+	SET_BIT(SREG,I);
+	return error;	
 }
 
 
-void voidINTGETFlag_MINT(MINT_EXINTS enumCpy_ExInt, pu8 pu8Cpy_INTFlag)
+tenumFncErrorState INTGETFlag(MINT_EXINTS enumCpy_ExInt, pu8 pu8Cpy_INTFlag)
 {
-	switch(enumCpy_ExInt)
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
+	if (NULL==pu8Cpy_INTFlag)
 	{
-		case MINT_EXINT0:
-		*pu8Cpy_INTFlag=GET_BIT(GIFR,INTF0);
-		break;
-		
-		case MINT_EXINT1:
-		*pu8Cpy_INTFlag=GET_BIT(GIFR,INTF1);
-		break;
-		
-		case MINT_EXINT2:
-		*pu8Cpy_INTFlag=GET_BIT(GIFR,INTF2);
-		break;
-		
-		default:
-		break;
-	}	
+		error=LSTY_NULL_POINTER;
+	}
+	else if(enumCpy_ExInt<MINT_EXINT0 || enumCpy_ExInt>MINT_EXINT2)
+	{
+		error=LSTY_OUT_OF_RANGE;	
+	}
+	else
+	{
+			switch(enumCpy_ExInt)
+			{
+				case MINT_EXINT0:
+				*pu8Cpy_INTFlag=GET_BIT(GIFR,INTF0);
+				break;
+				
+				case MINT_EXINT1:
+				*pu8Cpy_INTFlag=GET_BIT(GIFR,INTF1);
+				break;
+				
+				case MINT_EXINT2:
+				*pu8Cpy_INTFlag=GET_BIT(GIFR,INTF2);
+				break;
+				
+				default:
+				break;
+			}
+	}
+	return error;
+
 }
 
 
-void voidINTSETFlag_MINT(MINT_EXINTS enumCpy_ExInt, MINT_INTFLAGVALUE enumCpy_INTFlagValue)
+tenumFncErrorState INTSETFlag(MINT_EXINTS enumCpy_ExInt, MINT_INTFLAGVALUE enumCpy_INTFlagValue)
 {
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
+	if (	enumCpy_ExInt<MINT_EXINT0 || enumCpy_ExInt>MINT_EXINT2 
+		||enumCpy_INTFlagValue<MINT_FLAG_CLEAR ||enumCpy_INTFlagValue>MINT_FLAG_SET)
+	{
+		error=LSTY_OUT_OF_RANGE;
+	}
+	else
+	{
 	switch(enumCpy_ExInt)
 	{
 		case MINT_EXINT0:
 		if (enumCpy_INTFlagValue == MINT_FLAG_SET)
 		{
-		SET_BIT(GIFR,INTF0);	
+			SET_BIT(GIFR,INTF0);
 		}
 		else
 		{
-		CLR_BIT(GIFR,INTF0);			
+			CLR_BIT(GIFR,INTF0);
 		}
 		break;
 		
@@ -79,7 +107,7 @@ void voidINTSETFlag_MINT(MINT_EXINTS enumCpy_ExInt, MINT_INTFLAGVALUE enumCpy_IN
 		else
 		{
 			CLR_BIT(GIFR,INTF1);
-		}		
+		}
 		break;
 		
 		case MINT_EXINT2:
@@ -90,18 +118,29 @@ void voidINTSETFlag_MINT(MINT_EXINTS enumCpy_ExInt, MINT_INTFLAGVALUE enumCpy_IN
 		else
 		{
 			CLR_BIT(GIFR,INTF2);
-		}	
+		}
 		break;
 		
 		default:
 		break;
 	}	
+	}
+	return error;
+	
 }
 
 
-void voidINTENABLEHandler_MINT(MINT_EXINTS enumCpy_ExInt,MINT_RESPONSE_LEVEL enumcpy_response_level)
+tenumFncErrorState INTENABLEHandler(MINT_EXINTS enumCpy_ExInt,MINT_RESPONSE_LEVEL enumcpy_response_level)
 {
-	switch(enumCpy_ExInt)
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
+	if (enumCpy_ExInt<MINT_EXINT0 || enumCpy_ExInt>MINT_EXINT2
+		||enumcpy_response_level<MINT_ISC_LOW_LEVEL || enumcpy_response_level>MINT_ISC_RISING_EDGE)
+	{
+		error=LSTY_OUT_OF_RANGE;
+	}
+	else
+	{
+			switch(enumCpy_ExInt)
 	{
 		case MINT_EXINT0:
 		SET_BIT(GICR,INT0);
@@ -193,28 +232,41 @@ void voidINTENABLEHandler_MINT(MINT_EXINTS enumCpy_ExInt,MINT_RESPONSE_LEVEL enu
 		default:
 		break;
 	}	
+	}
+	return error;
+
 }
 
 
-void voidINTDISABLEHandler_MINT(MINT_EXINTS enumCpy_ExInt)
+tenumFncErrorState INTDISABLEHandler(MINT_EXINTS enumCpy_ExInt)
 {
-	switch(enumCpy_ExInt)
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
+	if (enumCpy_ExInt<MINT_EXINT0 || enumCpy_ExInt>MINT_EXINT2)
 	{
-		case MINT_EXINT0:
-		CLR_BIT(GICR,INT0);
-		break;
-		
-		case MINT_EXINT1:
-		CLR_BIT(GICR,INT1);
-		break;
-		
-		case MINT_EXINT2:
-		CLR_BIT(GICR,INT2);
-		break;
-		
-		default:
-		break;
-	}	
+		error=LSTY_OUT_OF_RANGE;
+	}
+	else
+	{
+			switch(enumCpy_ExInt)
+			{
+				case MINT_EXINT0:
+				CLR_BIT(GICR,INT0);
+				break;
+				
+				case MINT_EXINT1:
+				CLR_BIT(GICR,INT1);
+				break;
+				
+				case MINT_EXINT2:
+				CLR_BIT(GICR,INT2);
+				break;
+				
+				default:
+				break;
+			}
+	}
+	return error;
+	
 }
 
 
@@ -223,25 +275,39 @@ void voidINTDISABLEHandler_MINT(MINT_EXINTS enumCpy_ExInt)
 /* This function is being called in main.c to hold an address of another function that have the ISR written by user */
     /* Since the function is being passed to CB function is local we use the global varible "pointer to function" 
         to assign to it the address of the ISR function passed to CallBack function */
-void voidINTSetCallBack_MINT(void (*ptr) (void), MINT_EXINTS enumCpy_ExInt)
+tenumFncErrorState INTSetCallBack(void (*ptr) (void), MINT_EXINTS enumCpy_ExInt)
 {
-	switch(enumCpy_ExInt)
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
+	if (NULL==ptr)
 	{
-		case MINT_EXINT0:
-		EXINT_CALLBACK[0]=ptr;
-		break;
-		
-		case MINT_EXINT1:
-		EXINT_CALLBACK[1]=ptr;
-		break;
-		
-		case MINT_EXINT2:
-		EXINT_CALLBACK[2]=ptr;
-		break;
-		
-		default:
-		break;
+		error=LSTY_NULL_POINTER;
 	}
+	else if (enumCpy_ExInt<MINT_EXINT0 || enumCpy_ExInt>MINT_EXINT2)
+	{
+		error=LSTY_OUT_OF_RANGE;
+	}
+	else
+	{
+		switch(enumCpy_ExInt)
+		{
+			case MINT_EXINT0:
+			EXINT_CALLBACK[0]=ptr;
+			break;
+			
+			case MINT_EXINT1:
+			EXINT_CALLBACK[1]=ptr;
+			break;
+			
+			case MINT_EXINT2:
+			EXINT_CALLBACK[2]=ptr;
+			break;
+			
+			default:
+			break;
+		}	
+	}
+	return error;
+
 }
 
 

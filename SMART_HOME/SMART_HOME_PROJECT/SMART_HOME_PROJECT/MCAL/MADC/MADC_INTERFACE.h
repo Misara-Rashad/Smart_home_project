@@ -9,7 +9,7 @@
 #ifndef MADC_INTERFACE_H_
 #define MADC_INTERFACE_H_
 
-
+//data types
 typedef enum{
 	MADC_PS2=2 ,MADC_PS4=4, MADC_PS8=8, MADC_PS16=16, MADC_PS32=32, MADC_PS64=64, MADC_PS128=128
 }MADC_PRESCALAR;
@@ -32,8 +32,8 @@ typedef enum{
 }MADC_CHANNEL;
 
 typedef enum{
-	MADC_ADCL,MADC_ADCH
-	}MADC_REGISTER_LEFT_OR_RIGHT_ADJUST;
+	MADC_RIGHT_ADJUST,MADC_LEFT_ADJUST
+}MADC_REGISTER_LEFT_OR_RIGHT_ADJUST;
 
 typedef struct  
 {
@@ -45,32 +45,13 @@ typedef struct
 	MADC_VREF							enumvref;
 }MADC_T;
 
-
-
-//MADC_T HADC;
-
-
-MADC_T HADC={
-	.enumchannel=MADC_CH1,
-	.enumconvmode=MADC_SINGLE_CONV,
-	.enumoutputmode=MADC_POLLING,
-	.enumprescalar=MADC_PS128,
-	.enumregister_select=MADC_ADCH,
-	.enumvref=MADC_AVCC
-	};
-
-
-
-
-
-
-
-
-
+//includes
+#include "MADC_REGISTERS.h"
 
 //functions prototype
-void voidinitADC_MADC(void);
-void voidADCget_analog_value(pu8 pu8pstruct);
+tenumFncErrorState ADC_init(MADC_T* ptostruct);
+tenumFncErrorState ADC_START_CONVERSION(void);
+tenumFncErrorState ADC_get_analog_value(MADC_T* ptostruct,pf32 ptofloat);
 
 
 #endif /* MADC_INTERFACE_H_ */

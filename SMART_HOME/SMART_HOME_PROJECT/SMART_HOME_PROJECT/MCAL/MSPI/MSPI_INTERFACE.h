@@ -49,16 +49,16 @@
 
 //functions interface
 //master init
-void voidinitspi_master_MSPI(void);
+tenumFncErrorState spi_master_init(void);
 /*..................*/
 //slave init
-void voidinitspi_slave_MSPI(void);
+tenumFncErrorState spi_slave_init(void);
 /*..................*/
 
-void voidspi_master_transmit_byte_MSPI(u8 data);
-u8 u8spi_master_receive_byte_MSPI(void);
+tenumFncErrorState spi_master_transmit_byte(u8 data);
+tenumFncErrorState spi_master_receive_byte(pu8 pu8variable);
 
-void voidspi_slave_transmit_byte_MSPI(u8 data);
-u8	 u8spi_slave_receive_byte_MSPI(void);
+tenumFncErrorState spi_slave_transmit_byte(u8 data);
+tenumFncErrorState spi_slave_receive_byte(pu8 pu8variable);
 
 #endif /* MSPI_INTERFACE_H_ */

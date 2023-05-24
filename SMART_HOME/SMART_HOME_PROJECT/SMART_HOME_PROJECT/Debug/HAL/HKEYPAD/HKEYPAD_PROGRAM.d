@@ -3,13 +3,8 @@ HAL/HKEYPAD/HKEYPAD_PROGRAM.d HAL/HKEYPAD/HKEYPAD_PROGRAM.o: \
  ../HAL/HKEYPAD/../../Libraries_/LIB_STDTypes.h \
  ../HAL/HKEYPAD/../../Libraries_/LIB_BMNP.h \
  ../HAL/HKEYPAD/../../Libraries_/ATMega32_Registers.h \
- ../HAL/HKEYPAD/../../Libraries_/LIB_BMNP.h \
- ../HAL/HKEYPAD/../../Libraries_/ATMega32_Registers.h \
- ../HAL/HKEYPAD/../../MCAL/MDIO/MDIO_CONFIG.h \
  ../HAL/HKEYPAD/../../MCAL/MDIO/MDIO_INTERFACE.h \
  ../HAL/HKEYPAD/../../MCAL/MDIO/../../Libraries_/LIB_STDTypes.h \
- ../HAL/HKEYPAD/../../MCAL/MDIO/MDIO_REGISTERS.h \
- ../HAL/HKEYPAD/../../MCAL/MDIO/MDIO_CONFIG.h \
  ../HAL/HKEYPAD/../../MCAL/MDIO/MDIO_REGISTERS.h \
  ../HAL/HKEYPAD/HKEYPAD_CONFIG.h ../HAL/HKEYPAD/HKEYPAD_INTERFACE.h \
  c:\program\ files\microchip\xc8\v2.36\avr\avr\include\util\delay.h \
@@ -28,19 +23,9 @@ HAL/HKEYPAD/HKEYPAD_PROGRAM.d HAL/HKEYPAD/HKEYPAD_PROGRAM.o: \
 
 ../HAL/HKEYPAD/../../Libraries_/ATMega32_Registers.h:
 
-../HAL/HKEYPAD/../../Libraries_/LIB_BMNP.h:
-
-../HAL/HKEYPAD/../../Libraries_/ATMega32_Registers.h:
-
-../HAL/HKEYPAD/../../MCAL/MDIO/MDIO_CONFIG.h:
-
 ../HAL/HKEYPAD/../../MCAL/MDIO/MDIO_INTERFACE.h:
 
 ../HAL/HKEYPAD/../../MCAL/MDIO/../../Libraries_/LIB_STDTypes.h:
-
-../HAL/HKEYPAD/../../MCAL/MDIO/MDIO_REGISTERS.h:
-
-../HAL/HKEYPAD/../../MCAL/MDIO/MDIO_CONFIG.h:
 
 ../HAL/HKEYPAD/../../MCAL/MDIO/MDIO_REGISTERS.h:
 

@@ -9,6 +9,7 @@
 #ifndef H7SEG_INTERFACE_H_
 #define H7SEG_INTERFACE_H_
 
+#include "H7SEG_CONFIG.h"
 
 typedef enum
 {
@@ -35,10 +36,10 @@ SSD_T H7SEGarrayof7seg_H7SEG[NUM_OF_7SEG];
 
 
 //functions declartion
-void voidinit7seg_H7SEG(void);
-void void7seg_enable_one_H7SEG(SSD_T* pstructcpy_pin);
-void void7seg_disable_one_H7SEG(SSD_T* pstructcpy_pin);
-void void7seg_sendnumber_H7SEG(SSD_T* pstructcpy_pin,Register regcpy_num);
-void void7seg_clear_H7SEG(SSD_T* pstructcpy_pin);
-void void7seg_enable_one_disable_all_H7SEG(SSD_T* pstructcpy_pin);
+tenumFncErrorState seven_segment_init(void);
+tenumFncErrorState seven_segment_enable_one(SSD_T* pstructcpy_pin);
+tenumFncErrorState seven_segment_disable_one(SSD_T* pstructcpy_pin);
+tenumFncErrorState seven_segment_sendnumber(SSD_T* pstructcpy_pin,Register regcpy_num);
+tenumFncErrorState seven_segment_clear(SSD_T* pstructcpy_pin);		//not defined
+tenumFncErrorState seven_segment_enable_one_disable_all(SSD_T* pstructcpy_pin);	//not defined
 #endif /* H7SEG_INTERFACE_H_ */

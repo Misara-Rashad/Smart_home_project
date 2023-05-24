@@ -27,6 +27,7 @@ typedef signed long long int s64;
 typedef signed long long int * ps64;
 
 typedef float f32;
+typedef float* pf32;
 
 #define NULL ((void*)0)
 

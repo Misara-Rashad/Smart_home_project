@@ -9,8 +9,7 @@
 /*...........includes section..........*/
 //libraries
 #include "../../Libraries_/LIB_STDTypes.h"
-#include "../../Libraries_/LIB_BMNP.h"
-#include "../../Libraries_/ATMega32_Registers.h"
+
 
 //MCAL
 #include "MDIO_INTERFACE.h"
@@ -32,7 +31,7 @@
 
 
 //2.direction of port or pin
-tenumFncErrorState enumpindirection_MDIO(DIO_PIN* pstructcpy_pin)
+tenumFncErrorState pin_direction(DIO_PIN* pstructcpy_pin)
 {
 	if(pstructcpy_pin->enumport <MDIO_PORTA || pstructcpy_pin->enumport> MDIO_PORTD
 	 || pstructcpy_pin->enumpin <MDIO_PIN0 || pstructcpy_pin->enumpin >MDIO_PIN7
@@ -95,7 +94,7 @@ tenumFncErrorState enumpindirection_MDIO(DIO_PIN* pstructcpy_pin)
 }
 
 //2.direction of port or pin
-tenumFncErrorState enumportdirection_MDIO(DIO_PORT* pstructcpy_port)
+tenumFncErrorState port_direction(DIO_PORT* pstructcpy_port)
 {
 	if(pstructcpy_port->enumport <MDIO_PORTA || pstructcpy_port->enumport >MDIO_PORTD 
 	||pstructcpy_port->enummode <MDIO_INPUT || pstructcpy_port->enummode >MDIO_OUTPUT)
@@ -158,7 +157,7 @@ tenumFncErrorState enumportdirection_MDIO(DIO_PORT* pstructcpy_port)
 
 
 //3.pin
-tenumFncErrorState enumpinvalue_MDIO(DIO_PIN* pstructcpy_pin)
+tenumFncErrorState pin_value(DIO_PIN* pstructcpy_pin)
 {
 	if(pstructcpy_pin->enumport <MDIO_PORTA || pstructcpy_pin->enumport >MDIO_PORTD 
 	|| pstructcpy_pin->enumpin <MDIO_PIN0 || pstructcpy_pin->enumpin >MDIO_PIN7
@@ -222,7 +221,7 @@ tenumFncErrorState enumpinvalue_MDIO(DIO_PIN* pstructcpy_pin)
 
 
 
-tenumFncErrorState enumpinvalue_selection_MDIO(DIO_PIN* pstructcpy_pin,OUTPUT_LEVEL enumoutputlevel)
+tenumFncErrorState pin_value_selection(DIO_PIN* pstructcpy_pin,OUTPUT_LEVEL enumoutputlevel)
 {
 	if(pstructcpy_pin->enumport <MDIO_PORTA || pstructcpy_pin->enumport >MDIO_PORTD
 	|| pstructcpy_pin->enumpin <MDIO_PIN0 || pstructcpy_pin->enumpin >MDIO_PIN7
@@ -287,7 +286,7 @@ tenumFncErrorState enumpinvalue_selection_MDIO(DIO_PIN* pstructcpy_pin,OUTPUT_LE
 
 
 //3.pin
-tenumFncErrorState enumpintoggle_MDIO(DIO_PIN* pstructcpy_pin)
+tenumFncErrorState pin_toggle(DIO_PIN* pstructcpy_pin)
 {
 		if(pstructcpy_pin->enumport <MDIO_PORTA || pstructcpy_pin->enumport >MDIO_PORTD
 		|| pstructcpy_pin->enumpin <MDIO_PIN0 || pstructcpy_pin->enumpin >MDIO_PIN7)
@@ -319,7 +318,7 @@ tenumFncErrorState enumpintoggle_MDIO(DIO_PIN* pstructcpy_pin)
 }
 
 //3.pin
-tenumFncErrorState enumpingetvalue_MDIO(DIO_PIN* pstructcpy_pin,pu8 pu8cpy_pin_value)
+tenumFncErrorState pin_get_value(DIO_PIN* pstructcpy_pin,pu8 pu8cpy_pin_value)
 {
 	if(pu8cpy_pin_value==NULL)
 	{
@@ -358,7 +357,7 @@ tenumFncErrorState enumpingetvalue_MDIO(DIO_PIN* pstructcpy_pin,pu8 pu8cpy_pin_v
 
 
 //4.port
-tenumFncErrorState enumportvalue_MDIO(DIO_PORT* pstructcpy_port,u8 u8cpy_value )
+tenumFncErrorState port_value(DIO_PORT* pstructcpy_port,u8 u8cpy_value )
 {
 	if(pstructcpy_port->enumport <MDIO_PORTA || pstructcpy_port->enumport >MDIO_PORTD 
 	||pstructcpy_port->enumoutputlevel<MDIO_LOW || pstructcpy_port->enumoutputlevel>MDIO_HIGH)

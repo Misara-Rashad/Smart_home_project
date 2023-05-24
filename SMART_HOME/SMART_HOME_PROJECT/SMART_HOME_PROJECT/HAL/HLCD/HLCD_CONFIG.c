@@ -13,9 +13,7 @@
 
 
 //MCAL
-#include "../../MCAL/MDIO/MDIO_CONFIG.h"
 #include "../../MCAL/MDIO/MDIO_INTERFACE.h"
-#include "../../MCAL/MDIO/MDIO_REGISTERS.h"
 
 //HAL
 #include "HLCD_CONFIG.h"

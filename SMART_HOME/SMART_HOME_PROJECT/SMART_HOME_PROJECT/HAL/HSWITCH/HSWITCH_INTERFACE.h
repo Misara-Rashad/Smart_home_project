@@ -38,7 +38,7 @@ SWITCH_T HSWITCHES_arrayofswitches[NUM_OF_SWITCHES];
 
 
 //functions prototype
-void voidinitSWITCH_HSWITCH(void);
-tenumFncErrorState enumswitchgetvalue_HSWITCH(SWITCH_T* pstruct_cpy,pu8 pu8cpy_pin);
+tenumFncErrorState SWITCH_INIT(void);
+tenumFncErrorState switch_get_value(SWITCH_T* pstruct_cpy,pu8 pu8cpy_pin);
 
 #endif /* HSWITCH_INTERFACE_H_ */

@@ -41,6 +41,7 @@ SUBDIRS :=  \
 ../HAL/HSWITCH/ \
 ../HAL/HSERVO \
 ../HAL/HDC_MOTOR \
+../HAL/HTEMP_SENSOR_LM35 \
 ../Libraries_/ \
 ../MCAL/ \
 ../MCAL/MADC/ \
@@ -68,13 +69,13 @@ C_SRCS +=  \
 ../HAL/HSERVO/HSERVO_PROGRAM.c \
 ../HAL/HSWITCH/HSWITCH_CONFIG.c \
 ../HAL/HSWITCH/HSWITCH_PROGRAM.c \
+../HAL/HTEMP_SENSOR_LM35/HTEMP_SENSOR_LM35_program.c \
 ../main.c \
 ../MCAL/MADC/MADC_PROGRAM.c \
 ../MCAL/MDIO/MDIO_PROGRAM.c \
 ../MCAL/MEEPROM/MEEPROM_PROGRAM.c \
 ../MCAL/MINT/MINT_PROGRAM.c \
 ../MCAL/MSPI/MSPI_PROGRAM.c \
-../MCAL/MTIMER/MPWM/MPWM_CONFIG.c \
 ../MCAL/MTIMER/MPWM/MPWM_PROGRAM.c \
 ../MCAL/MTIMER/MTIMER_PROGRAM.c \
 ../MCAL/MTWI/MTWI_PROGRAM.c \
@@ -100,13 +101,13 @@ HAL/HLED/HLED_PROGRAM.o \
 HAL/HSERVO/HSERVO_PROGRAM.o \
 HAL/HSWITCH/HSWITCH_CONFIG.o \
 HAL/HSWITCH/HSWITCH_PROGRAM.o \
+HAL/HTEMP_SENSOR_LM35/HTEMP_SENSOR_LM35_program.o \
 main.o \
 MCAL/MADC/MADC_PROGRAM.o \
 MCAL/MDIO/MDIO_PROGRAM.o \
 MCAL/MEEPROM/MEEPROM_PROGRAM.o \
 MCAL/MINT/MINT_PROGRAM.o \
 MCAL/MSPI/MSPI_PROGRAM.o \
-MCAL/MTIMER/MPWM/MPWM_CONFIG.o \
 MCAL/MTIMER/MPWM/MPWM_PROGRAM.o \
 MCAL/MTIMER/MTIMER_PROGRAM.o \
 MCAL/MTWI/MTWI_PROGRAM.o \
@@ -125,13 +126,13 @@ HAL/HLED/HLED_PROGRAM.o \
 HAL/HSERVO/HSERVO_PROGRAM.o \
 HAL/HSWITCH/HSWITCH_CONFIG.o \
 HAL/HSWITCH/HSWITCH_PROGRAM.o \
+HAL/HTEMP_SENSOR_LM35/HTEMP_SENSOR_LM35_program.o \
 main.o \
 MCAL/MADC/MADC_PROGRAM.o \
 MCAL/MDIO/MDIO_PROGRAM.o \
 MCAL/MEEPROM/MEEPROM_PROGRAM.o \
 MCAL/MINT/MINT_PROGRAM.o \
 MCAL/MSPI/MSPI_PROGRAM.o \
-MCAL/MTIMER/MPWM/MPWM_CONFIG.o \
 MCAL/MTIMER/MPWM/MPWM_PROGRAM.o \
 MCAL/MTIMER/MTIMER_PROGRAM.o \
 MCAL/MTWI/MTWI_PROGRAM.o \
@@ -150,13 +151,13 @@ HAL/HLED/HLED_PROGRAM.d \
 HAL/HSERVO/HSERVO_PROGRAM.d \
 HAL/HSWITCH/HSWITCH_CONFIG.d \
 HAL/HSWITCH/HSWITCH_PROGRAM.d \
+HAL/HTEMP_SENSOR_LM35/HTEMP_SENSOR_LM35_program.d \
 main.d \
 MCAL/MADC/MADC_PROGRAM.d \
 MCAL/MDIO/MDIO_PROGRAM.d \
 MCAL/MEEPROM/MEEPROM_PROGRAM.d \
 MCAL/MINT/MINT_PROGRAM.d \
 MCAL/MSPI/MSPI_PROGRAM.d \
-MCAL/MTIMER/MPWM/MPWM_CONFIG.d \
 MCAL/MTIMER/MPWM/MPWM_PROGRAM.d \
 MCAL/MTIMER/MTIMER_PROGRAM.d \
 MCAL/MTWI/MTWI_PROGRAM.d \
@@ -175,13 +176,13 @@ HAL/HLED/HLED_PROGRAM.d \
 HAL/HSERVO/HSERVO_PROGRAM.d \
 HAL/HSWITCH/HSWITCH_CONFIG.d \
 HAL/HSWITCH/HSWITCH_PROGRAM.d \
+HAL/HTEMP_SENSOR_LM35/HTEMP_SENSOR_LM35_program.d \
 main.d \
 MCAL/MADC/MADC_PROGRAM.d \
 MCAL/MDIO/MDIO_PROGRAM.d \
 MCAL/MEEPROM/MEEPROM_PROGRAM.d \
 MCAL/MINT/MINT_PROGRAM.d \
 MCAL/MSPI/MSPI_PROGRAM.d \
-MCAL/MTIMER/MPWM/MPWM_CONFIG.d \
 MCAL/MTIMER/MPWM/MPWM_PROGRAM.d \
 MCAL/MTIMER/MTIMER_PROGRAM.d \
 MCAL/MTWI/MTWI_PROGRAM.d \
@@ -285,6 +286,13 @@ HAL/HSWITCH/HSWITCH_PROGRAM.o: ../HAL/HSWITCH/HSWITCH_PROGRAM.c
 	@echo Finished building: $<
 	
 
+HAL/HTEMP_SENSOR_LM35/HTEMP_SENSOR_LM35_program.o: ../HAL/HTEMP_SENSOR_LM35/HTEMP_SENSOR_LM35_program.c
+	@echo Building file: $<
+	@echo Invoking: XC8 C Compiler : 2.36
+	$(QUOTE)C:\Program Files\Microchip\xc8\v2.36\bin\xc8-cc.exe$(QUOTE)  -mcpu=ATmega32  -mdfp="C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\xc8"  -c -x c -funsigned-char -funsigned-bitfields -mext=cci -D__ATmega32__ -DDEBUG  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
+	@echo Finished building: $<
+	
+
 ./main.o: .././main.c
 	@echo Building file: $<
 	@echo Invoking: XC8 C Compiler : 2.36
@@ -321,13 +329,6 @@ MCAL/MINT/MINT_PROGRAM.o: ../MCAL/MINT/MINT_PROGRAM.c
 	
 
 MCAL/MSPI/MSPI_PROGRAM.o: ../MCAL/MSPI/MSPI_PROGRAM.c
-	@echo Building file: $<
-	@echo Invoking: XC8 C Compiler : 2.36
-	$(QUOTE)C:\Program Files\Microchip\xc8\v2.36\bin\xc8-cc.exe$(QUOTE)  -mcpu=ATmega32  -mdfp="C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\xc8"  -c -x c -funsigned-char -funsigned-bitfields -mext=cci -D__ATmega32__ -DDEBUG  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 
-	@echo Finished building: $<
-	
-
-MCAL/MTIMER/MPWM/MPWM_CONFIG.o: ../MCAL/MTIMER/MPWM/MPWM_CONFIG.c
 	@echo Building file: $<
 	@echo Invoking: XC8 C Compiler : 2.36
 	$(QUOTE)C:\Program Files\Microchip\xc8\v2.36\bin\xc8-cc.exe$(QUOTE)  -mcpu=ATmega32  -mdfp="C:\Program Files (x86)\Atmel\Studio\7.0\Packs\atmel\ATmega_DFP\1.7.374\xc8"  -c -x c -funsigned-char -funsigned-bitfields -mext=cci -D__ATmega32__ -DDEBUG  -Og -ffunction-sections -fdata-sections -fpack-struct -fshort-enums -g2 -Wall -MD -MP -MF "$(@:%.o=%.d)" -MT"$(@:%.o=%.d)" -MT"$(@:%.o=%.o)"   -o "$@" "$<" 

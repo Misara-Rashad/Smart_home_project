@@ -11,9 +11,11 @@
 
 //libraries
 #include "../../../Libraries_/LIB_STDTypes.h"
-#include "../../../Libraries_/LIB_BMNP.h"
-#include "../../../Libraries_/ATMega32_Registers.h"
 
+#define NUM_OF_PWM 3
+#define MPWM_NUM_0 0
+#define MPWM_NUM_1 1
+#define MPWM_NUM_2 2
 
 typedef enum{
 	MPWM_NUM0,MPWM_NUM1,MPWM_NUM2
@@ -55,9 +57,9 @@ MPWM_T HPWM_arrayofpwm[NUM_OF_PWM];
 
 
 //functions prototype
-void voidinitpwm_MPWM(MPWM_T* ptostruct);
-void voidpwm_change_duty_cycle_MPWM(u8 u8cpy_value_to_OCRn,MPWM_T* ptostruct);
-void voidpwm_disable_MPWM(MPWM_T* ptostruct);
+tenumFncErrorState PWM_init_MPWM(MPWM_T* ptostruct);
+tenumFncErrorState pwm_change_duty_cycle_MPWM(u8 u8cpy_value_to_OCRn,MPWM_T* ptostruct);
+tenumFncErrorState pwm_disable_MPWM(MPWM_T* ptostruct);
 
 
 #endif /* MPWM_INTERFACE_H_ */

@@ -9,6 +9,11 @@
 #ifndef MUSART_INTERFACE_H_
 #define MUSART_INTERFACE_H_
 
+
+#include "MUSART_REGISTERS.h"
+#include "MUSART_CONFIG.h"
+
+
 #define SYNC_MODE    0
 #define ASYNC_MODE   1
 
@@ -43,9 +48,9 @@
 
 
 //functions prototype
-void voidinitUART_MUSART(void);
-void voidUART_send_byte(u8 u8data_to_be_send);
-u8 u8UART_receive_byte(void);
+tenumFncErrorState UART_INIT(void);
+tenumFncErrorState UART_send_byte(u8 u8data_to_be_send);
+tenumFncErrorState UART_receive_byte(pu8 pu8variable);
 
 
 #endif /* MUSART_INTERFACE_H_ */

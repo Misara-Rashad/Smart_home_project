@@ -12,8 +12,8 @@
 //timer 2 will control all servo motors
 
 //functions declaration
-f32 f32initservo_HSERVO(u8 u8angle);
-void voidservo_start_HSERVO(f32 f32on_time);
+tenumFncErrorState servo_init(u8 u8angle,pf32 pf32variable);
+tenumFncErrorState servo_start(f32 f32on_time);
 
 
 #endif /* HSERVO_INTERFACE_H_ */

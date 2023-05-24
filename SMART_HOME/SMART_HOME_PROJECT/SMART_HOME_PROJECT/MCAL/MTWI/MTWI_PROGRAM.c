@@ -7,51 +7,57 @@
 
 
 #include "../../Libraries_/LIB_STDTypes.h"
-#include "../../Libraries_/LIB_BMNP.h"
-#include "../../Libraries_/ATMega32_Registers.h"
 
 
-#include "MTWI_CONFIG.h"
+
 #include "MTWI_INTERFACE.h"
-#include "MTWI_REGISTERS.h"
 
 
 
 //functions implementation
-void voidinitTWI_MTWI(void)
+tenumFncErrorState TWI_INIT(void)
 {
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
 	//select baud rate
 	CLR_BIT(TWSR,TWPS0);
 	CLR_BIT(TWSR,TWPS1);
 	TWBR=18;
+	return error;
 }
 
 
-void voidTWI_START_CONDITION_MTWI(void)
+tenumFncErrorState TWI_START_CONDITION(void)
 {
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;	
 	//start condition
 	TWCR=(SET_BIT(TWCR,TWINT))|(SET_BIT(TWCR,TWSTA)) |(CLR_BIT(TWCR,TWSTO)) |(SET_BIT(TWCR,TWEN));
 	while (!GET_BIT(TWCR,TWINT));
+	return error;
 }
 
 
-void voidTWI_REPEATED_START_CONDITION(void)
+tenumFncErrorState TWI_REPEATED_START_CONDITION(void)
 {
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
 	//repeated start
 	TWCR=(SET_BIT(TWCR,TWINT))|(SET_BIT(TWCR,TWSTA)) |(CLR_BIT(TWCR,TWSTO)) |(SET_BIT(TWCR,TWEN));
 	while (!GET_BIT(TWCR,TWINT));
+	return error;
 }
 
 
-void voidTWI_STOP_CONDITION_MTWI(void)
+tenumFncErrorState TWI_STOP_CONDITION(void)
 {
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
 	//stop condition
 	TWCR=(SET_BIT(TWCR,TWINT))|(CLR_BIT(TWCR,TWSTA)) |(SET_BIT(TWCR,TWSTO)) |(SET_BIT(TWCR,TWEN));
+	return error;	
 }
 
 
-void voidTWI_SEND_SLAVE_ADDRESS_AND_RW_BIT_MTWI(u8 u8dslave_address_7bit,u8 u8W0_R1)
+tenumFncErrorState TWI_SEND_SLAVE_ADDRESS_AND_RW_BIT(u8 u8dslave_address_7bit,u8 u8W0_R1)
 {
+		tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
 		//SLA+W/R
 		//after writing address of the slave clear TWINT
 		u8 address_only,address_includesRW_bit;
@@ -60,59 +66,104 @@ void voidTWI_SEND_SLAVE_ADDRESS_AND_RW_BIT_MTWI(u8 u8dslave_address_7bit,u8 u8W0
 		TWDR=address_includesRW_bit; //slave address + w  (SLA+W)
 		TWCR=(SET_BIT(TWCR,TWINT))|(CLR_BIT(TWCR,TWSTA)) |(CLR_BIT(TWCR,TWSTO)) |(SET_BIT(TWCR,TWEN));
 		while (!GET_BIT(TWCR,TWINT));
+		return error;			
 }
 
 
-void voidTWI_SEND_BYTE_AFTER_SENDING_ADDRESS_MTWI(u8 u8data)
+tenumFncErrorState TWI_SEND_BYTE_AFTER_SENDING_ADDRESS(u8 u8data)
 {
+		tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
 		TWDR=u8data;
 		TWCR=(SET_BIT(TWCR,TWINT))|(CLR_BIT(TWCR,TWSTA)) |(CLR_BIT(TWCR,TWSTO)) |(SET_BIT(TWCR,TWEN));
 		while (!GET_BIT(TWCR,TWINT));
+		return error;
 }
 
 
 
-void voidTWI_RECEIVE_BYTE_AFTER_SENDING_ADDRESS_MTWI(pu8 pu8received_data)
+tenumFncErrorState TWI_RECEIVE_BYTE_AFTER_SENDING_ADDRESS(pu8 pu8received_data)
 {
-	*pu8received_data = TWDR;
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
+	if (NULL==pu8received_data)
+	{
+		error=LSTY_NULL_POINTER;
+	}
+	else
+	{
+		*pu8received_data = TWDR;	
+	}
+	return error;
+
 }
 
 
-void voidTWI_CHECK_STATUS_REGISTER_MTWI(pu8 pu8status_register)
+tenumFncErrorState TWI_CHECK_STATUS_REGISTER(pu8 pu8status_register)
 {
-	while ( !GET_BIT(TWCR,TWINT));
-	*pu8status_register=TWSR & 0xF8;
+		tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
+		if (NULL==pu8status_register)
+		{
+			error=LSTY_NULL_POINTER;
+		}
+		else
+		{
+			while ( !GET_BIT(TWCR,TWINT));
+			*pu8status_register=TWSR & 0xF8;
+		}
+		return error;
+
 }
 
 
 
 //master functions
 
-void voidTWI_MASTER_TRANSMIT_BYTE(u8 u8dslave_address,u8 u8data_transmitted)
+tenumFncErrorState TWI_MASTER_TRANSMIT_BYTE(u8 u8dslave_address,u8 u8data_transmitted)
 {
-	voidTWI_START_CONDITION_MTWI();
-	voidTWI_SEND_SLAVE_ADDRESS_AND_RW_BIT_MTWI(u8dslave_address,0); //0 as master writes data to slave
-	voidTWI_SEND_BYTE_AFTER_SENDING_ADDRESS_MTWI(u8data_transmitted);
-	voidTWI_STOP_CONDITION_MTWI();
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
+	TWI_START_CONDITION();
+	TWI_SEND_SLAVE_ADDRESS_AND_RW_BIT(u8dslave_address,0); //0 as master writes data to slave
+	TWI_SEND_BYTE_AFTER_SENDING_ADDRESS(u8data_transmitted);
+	TWI_STOP_CONDITION();
+	return error;
 }
 
 
-void voidTWI_MASTER_RECEIVE_BYTE(u8 u8dslave_address,pu8 pu8received_data)
+tenumFncErrorState TWI_MASTER_RECEIVE_BYTE(u8 u8dslave_address,pu8 pu8received_data)
 {
-	voidTWI_START_CONDITION_MTWI();
-	voidTWI_SEND_SLAVE_ADDRESS_AND_RW_BIT_MTWI(u8dslave_address,1); //1 as master reads data to slave
-	voidTWI_RECEIVE_BYTE_AFTER_SENDING_ADDRESS_MTWI(pu8received_data);
-	voidTWI_STOP_CONDITION_MTWI();	
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
+	if (NULL==pu8received_data)
+	{
+		error=LSTY_NULL_POINTER;
+	}
+	else
+	{
+		TWI_START_CONDITION();
+		TWI_SEND_SLAVE_ADDRESS_AND_RW_BIT(u8dslave_address,1); //1 as master reads data to slave
+		TWI_RECEIVE_BYTE_AFTER_SENDING_ADDRESS(pu8received_data);
+		TWI_STOP_CONDITION();
+	}
+	return error;
+	
 }
 
 
 
 //slave functions
-void voidTWI_SLAVE_RECEIVE_BYTE(u8 u8dslave_address,pu8 pu8received_data)
+tenumFncErrorState TWI_SLAVE_RECEIVE_BYTE(u8 u8dslave_address,pu8 pu8received_data)
 {
-	TWAR = u8dslave_address << 1 ;		//to be in most significant 7 bit of TwAR
-	TWCR=(SET_BIT(TWCR,TWEA))|(CLR_BIT(TWCR,TWSTA)) |(CLR_BIT(TWCR,TWSTO)) |(SET_BIT(TWCR,TWEN));
-	*pu8received_data=TWDR;
+	tenumFncErrorState error=LSTY_EXECUTED_SUCCESSFULLY;
+	if (NULL==pu8received_data)
+	{
+		error=LSTY_NULL_POINTER;
+	}
+	else
+	{
+		TWAR = u8dslave_address << 1 ;		//to be in most significant 7 bit of TwAR
+		TWCR=(SET_BIT(TWCR,TWEA))|(CLR_BIT(TWCR,TWSTA)) |(CLR_BIT(TWCR,TWSTO)) |(SET_BIT(TWCR,TWEN));
+		*pu8received_data=TWDR;
+	}
+	return error;
+
 }
 
 
